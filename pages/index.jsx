@@ -16,16 +16,10 @@ export default function Home() {
             href="https://nextjs.org"
             className="text-blue-500 hover:underline duration-200"
           >
-            Next.js!
+            WEA
           </a>
         </h1>
-
-        <p>
-          Get started by editing{' '}
-          <code className=" bg-[#111] p-2 rounded-lg font-mono italic select-all">
-            pages/index.js
-          </code>
-        </p>
+        <p>Web entrepreneur assistance </p>
       </main>
     </div>
   );
