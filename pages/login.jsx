@@ -1,5 +1,5 @@
 export default function SignIn() {
-  const handdleSubmit = (ev) => {
+  const handleSubmit = (ev) => {
     ev.preventDefault();
     const formData = new FormData(ev.target);
     const inputObject = Object.fromEntries(formData);
@@ -9,7 +9,7 @@ export default function SignIn() {
   return (
     <div className="h-screen bg-black flex justify-center items-center">
       <form
-        onSubmit={handdleSubmit}
+        onSubmit={handleSubmit}
         className="bg-white p-4 rounded-xl gap-4 max-w-2xl min-h-48 flex flex-col "
       >
         <h2 className="text-2xl text-center mb-4">Ingresar</h2>
