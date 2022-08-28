@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signInWithEmail } from '../utils/auth';
+import { signInWithEmail, signInWithGoogle } from '../utils/auth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -41,6 +41,12 @@ export default function Login() {
           Ingresar
         </button>
       </form>
+      <button
+        className="bg-white p-2 rounded-lg hover:bg-blue-600 bold text-lg hover:text-white duration-300"
+        onClick={signInWithGoogle}
+      >
+        Ingresar con Google
+      </button>
     </div>
   );
 }
