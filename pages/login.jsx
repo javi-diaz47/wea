@@ -38,7 +38,7 @@ export default function Login() {
           className="hover:bg-blue-600 hover:text-white bold duration-300 rounded-3xl"
           type="submit"
         >
-          Ingresar
+          Iniciar sesión
         </button>
       </form>
       <button

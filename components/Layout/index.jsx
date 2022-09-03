@@ -14,7 +14,16 @@ const Layout = ({ isAuth, children }) => {
               </Link>
             );
           }
-          return null;
+          return (
+            <>
+              <Link href="/login">
+                <a>Iniciar sesión</a>
+              </Link>
+              <Link href="/sign-up">
+                <a>Crear cuanta</a>
+              </Link>
+            </>
+          );
         }}
       />
       {children}

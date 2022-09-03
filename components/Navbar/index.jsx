@@ -6,12 +6,10 @@ const Navbar = ({ render }) => {
       <Link href="/">
         <a>Home</a>
       </Link>
-      <Link href="/login">
-        <a>Login</a>
-      </Link>
       <Link href="/protected">
         <a>Protected</a>
       </Link>
+
       {render()}
     </nav>
   );
