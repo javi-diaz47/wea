@@ -1,27 +1,31 @@
 import { useState } from 'react';
 import { Input } from '../components/Input';
 import { signUpUser } from '../utils/auth';
+import { MIN_PASSWORD_LENGTH, USER_TYPES } from '../utils/constants';
 
 export default function signUp() {
-  const USER_TYPES = {
-    PERSON: '1',
-    ENTERPRISE: '2',
-  };
-
-  const MIN_PASSWORD_LENGTH = '6';
-
   const [userType, setUserType] = useState(USER_TYPES.PERSON);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const htmlFormData = new FormData(ev.target);
     const inputObject = Object.fromEntries(htmlFormData);
     signUpUser(inputObject);
+    setSubmitted(true);
   };
 
   const onChangeUserType = (ev) => {
     setUserType(ev.target.value);
   };
+
+  if (submitted) {
+    return (
+      <div className="h-screen bg-black flex justify-center items-center text-white">
+        <h2>Revisa tu correo electronico</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen bg-black flex justify-center items-center">

@@ -1,52 +1,37 @@
 import { useState } from 'react';
-import { signInWithEmail, signInWithGoogle } from '../utils/auth';
+import { Input } from '../components/Input';
+import { signIn } from '../utils/auth';
+import { MIN_PASSWORD_LENGTH } from '../utils/constants';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    signInWithEmail(email);
+    const htmlFormData = new FormData(ev.target);
+    const inputObject = Object.fromEntries(htmlFormData);
+    signIn(inputObject);
     setSubmitted(true);
   };
 
-  if (submitted) {
-    return (
-      <div className="h-screen bg-black flex justify-center items-center text-white">
-        <h2>Revisa tu correo electronico</h2>
-      </div>
-    );
-  }
-
   return (
     <div className="h-screen bg-black flex justify-center items-center">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-4 rounded-xl gap-4 max-w-2xl min-h-48 flex flex-col "
-      >
-        <h2 className="text-2xl text-center mb-4">Ingresar</h2>
-        <input
-          value={email}
-          onChange={(ev) => setEmail(ev.target.value)}
-          name="email"
-          placeholder="micorreo@correo.com"
-          type="email"
-          required
+      <form onSubmit={handleSubmit}>
+        <h2 className="text-white text-2xl text-center mb-4">Ingresar</h2>
+        <Input label="Correo" name="email" type="email" required={true} />
+        <Input
+          label="Contraseña"
+          name="password"
+          type="password"
+          required={true}
+          minlength={MIN_PASSWORD_LENGTH}
         />
+
         <button
-          className="hover:bg-blue-600 hover:text-white bold duration-300 rounded-3xl"
+          className="hover:text-white p-2 hover:bg-rose-600 bg-white bold duration-300 rounded-lg"
           type="submit"
         >
           Iniciar sesión
         </button>
       </form>
-      <button
-        className="bg-white p-2 rounded-lg hover:bg-blue-600 bold text-lg hover:text-white duration-300"
-        onClick={signInWithGoogle}
-      >
-        Ingresar con Google
-      </button>
     </div>
   );
 }

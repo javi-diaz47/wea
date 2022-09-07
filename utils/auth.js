@@ -1,16 +1,11 @@
 import { supabase } from '../utils/supabaseClient';
 
-export const signUpUser = async ({
-  name,
-  lastName,
-  email,
-  password,
-  userType,
-  nit,
-}) => {
+export const signUpUser = async (data) => {
+  const { name, lastName, email, password, userType, nit } = data;
   try {
     const { user, error } = await supabase.auth.signUp(
       { email, password },
+      // Add user metadata
       {
         data: {
           name,
@@ -25,6 +20,19 @@ export const signUpUser = async ({
     if (error) throw error;
 
     console.log(user);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const signIn = async ({ email, password }) => {
+  try {
+    const { user, session, error } = await supabase.auth.signIn({
+      email,
+      password,
+    });
+    if (error) throw error;
+    console.log(usre);
   } catch (err) {
     console.error(err);
   }
