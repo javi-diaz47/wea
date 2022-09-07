@@ -30,35 +30,6 @@ export const signUpUser = async ({
   }
 };
 
-export const signInWithEmail = async (email) => {
-  try {
-    const { user, error } = await supabase.auth.signIn({
-      email,
-    });
-
-    if (error) throw error;
-
-    return user;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-export const signInWithGoogle = async () => {
-  try {
-    const { user, session, error } = await supabase.auth.signIn({
-      provider: 'google',
-    });
-
-    if (error) throw error;
-
-    console.log(user);
-    console.log(session);
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 export const signOut = async () => {
   await supabase.auth.signOut();
 };
