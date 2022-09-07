@@ -5,19 +5,19 @@ export const signUpUser = async ({
   lastName,
   email,
   password,
-  typeUser,
+  userType,
+  nit,
 }) => {
   try {
     const { user, error } = await supabase.auth.signUp(
-      {
-        email,
-        password,
-      },
+      { email, password },
       {
         data: {
           name,
-          lastName,
-          typeUser,
+          last_name: lastName ? lastName : null,
+          email,
+          user_type_id: Number(userType),
+          nit: nit ? nit : null,
         },
       }
     );

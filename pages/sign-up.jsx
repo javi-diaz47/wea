@@ -4,8 +4,8 @@ import { signUpUser } from '../utils/auth';
 
 export default function signUp() {
   const USER_TYPES = {
-    PERSON: '0',
-    ENTERPRISE: '1',
+    PERSON: '1',
+    ENTERPRISE: '2',
   };
 
   const MIN_PASSWORD_LENGTH = '6';
@@ -16,8 +16,7 @@ export default function signUp() {
     ev.preventDefault();
     const htmlFormData = new FormData(ev.target);
     const inputObject = Object.fromEntries(htmlFormData);
-    console.log(inputObject);
-    // signUpUser(inputObject);
+    signUpUser(inputObject);
   };
 
   const onChangeUserType = (ev) => {
