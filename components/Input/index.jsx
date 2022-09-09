@@ -1,6 +1,15 @@
 const Input = (props) => {
-  const { name, value, type, label, required, checked, onChange, minlength } =
-    props;
+  const {
+    name,
+    value,
+    type,
+    label,
+    required,
+    checked,
+    onChange,
+    minlength,
+    maxlength,
+  } = props;
 
   return (
     <div className="flex gap-4">
@@ -16,6 +25,7 @@ const Input = (props) => {
         defaultChecked={checked}
         onChange={onChange}
         minLength={minlength}
+        maxLength={maxlength}
       />
     </div>
   );
