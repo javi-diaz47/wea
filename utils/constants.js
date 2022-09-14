@@ -10,3 +10,9 @@ export const USER_TYPES = {
   PERSON: '1',
   ENTERPRISE: '2',
 };
+
+// Offer description length
+export const MAX_OFFER_DESC_LENGTH = '560';
+
+// Offer Max tags length
+export const MAX_OFFER_TAGS_LENGTH = '4';

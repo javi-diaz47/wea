@@ -9,6 +9,9 @@ const Navbar = ({ render }) => {
       <Link href="/protected">
         <a>Protected</a>
       </Link>
+      <Link href="/offers">
+        <a>Offers</a>
+      </Link>
 
       {render()}
     </nav>
