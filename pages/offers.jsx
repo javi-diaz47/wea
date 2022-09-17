@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import { supabase } from '../utils/supabaseClient';
 
 export default function Offers() {
+  const onHandleClick = () => {
+    const session = supabase.auth.session();
+    console.log(session);
+  };
   return (
     <div className="bg-black h-screen">
       <h2 className="text-2xl font-bold text-white">This is the Offers Page</h2>
@@ -9,6 +14,7 @@ export default function Offers() {
           Crear oferta de trabajo
         </a>
       </Link>
+      <button onClick={onHandleClick}>get session</button>
     </div>
   );
 }

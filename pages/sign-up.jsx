@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input } from '../components/Input';
+import { FormElement } from '../components/FormElement';
 import { signUpUser } from '../utils/auth';
 import { MIN_PASSWORD_LENGTH, USER_TYPES } from '../utils/constants';
 
@@ -31,7 +31,7 @@ export default function signUp() {
     <div className="h-screen bg-black flex justify-center items-center">
       <form onSubmit={handleSubmit}>
         <div className="flex gap-8">
-          <Input
+          <FormElement
             label="Persona"
             name="userType"
             type="radio"
@@ -41,7 +41,7 @@ export default function signUp() {
             onChange={onChangeUserType}
           />
 
-          <Input
+          <FormElement
             label="Empresa"
             name="userType"
             type="radio"
@@ -51,19 +51,19 @@ export default function signUp() {
           />
         </div>
 
-        <Input label="Nombre" name="name" required={true} />
+        <FormElement label="Nombre" name="name" required={true} />
         {userType === USER_TYPES.PERSON ? (
-          <Input label="Apellido" name="lastName" required={true} />
+          <FormElement label="Apellido" name="lastName" required={true} />
         ) : (
-          <Input label="NIT" name="nit" required={true} type="number" />
+          <FormElement label="NIT" name="nit" required={true} type="number" />
         )}
-        <Input label="Correo" name="email" type="email" required={true} />
-        <Input
+        <FormElement label="Correo" name="email" type="email" required={true} />
+        <FormElement
           label="Contraseña"
           name="password"
           type="password"
           required={true}
-          minlength={MIN_PASSWORD_LENGTH}
+          minLength={MIN_PASSWORD_LENGTH}
         />
 
         <button className="bg-white p-2 rounded-lg hover:bg-blue-600 bold text-lg hover:text-white duration-300">

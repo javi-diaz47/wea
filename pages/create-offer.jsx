@@ -1,17 +1,18 @@
 import { useState } from 'react';
+import { FormElement } from '../components/FormElement';
 import { TagsInput } from '../components/TagInput';
 import { MAX_OFFER_DESC_LENGTH } from '../utils/constants';
 import { supabase } from '../utils/supabaseClient';
 
-export default function createOffer() {
+export default function createOffer(user) {
   const [textDesc, setTextDesc] = useState('');
   return (
     <div>
       <form className="grid gap-4">
         <h2>Crear oferta de trabajo</h2>
         <div className="grid">
-          <label htmlFor="title">Titulo</label>
-          <input
+          <FormElement
+            label="Titulo"
             className="text-2xl font-bold p-4"
             name="title"
             required
@@ -19,15 +20,16 @@ export default function createOffer() {
           />
         </div>
         <div className="grid">
-          <label htmlFor="description">Descripcion</label>
-          <textarea
-            className="text-lg p-4"
-            name="description"
-            value={textDesc}
-            onChange={(ev) => setTextDesc(ev.target.value)}
-            maxLength={MAX_OFFER_DESC_LENGTH}
-            required
-          />
+          <FormElement label="Descripcion" name="description">
+            <textarea
+              className="text-lg p-4"
+              name="description"
+              value={textDesc}
+              onChange={(ev) => setTextDesc(ev.target.value)}
+              maxLength={MAX_OFFER_DESC_LENGTH}
+              required
+            />
+          </FormElement>
           <span>
             {textDesc.length}/{MAX_OFFER_DESC_LENGTH}
           </span>
@@ -44,7 +46,7 @@ export default function createOffer() {
   );
 }
 
-export async function getServerSideProps(req) {
+export async function getServerSideProps({ req }) {
   //Check if there an authenticated user cookie
   const { user } = await supabase.auth.api.getUserByCookie(req);
 

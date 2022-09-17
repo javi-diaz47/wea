@@ -32,7 +32,8 @@ export const signIn = async ({ email, password }) => {
       password,
     });
     if (error) throw error;
-    console.log(usre);
+    console.log(user);
+    console.log(session);
   } catch (err) {
     console.error(err);
   }

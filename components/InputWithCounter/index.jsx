@@ -1,3 +1,5 @@
+import { FormElement } from '../FormElement';
+
 const InputWithCounter = ({
   currentLength,
   maxLength,
@@ -7,7 +9,7 @@ const InputWithCounter = ({
 }) => {
   return (
     <div>
-      <input
+      <FormElement
         value={value}
         onChange={onChange}
         className={className}
