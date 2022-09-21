@@ -19,6 +19,7 @@ const TagsInput = () => {
       <InputWithCounter
         currentLength={tags.length}
         maxLength={MAX_OFFER_TAGS_LENGTH}
+        placeholder="Agrega hasta 4 etiquetas"
         className="p-4 bg-slate-800 disabled:bg-gray-500"
         value={inputTag}
         onChange={(ev) => onChangeTag({ ev, tags, dispatch })}
