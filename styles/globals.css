@@ -9,6 +9,47 @@
   }
 }
 
+@layer {
+  .offer {
+    @apply h-screen bg-slate-900;
+  }
+  .offer  h1 {
+    @apply text-5xl font-bold !important;
+  }
+  .offer  h2 {
+    @apply text-4xl font-bold !important;
+  }
+  .offer  h3 {
+    @apply text-2xl font-bold !important;
+  }
+  .offer  h4 {
+    @apply text-xl font-bold !important;
+  }
+
+  .offer p {
+    @apply text-lg;
+  }
+
+  .offer ul{
+    @apply list-disc font-bold p-4 ml-4 !important;
+  }
+  .offer ol{
+    @apply list-decimal font-bold p-4 !important;
+  }
+  .offer img {
+    @apply w-64 h-auto;
+  }
+  .offer hr {
+    @apply m-2 !important;
+  }
+  .offer tr, .offer thead{
+    @apply hover:bg-slate-800  duration-200 border-b text-center !important;
+  }
+  .offer th, .offer td{
+    @apply p-2 !important;
+  }
+}
+
 /* html,
 body {
   padding: 0;
