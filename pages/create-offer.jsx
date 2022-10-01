@@ -4,12 +4,12 @@ import remarkGfm from 'remark-gfm';
 import { FormElement } from '../components/FormElement';
 import { TagsInput } from '../components/TagInput';
 import { MAX_OFFER_DESC_LENGTH } from '../utils/constants';
+import { saveOffer } from '../utils/offers';
 import { supabase } from '../utils/supabaseClient';
 
 export default function createOffer(user) {
   const [title, setTitle] = useState('Creacion pagina web');
   const [desc, setDesc] = useState(`## Desarrollador web frontend\n
-  ---
   Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios
   La pagina debe estar construida en las siguientes tecnologias:
   - HTML5
@@ -36,10 +36,8 @@ export default function createOffer(user) {
     const htmlFormData = new FormData(ev.target);
     const inputObject = Object.fromEntries(htmlFormData);
     inputObject['owner_id'] = user.id;
-    console.log(inputObject);
-    const { data, error } = await supabase.from('offer').insert([inputObject]);
-    console.log(data);
-    console.log(error);
+    const res = saveOffer(inputObject);
+    console.log(res);
   };
 
   const onPublish = () => {
@@ -69,7 +67,7 @@ export default function createOffer(user) {
       {}
       {!!preview && (
         <div className="offer">
-          <ReactMarkdown children={`# ${title} --- `} />
+          <ReactMarkdown children={`# ${title}  \n---`} />
           <ReactMarkdown children={desc} remarkPlugins={[remarkGfm]} />
         </div>
       )}

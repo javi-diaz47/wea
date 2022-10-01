@@ -3,7 +3,7 @@ import { supabase } from './supabaseClient';
 const saveOffer = async (offer) => {
   try {
     const { data, error } = await supabase
-      .from('offer')
+      .from('offers')
       .insert([offer], { upsert: true });
     if (error) throw error;
     console.log(data);
@@ -12,3 +12,5 @@ const saveOffer = async (offer) => {
     console.error(err);
   }
 };
+
+export { saveOffer };
