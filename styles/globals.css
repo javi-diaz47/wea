@@ -10,6 +10,10 @@
 }
 
 @layer {
+  .offer-post p {
+    @apply w-full whitespace-nowrap text-ellipsis overflow-hidden;
+  }
+
   .offer {
     @apply h-screen bg-slate-900;
   }
