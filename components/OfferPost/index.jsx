@@ -1,17 +1,8 @@
 import Link from 'next/link';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import remarkGfm from 'remark-gfm';
+import { getDateFormat } from '../../utils/getDateFormat';
 import { ReactMarkdownTitle } from '../ReactMarkdownTitle';
 
 const OfferPost = ({ offer }) => {
-  const getDateFormat = (date) => {
-    const d = new Date(date);
-    return ` 
-    ${d.toLocaleDateString('es', { month: 'short' })} ${d.toLocaleDateString(
-      'es',
-      { day: 'numeric' }
-    )}`;
-  };
   const { id, title, resume, description, created_at, profiles } = offer;
   return (
     <div className="bg-white rounded-xl p-4 flex flex-col gap-4">
@@ -19,11 +10,7 @@ const OfferPost = ({ offer }) => {
         title={title}
         className={' text-2xl font-semibold text-title hover:underline'}
       />
-      {/* <ReactMarkdown
-        children={resume}
-        remarkPlugins={[remarkGfm]}
-        className="offer-post"
-      /> */}
+
       <p className="text-ellipsis whitespace-nowrap text-lg overflow-hidden">
         {resume}
       </p>

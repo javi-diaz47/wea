@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { OfferPost } from '../components/OfferPost';
-import { supabase } from '../utils/supabaseClient';
+import { OfferPost } from '../../components/OfferPost';
+import { supabase } from '../../utils/supabaseClient';
 
 export default function Offers({ offers }) {
   const onHandleClick = () => {
