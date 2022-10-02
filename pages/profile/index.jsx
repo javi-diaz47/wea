@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { signOut } from '../utils/auth';
-import { fetchProfile } from '../utils/fetchProfile';
-import { getUserType } from '../utils/getUserType';
-import { Input } from '../components/Input';
-import { BIO_ROWS, MAX_BIO_LENGTH } from '../utils/constants';
-import { updateProfileBio } from '../utils/updateProfile';
+import { signOut } from '../../utils/auth';
+import { fetchProfile } from '../../utils/fetchProfile';
+import { getUserType } from '../../utils/getUserType';
+import { BIO_ROWS, MAX_BIO_LENGTH } from '../../utils/constants';
+import { updateProfileBio } from '../../utils/updateProfile';
 
 export default function Profile() {
   const [profile, setProfile] = useState(null);

@@ -26,7 +26,7 @@ const OfferPost = ({ offer }) => {
 
       <div className="flex justify-between gap-4">
         <div className="flex gap-4">
-          <Link href={`profiles/${offer.owner_id}`}>
+          <Link href={`profile/${offer.owner_id}`}>
             <a>
               <div className="w-12 h-12 rounded-full bg-slate-300"></div>
             </a>
