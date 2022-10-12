@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { OfferPost } from '../../components/OfferPost';
+import { EndJobCard } from '../../components/Cards/EndJobCard';
+import { OfferCard } from '../../components/Cards/OfferCard';
+import { PostulationCard } from '../../components/Cards/PostulationCard';
 import { supabase } from '../../utils/supabaseClient';
 
 export default function Offers({ offers }) {
@@ -8,7 +10,7 @@ export default function Offers({ offers }) {
     console.log(session);
   };
   return (
-    <div className="bg-black h-screen">
+    <div className="bg-black mb-8">
       <h2 className="text-2xl font-bold text-white">This is the Offers Page</h2>
       <Link href="create-offer">
         <a className="text-white hover:bg-white hover:text-blue-600 m-w-24 p-2 font-bold bg-blue-600 rounded-lg">
@@ -19,7 +21,7 @@ export default function Offers({ offers }) {
       <ul className="m-4 flex flex-col gap-12">
         {offers.map((offer) => (
           <li key={offer.id}>
-            <OfferPost offer={offer} />
+            <OfferCard offer={offer} />
           </li>
         ))}
       </ul>
@@ -37,7 +39,7 @@ export async function getStaticProps() {
   const offers = [
     {
       id: 1,
-      title: 'Creacion pagina web',
+      title: 'Creacion página web',
       resume:
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia at solem qui revent ceux je ne dos pas',
       description:
@@ -45,6 +47,7 @@ export async function getStaticProps() {
       owner_id: '843edb12-63fa-4351-a549-d39d21b45199',
       created_at: '2022-09-21T01:57:54.183856+00:00',
       profiles: { name: 'Javier', last_name: 'Diaz' },
+      tags: ['reactjs', 'javascript', 'css'],
     },
     {
       id: 2,
@@ -56,6 +59,7 @@ export async function getStaticProps() {
       owner_id: '843edb12-63fa-4351-a549-d39d21b45199',
       created_at: '2022-10-01T16:46:17.549719+00:00',
       profiles: { name: 'Javier', last_name: 'Diaz' },
+      tags: ['reactjs', 'mongodb'],
     },
   ];
 

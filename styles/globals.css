@@ -7,9 +7,21 @@
   ::selection {
     @apply bg-yellow-400 text-black;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer {
+
+  .ellipsis-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
   .offer-post p {
     @apply w-full whitespace-nowrap text-ellipsis overflow-hidden;
   }
