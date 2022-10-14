@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
         //redirect the user signed from the magiclink to the profile page
         if (event === 'SIGNED_IN') {
           setAuthenticatedState('authenticated');
-          router.push('/profile');
+          // router.push('/profile');
         }
 
         if (event === 'SIGNED_OUT') {
