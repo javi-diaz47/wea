@@ -16,6 +16,7 @@ module.exports = {
         background: '#F3F4F6',
         'tag-bg': '#F4F4F5',
         primary: '#3A7AE0',
+        separator: '#D9D9D9',
       },
     },
   },
