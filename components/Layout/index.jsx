@@ -7,7 +7,7 @@ const Layout = ({ isAuth, children }) => {
       <Navbar
         //Add profile link to the navbar if is authenticated
         render={() => {
-          if (isAuth) {
+          if (isAuth === 'authenticated') {
             return (
               <Link href="/profile">
                 <a>Profile</a>

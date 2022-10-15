@@ -15,16 +15,7 @@ export default function Protected({ user }) {
 }
 
 export async function getServerSideProps({ req, res }) {
-  //Check if there an authenticated user cookie
-  // const { user } = await supabase.auth.api.getUserByCookie(req);
-
   const token = getCookie('token', { req, res });
-
-  console.log(token);
-  //if not redirect the user to the login
-  // if (!user) {
-  //   return { props: {}, redirect: { destination: '/login' } };
-  // }
 
   if (!token) {
     return { props: {}, redirect: { destination: '/login' } };

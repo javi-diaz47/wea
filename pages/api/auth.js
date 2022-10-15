@@ -9,6 +9,7 @@ export default function handler(req, res) {
     req,
     res,
     httpOnly: true,
+    secure: true,
     sameSite: 'none',
   });
   res.send();
