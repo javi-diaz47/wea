@@ -1,16 +1,22 @@
-import { supabase } from '../../utils/supabaseClient';
-import { setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from 'cookies-next';
 
 // Set and clear the cookie
-export default function handler(req, res) {
-  // supabase.auth.api.setAuthCookie(req, res);A
-  console.log(req.body.session);
-  setCookie('token', req.body.session.access_token, {
+export default async function handler(req, res) {
+  const cookieOptions = {
     req,
     res,
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-  });
+  };
+
+  if (req.method === 'POST') {
+    setCookie('token', req.body.session.access_token, cookieOptions);
+  }
+
+  if (req.method === 'DELETE') {
+    deleteCookie('token', cookieOptions);
+  }
+
   res.send();
 }

@@ -45,12 +45,21 @@ export const signOut = async () => {
 
 // Call the auth api to set or remove the cookie of the user authentication
 export const handleAuthChange = async (event, session) => {
-  await fetch('api/auth', {
-    method: 'POST',
-    headers: new Headers({ 'Content-Type': 'application/json' }),
-    credentials: 'same-origin',
-    body: JSON.stringify({ event, session }),
-  });
+  if (event === 'SIGNED_IN') {
+    await fetch('api/auth', {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      credentials: 'same-origin',
+      body: JSON.stringify({ event, session }),
+    });
+  }
+  if (event === 'SIGNED_OUT') {
+    await fetch('api/auth', {
+      method: 'DELETE',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      credentials: 'same-origin',
+    });
+  }
 };
 
 //Set the user authenticatedState if the user is authenticated
