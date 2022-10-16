@@ -13,7 +13,7 @@ const Layout = ({ isAuth, children }) => {
             return (
               <Link href="/profile">
                 <a>
-                  <BellIcon className="w-12 h-12" />
+                  <BellIcon className="w-10 h-10" />
                 </a>
               </Link>
             );

@@ -39,27 +39,98 @@ export async function getStaticProps() {
   const offers = [
     {
       id: 1,
-      title: 'Creacion página web',
-      resume:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia at solem qui revent ceux je ne dos pas',
+      title: 'Creacion pagina web',
       description:
-        '## Desarrollador web frontend\n\n  ---\n  Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios\n  La pagina debe estar construida en las siguientes tecnologias:\n  - HTML5\n  - CSS\n  - Javascript\n\n  | Tecnologia | Uso |\n  |--|--|\n  |HTML| Para la maquetacion del sitio|\n  |CSS| Para darle estilos a la web |\n  |JS| Para hacer la pagina ingeractiva|\n  ',
+        '## Desarrollador web frontend\n' +
+        '\n' +
+        '  ---\n' +
+        '  Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios\n' +
+        '  La pagina debe estar construida en las siguientes tecnologias:\n' +
+        '  - HTML5\n' +
+        '  - CSS\n' +
+        '  - Javascript\n' +
+        '\n' +
+        '  | Tecnologia | Uso |\n' +
+        '  |--|--|\n' +
+        '  |HTML| Para la maquetacion del sitio|\n' +
+        '  |CSS| Para darle estilos a la web |\n' +
+        '  |JS| Para hacer la pagina ingeractiva|\n' +
+        '  ',
       owner_id: '843edb12-63fa-4351-a549-d39d21b45199',
       created_at: '2022-09-21T01:57:54.183856+00:00',
+      resume:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia at solem qui revent ceux je ne dos pas',
       profiles: { name: 'Javier', last_name: 'Diaz' },
-      tags: ['reactjs', 'javascript', 'css'],
     },
     {
       id: 2,
       title: 'Fullstack',
-      resume:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia at solem qui revent ceux je ne dos pas',
       description:
-        '## Desarrollador web frontend\n\n  Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios\n  La pagina debe estar construida en las siguientes tecnologias:\n  - HTML5\n  - CSS\n  - Javascript\n\n  | Tecnologia | Uso |\n  |--|--|\n  |HTML| Para la maquetacion del sitio|\n  |CSS| Para darle estilos a la web |\n  |JS| Para hacer la pagina ingeractiva|\n  ',
+        '## Desarrollador web frontend\n' +
+        '\n' +
+        '  Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios\n' +
+        '  La pagina debe estar construida en las siguientes tecnologias:\n' +
+        '  - HTML5\n' +
+        '  - CSS\n' +
+        '  - Javascript\n' +
+        '\n' +
+        '  | Tecnologia | Uso |\n' +
+        '  |--|--|\n' +
+        '  |HTML| Para la maquetacion del sitio|\n' +
+        '  |CSS| Para darle estilos a la web |\n' +
+        '  |JS| Para hacer la pagina ingeractiva|\n' +
+        '  ',
       owner_id: '843edb12-63fa-4351-a549-d39d21b45199',
       created_at: '2022-10-01T16:46:17.549719+00:00',
+      resume:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia at solem qui revent ceux je ne dos pas',
       profiles: { name: 'Javier', last_name: 'Diaz' },
-      tags: ['reactjs', 'mongodb'],
+    },
+    {
+      id: 6,
+      title: 'A promise of hope is enough to feel free',
+      description:
+        '## Desarrollador web frontend\n' +
+        '\n' +
+        '  Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios\n' +
+        '  La pagina debe estar construida en las siguientes tecnologias:\n' +
+        '  - HTML5\n' +
+        '  - CSS\n' +
+        '  - Javascript\n' +
+        '\n' +
+        '  | Tecnologia | Uso |\n' +
+        '  |--|--|\n' +
+        '  |HTML| Para la maquetacion del sitio|\n' +
+        '  |CSS| Para darle estilos a la web |\n' +
+        '  |JS| Para hacer la pagina ingeractiva|\n' +
+        '  ',
+      owner_id: '843edb12-63fa-4351-a549-d39d21b45199',
+      created_at: '2022-10-16T03:55:14.343345+00:00',
+      resume: '',
+      profiles: { name: 'Javier', last_name: 'Diaz' },
+    },
+    {
+      id: 7,
+      title: "You don't like the endings. Well we'll find one that's yours",
+      description:
+        '## Desarrollador web frontend\n' +
+        '\n' +
+        '  Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios\n' +
+        '  La pagina debe estar construida en las siguientes tecnologias:\n' +
+        '  - HTML5\n' +
+        '  - CSS\n' +
+        '  - Javascript\n' +
+        '\n' +
+        '  | Tecnologia | Uso |\n' +
+        '  |--|--|\n' +
+        '  |HTML| Para la maquetacion del sitio|\n' +
+        '  |CSS| Para darle estilos a la web |\n' +
+        '  |JS| Para hacer la pagina ingeractiva|\n' +
+        '  ',
+      owner_id: '843edb12-63fa-4351-a549-d39d21b45199',
+      created_at: '2022-10-16T04:02:42.270738+00:00',
+      resume: '',
+      profiles: { name: 'Javier', last_name: 'Diaz' },
     },
   ];
 

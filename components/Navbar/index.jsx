@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/outline';
 import { useState } from 'react';
 import { NavbarIcon } from '../NavbarIcon';
+import { Sidebar } from '../Sidebar';
 
 const Navbar = ({ render }) => {
   const [notification, setNotification] = useState(false);
@@ -18,18 +19,60 @@ const Navbar = ({ render }) => {
   const onNotification = () => {
     const newNotification = !notification;
     setNotification(newNotification);
-    console.log(notification);
   };
   return (
-    <nav className="flex justify-between mx-6 bold text-lg bg-background">
+    <nav className="flex justify-between px-6 py-2 bold text-lg bg-background h-fit">
       <button onClick={onNotification} className="z-20">
-        {!!notification && <MenuAlt4Icon className="w-12 h-12" />}
-        {!notification && <XIcon className="w-12 h-12" />}
+        {!notification && <MenuAlt4Icon className="w-10 h-10" />}
+        {!!notification && <XIcon className="w-10 h-10" />}
       </button>
-      <div
+      <Sidebar open={notification}>
+        <NavbarIcon
+          href="/"
+          title="Inicio"
+          icon={<HomeIcon />}
+          onClick={onNotification}
+        />
+
+        <NavbarIcon
+          href="/offers"
+          title="Ofertas"
+          icon={<BriefcaseIcon />}
+          onClick={onNotification}
+        />
+
+        <NavbarIcon
+          href="/profile"
+          title="Perfil"
+          icon={<UserIcon />}
+          onClick={onNotification}
+        />
+
+        <NavbarIcon
+          href="/postulations"
+          title="Postulaciones Recibidas"
+          icon={<UserGroupIcon />}
+          onClick={onNotification}
+        />
+
+        <NavbarIcon
+          href="/recieved-offers/"
+          title="Ofertas Recibidas"
+          icon={<ClipboardListIcon />}
+          onClick={onNotification}
+        />
+
+        <NavbarIcon
+          href="/job-in-progress/"
+          title="Trabajo en Progreso"
+          icon={<NewspaperIcon />}
+          onClick={onNotification}
+        />
+      </Sidebar>
+      {/* <div
         className={`absolute w-full h-full duration-500 ease-in-out z-10 bg-background right-0
             flex flex-col justify-center gap-10 items-center shadow-md
-            ${notification ? '-left-full' : 'left-0'}
+          ${notification ? 'left-0' : '-left-full'}
           `}
       >
         <NavbarIcon
@@ -73,7 +116,7 @@ const Navbar = ({ render }) => {
           icon={<NewspaperIcon />}
           onClick={onNotification}
         />
-      </div>
+      </div> */}
 
       {render()}
     </nav>
