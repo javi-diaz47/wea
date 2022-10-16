@@ -1,34 +1,12 @@
 import Link from 'next/link';
 import { Navbar } from '../Navbar';
 
-import { BellIcon } from '@heroicons/react/outline';
-
 const Layout = ({ isAuth, children }) => {
   return (
     <div>
       <Navbar
         //Add profile link to the navbar if is authenticated
-        render={() => {
-          if (isAuth === 'authenticated') {
-            return (
-              <Link href="/profile">
-                <a>
-                  <BellIcon className="w-10 h-10" />
-                </a>
-              </Link>
-            );
-          }
-          return (
-            <>
-              <Link href="/login">
-                <a>Iniciar sesión</a>
-              </Link>
-              {/* <Link href="/sign-up">
-                <a>Crear cuanta</a>
-              </Link> */}
-            </>
-          );
-        }}
+        isAuth={isAuth}
       />
       {children}
     </div>

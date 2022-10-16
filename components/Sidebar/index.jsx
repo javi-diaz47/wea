@@ -8,11 +8,10 @@ const Sidebar = ({ children, open, leftRight = true }) => {
 
   return (
     <div
-      className={`absolute w-full h-full duration-500 ease-in-out z-10 bg-background
-            flex flex-col justify-center gap-10 items-center shadow-md
-          ${onSidebar()}
-
-          `}
+      className={`fixed w-full h-full duration-500 ease-in-out z-10 bg-background
+        flex flex-col justify-center gap-10 items-center shadow-md
+        ${onSidebar()}
+      `}
     >
       {children}
     </div>
