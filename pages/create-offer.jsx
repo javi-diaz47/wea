@@ -1,3 +1,4 @@
+import { getCookie } from 'cookies-next';
 import { useState } from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -5,9 +6,11 @@ import { FormElement } from '../components/FormElement';
 import { TagsInput } from '../components/TagInput';
 import { MAX_OFFER_DESC_LENGTH } from '../utils/constants';
 import { saveOffer } from '../utils/offers';
+import jwt from 'jsonwebtoken';
 import { supabase } from '../utils/supabaseClient';
+import { CreateOfferForm } from '../components/CreateOfferForm';
 
-export default function createOffer(user) {
+export default function createOffer({ profile_id }) {
   const [title, setTitle] = useState('Creacion pagina web');
   const [desc, setDesc] = useState(`## Desarrollador web frontend\n
   Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios
@@ -33,9 +36,10 @@ export default function createOffer(user) {
   const onSave = async (ev) => {
     ev.preventDefault();
     // console.log(owner_id);
+    console.log(profile_id);
     const htmlFormData = new FormData(ev.target);
     const inputObject = Object.fromEntries(htmlFormData);
-    inputObject['owner_id'] = user.id;
+    inputObject['owner_id'] = profile_id;
     const res = saveOffer(inputObject);
     console.log(res);
   };
@@ -64,7 +68,6 @@ export default function createOffer(user) {
           Vista previa
         </button>
       </div>
-      {}
       {!!preview && (
         <div className="offer">
           <ReactMarkdown children={`# ${title}  \n---`} />
@@ -72,57 +75,22 @@ export default function createOffer(user) {
         </div>
       )}
       {!preview && (
-        <form onSubmit={onSave} className="grid gap-4">
-          <h2>Crear oferta de trabajo</h2>
-          <div className="grid">
-            <FormElement
-              label="Titulo"
-              value={title}
-              onChange={(ev) => setTitle(ev.target.value)}
-              className="text-2xl font-bold p-4"
-              name="title"
-              placeholder="Escribe aqui el titulo de tu oferta..."
-              required={true}
-              autoFocus={true}
-            />
-          </div>
-          <div className="grid">
-            <FormElement label="Descripcion" name="description">
-              <textarea
-                className="text-lg p-4"
-                name="description"
-                value={desc}
-                placeholder="Escribe aqui la descripciond de tu oferta..."
-                onChange={(ev) => setDesc(ev.target.value)}
-                maxLength={MAX_OFFER_DESC_LENGTH}
-                required
-              />
-            </FormElement>
-            <span>
-              {desc.length}/{MAX_OFFER_DESC_LENGTH}
-            </span>
-            <TagsInput />
-          </div>
-          <button
-            className="text-white hover:bg-white hover:text-blue-600 m-w-24 p-2 font-bold bg-blue-600 rounded-lg"
-            type="submit"
-          >
-            Crear oferta
-          </button>
-        </form>
+        <CreateOfferForm
+          title={title}
+          setTitle={setTitle}
+          desc={desc}
+          setDesc={setDesc}
+          onSubmit={onSave}
+        />
       )}
     </div>
   );
 }
 
-export async function getServerSideProps({ req }) {
-  //Check if there an authenticated user cookie
-  const { user } = await supabase.auth.api.getUserByCookie(req);
+export async function getServerSideProps({ req, res }) {
+  // const token = getCookie('token', { req, res });
 
-  //if not redirect the user to the login
-  if (!user) {
-    return { props: {}, redirect: { destination: '/login' } };
-  }
+  // return { props: { profile_id: jwt.decode(token).sub } };
 
-  return { props: user };
+  return { props: { profile_id: '843edb12-63fa-4351-a549-d39d21b45199' } };
 }
