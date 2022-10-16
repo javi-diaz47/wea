@@ -13,10 +13,17 @@ import {
 import { useState } from 'react';
 import { NavbarIcon } from '../NavbarIcon';
 import { Sidebar } from '../Sidebar';
+import { AnchorButton } from '../AnchorButton';
+import { useEffect } from 'react';
+import { supabase } from '../../utils/supabaseClient';
+import { useRouter } from 'next/router';
+import { OfferCard } from '../Cards/OfferCard';
 
-const Navbar = ({ isAuth }) => {
+const Navbar = ({ isAuth, notifications }) => {
   const [navigation, setNavigation] = useState(false);
   const [notification, setNotification] = useState(false);
+
+  const route = useRouter();
 
   const onNavigation = () => {
     const newNavigation = !navigation;
@@ -64,9 +71,6 @@ const Navbar = ({ isAuth }) => {
   return (
     <nav className="flex justify-between px-6 py-2 bold text-lg bg-background h-fit">
       {burgerButton()}
-      <Sidebar open={notification} leftRight={false}>
-        <h2>Hello</h2>
-      </Sidebar>
       <Sidebar open={navigation}>
         <NavbarIcon
           href="/"
@@ -112,6 +116,15 @@ const Navbar = ({ isAuth }) => {
       </Sidebar>
 
       {notificationBell()}
+      <Sidebar open={notification} leftRight={false}>
+        <ul className="h-full mt-12 p-8">
+          {notifications?.map(({ id, offers, origin_id }) => (
+            <li key={id} className="list-none m-0">
+              <OfferCard offer={offers} profile={origin_id} />
+            </li>
+          ))}
+        </ul>
+      </Sidebar>
     </nav>
   );
 };

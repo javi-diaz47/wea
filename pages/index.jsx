@@ -9,7 +9,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex items-center justify-center flex-col gap-6 bg-white text-black dark:bg-black dark:text-white h-screen text-2xl">
+      <main className="flex items-center justify-center flex-col gap-6 bg-background text-white h-screen text-2xl">
         <h1 className="text-6xl font-sans font-bold">
           Welcome to{' '}
           <a

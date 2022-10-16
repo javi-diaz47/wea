@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <Layout isAuth={authenticatedState}>
+    <Layout isAuth={authenticatedState === 'authenticated' ? true : false}>
       <Component {...pageProps} />
     </Layout>
   );
