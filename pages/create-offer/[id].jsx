@@ -1,16 +1,14 @@
-import { getCookie } from 'cookies-next';
 import { useState } from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import remarkGfm from 'remark-gfm';
-import { FormElement } from '../components/FormElement';
-import { TagsInput } from '../components/TagInput';
-import { MAX_OFFER_DESC_LENGTH } from '../utils/constants';
-import { saveOffer } from '../utils/offers';
+import { saveOffer } from '../../utils/offers';
+import { CreateOfferForm } from '../../components/CreateOfferForm';
+import { getCookie } from 'cookies-next';
 import jwt from 'jsonwebtoken';
-import { supabase } from '../utils/supabaseClient';
-import { CreateOfferForm } from '../components/CreateOfferForm';
+import { ProfileUserWithStar } from '../../components/ProfileUserWithStar';
+import { supabase } from '../../utils/supabaseClient';
 
-export default function createOffer({ profile_id }) {
+export default function createOfferPrivate({ profile_id, worker }) {
   const [title, setTitle] = useState('Creacion pagina web');
   const [desc, setDesc] = useState(`## Desarrollador web frontend\n
   Se necesita desarrollador web para la digitalizacion de mi portafolio de servicios
@@ -68,6 +66,12 @@ export default function createOffer({ profile_id }) {
           Vista previa
         </button>
       </div>
+      <ProfileUserWithStar
+        href={worker.id}
+        name={worker.name}
+        last_name={worker.last_name}
+        star={worker.calification}
+      />
       {!!preview && (
         <div className="offer">
           <ReactMarkdown children={`# ${title}  \n---`} />
@@ -87,10 +91,31 @@ export default function createOffer({ profile_id }) {
   );
 }
 
-export async function getServerSideProps({ req, res }) {
-  // const token = getCookie('token', { req, res });
+export async function getServerSideProps({ req, res, params }) {
+  const token = getCookie('token', { req, res });
+  const { data: worker, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', params.id)
+    .limit(1)
+    .single();
+  return {
+    props: {
+      profile_id: jwt.decode(token).sub,
+      worker: worker,
+    },
+  };
+}
 
-  // return { props: { profile_id: jwt.decode(token).sub } };
+export async function getServerSidePaths() {
+  const { data: workers, error } = await supabase.from('profiles').select('id');
 
-  return { props: { profile_id: '843edb12-63fa-4351-a549-d39d21b45199' } };
+  return {
+    paths: workers.map((worker) => ({
+      params: {
+        id: `${worker.id}`,
+      },
+    })),
+    fallback: false,
+  };
 }

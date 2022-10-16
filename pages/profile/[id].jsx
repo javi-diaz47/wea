@@ -1,14 +1,15 @@
 import { ProfilePhoto } from '../../components/ProfilePhoto';
 import { Collabs } from '../../components/Collabs';
-import { supabase } from '../../utils/supabaseClient';
-import { StarIcon } from '@heroicons/react/solid';
 import { getDateFormat } from '../../utils/getDateFormat';
+import { StarIcon } from '@heroicons/react/solid';
 import {
   UserIcon,
   ClipboardListIcon,
   PhoneIcon,
   LogoutIcon,
 } from '@heroicons/react/outline';
+import Link from 'next/link';
+import { supabase } from '../../utils/supabaseClient';
 
 export default function ProfileId({ profile }) {
   return (
@@ -55,10 +56,11 @@ export default function ProfileId({ profile }) {
           desc={profile?.contact_me}
         />
       </section>
-
-      <button className="bg-primary rounded-full w-fit py-2 px-6 self-center">
-        Proponer trabajo
-      </button>
+      <Link href={`../create-offer/${profile.id}`}>
+        <a className="bg-primary rounded-full w-fit py-2 px-6 self-center">
+          Proponer trabajo
+        </a>
+      </Link>
     </div>
   );
 }
