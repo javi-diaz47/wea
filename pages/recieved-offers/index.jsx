@@ -1,6 +1,5 @@
-import { CardTemplate } from '../components/Cards/CardTemplate';
-import { OfferCard } from '../components/Cards/OfferCard';
-import { supabase } from '../utils/supabaseClient';
+import { OfferCard } from '../../components/Cards/OfferCard';
+import { supabase } from '../../utils/supabaseClient';
 
 function RecievedOffers({ recievedOffers }) {
   return (
@@ -25,7 +24,7 @@ export async function getStaticProps() {
     .select(
       `id, offers (id, name, resume, created_at), origin_id (id, name, last_name, picture)`
     )
-    .eq('viewed', false);
+    .eq('type', 'offer');
 
   console.log(recievedOffers);
   return {
