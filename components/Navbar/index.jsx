@@ -18,6 +18,10 @@ import { useEffect } from 'react';
 import { supabase } from '../../utils/supabaseClient';
 import { useRouter } from 'next/router';
 import { OfferCard } from '../Cards/OfferCard';
+import { CardTemplate } from '../Cards/CardTemplate';
+import { Card } from '../Cards/Card';
+import { TagList } from '../TagList';
+import { ProfileUserWithDate } from '../ProfileUserWithDate';
 
 const Navbar = ({ isAuth, notifications }) => {
   const [navigation, setNavigation] = useState(false);
@@ -117,10 +121,10 @@ const Navbar = ({ isAuth, notifications }) => {
 
       {notificationBell()}
       <Sidebar open={notification} leftRight={false}>
-        <ul className="h-full mt-12 p-8">
-          {notifications?.map(({ id, offers, origin_id }) => (
-            <li key={id} className="list-none m-0">
-              <OfferCard offer={offers} profile={origin_id} />
+        <ul className="min-h-full mt-12 p-8 flex flex-col gap-8 overflow-y-scroll ">
+          {notifications?.map(({ id, offers: offer, origin_id: profile }) => (
+            <li key={id} className="">
+              <OfferCard offer={offer} profile={profile} />
             </li>
           ))}
         </ul>

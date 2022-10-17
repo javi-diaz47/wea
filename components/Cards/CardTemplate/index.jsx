@@ -2,7 +2,7 @@ import { Card } from '../Card';
 import { TagList } from '../../TagList';
 
 const CardTemplate = ({ offer, children }) => {
-  const { name, resume, tags } = offer;
+  const { name, resume, tags = ['react', 'js', 'mongodb'] } = offer;
   return (
     <Card>
       <h2 className="text-3xl font-semibold text-title hover:underline">
