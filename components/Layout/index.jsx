@@ -10,7 +10,7 @@ const Layout = ({ isAuth, children }) => {
     let { data: notifications, error } = await supabase
       .from('notifications')
       .select(
-        `*, offers (id, name, resume, created_at), origin_id (name, last_name, picture)`
+        `*, offers (id, name, resume, created_at), origin_id (id, name, last_name, picture)`
       )
       .eq('viewed', false);
     setNotifications(notifications);

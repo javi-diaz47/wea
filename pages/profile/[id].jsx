@@ -10,8 +10,12 @@ import {
 } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { supabase } from '../../utils/supabaseClient';
+import { useRouter } from 'next/router';
 
-export default function ProfileId({ profile }) {
+export default function ProfileId(props) {
+  const router = useRouter();
+  console.log(props);
+  const { profile } = props;
   return (
     <div className="h-screen bg-background px-8 py-8 flex flex-col gap-7">
       <div className="flex items-center flex-col">
@@ -56,7 +60,7 @@ export default function ProfileId({ profile }) {
           desc={profile?.contact_me}
         />
       </section>
-      <Link href={`../create-offer/${profile.id}`}>
+      <Link href={`${router.pathname}create-offer/${profile.id}`}>
         <a className="bg-primary rounded-full w-fit py-2 px-6 self-center">
           Proponer trabajo
         </a>
@@ -66,13 +70,17 @@ export default function ProfileId({ profile }) {
 }
 
 export async function getStaticProps({ params }) {
+  // fetch for the offer information
   const { data: profile, error } = await supabase
     .from('profiles')
     .select('*')
-    .eq('id', params.id);
+    .eq('id', params.id)
+    .limit(1)
+    .single();
+
   return {
     props: {
-      profile: profile[0],
+      profile,
     },
   };
 }

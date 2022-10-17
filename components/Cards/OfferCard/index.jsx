@@ -10,7 +10,7 @@ const OfferCard = ({ offer, profile }) => {
           <ProfileUserWithDate
             name={profile.name}
             last_name={profile?.last_name}
-            href={`profile/${offer.owner_id}`}
+            href={`profile/${profile.id}`}
             date={offer.created_at}
           />
         </div>
