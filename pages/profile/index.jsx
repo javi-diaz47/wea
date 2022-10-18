@@ -19,6 +19,13 @@ import {
 import { supabase } from '../../utils/supabaseClient';
 import { getDateFormat } from '../../utils/getDateFormat';
 import { Collabs } from '../../components/Collabs';
+import { ProfilePagePhoto } from '../../components/ProfilePage/ProfileUserWithName';
+import {
+  DateAndCalification,
+  ProfileDateAndCalification,
+  ProfileResume,
+} from '../../components/ProfilePage/ProfileDateAndCalification';
+import { ProfileInformation } from '../../components/ProfilePage/ProfileInformation';
 
 export default function Profile({ profile }) {
   const router = useRouter();
@@ -38,73 +45,33 @@ export default function Profile({ profile }) {
 
   return (
     <div className="h-screen bg-background px-8 py-8 flex flex-col gap-7">
-      {/* <div className="flex items-end gap-4">
-        <h2 className="text-4xl">{profile?.name || ''}</h2>
-        <span>{getprofileType(profile?.user_type_id)}</span>
-      </div> */}
-      {/* <p className="text-xl">{profile.email}</p> */}
-      {/* <p className="text-xl">{profile.id}</p> */}
-      {/* <form onSubmit={handleSubmit}>
-        <h3>Bio</h3>
-        <textarea
-          name="bio"
-          className="resize-none p-2 bg-transparent border-2 border-rose-600 rounded-lg"
-          rows={BIO_ROWS}
-          maxLength={MAX_BIO_LENGTH}
-        />
-        <button className="p-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-rose-500 hover:text-white duration-200">
-          Guardar cambios
-        </button>
-      </form> */}
+      <ProfilePagePhoto
+        name={profile.name}
+        last_name={profile.last_name}
+        picture={profile.picture}
+      />
 
-      <div className="flex items-center flex-col">
-        <ProfilePhoto href="./" width="w-24" height="h-24" />
-        <div className="text-2xl">
-          <strong>{profile?.name || ''}</strong> {profile?.last_name || ''}
-        </div>
-      </div>
-
-      <div className="flex justify-between">
-        <div>
-          <p>Miembro desde</p>
-          <strong>{getDateFormat(profile?.inserted_at)}</strong>
-        </div>
-        <div>
-          <p>Calificación</p>
-          <div className="text-gold flex font-semibold">
-            <strong>{profile?.calification || '5'}</strong>
-            <StarIcon className="w-6 h-6" />
-          </div>
-        </div>
-      </div>
+      <ProfileDateAndCalification
+        date={profile.inserted_at}
+        calification={profile.calification}
+      />
 
       <div>
-        <p className="text-center">{profile?.resume}</p>
+        <p className="text-center">{profile.resume}</p>
       </div>
 
-      <section className="">
-        <Collabs
-          title="¿Quién soy?"
-          icon={<UserIcon className="w-6 h-6 text-primary" />}
-          desc={profile?.who_am_i}
-        />
-        <Collabs
-          title="Mis Servicios"
-          icon={<ClipboardListIcon className="w-6 h-6 text-primary" />}
-          desc={profile?.resume}
-        />
-        <Collabs
-          title="Contactame"
-          icon={<PhoneIcon className="w-6 h-6 text-primary" />}
-          desc={profile?.contact_me}
-        />
+      <ProfileInformation
+        who_am_i={profile?.who_am_i}
+        resume={profile?.resume}
+        contact_me={profile?.contact_me}
+      >
         <Collabs
           title="Cerrar Sesión"
           icon={<LogoutIcon className="w-6 h-6 text-love" />}
           desc={profile?.whoamI}
           onClick={handleSignOut}
         />
-      </section>
+      </ProfileInformation>
     </div>
   );
 }
@@ -125,8 +92,8 @@ export async function getServerSideProps({ req, res }) {
     id: '843edb12-63fa-4351-a549-d39d21b45199',
     inserted_at: '2022-09-07T01:37:28+00:00',
     updated_at: '2022-09-07T01:37:28+00:00',
-    name: 'Javier',
-    last_name: 'Diaz',
+    name: 'Javier Eduardo ',
+    last_name: 'Perez Diaz',
     email: 'javiereduardo300@gmail.com',
     nit: null,
     user_type_id: '1',

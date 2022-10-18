@@ -11,55 +11,38 @@ import {
 import Link from 'next/link';
 import { supabase } from '../../utils/supabaseClient';
 import { useRouter } from 'next/router';
+import { ProfilePagePhoto } from '../../components/ProfilePage/ProfileUserWithName';
+import { ProfileDateAndCalification } from '../../components/ProfilePage/ProfileDateAndCalification';
+import { ProfileInformation } from '../../components/ProfilePage/ProfileInformation';
 
 export default function ProfileId(props) {
   const router = useRouter();
   console.log(props);
   const { profile } = props;
+
   return (
     <div className="h-screen bg-background px-8 py-8 flex flex-col gap-7">
-      <div className="flex items-center flex-col">
-        <ProfilePhoto href="./" width="w-24" height="h-24" />
-        <div className="text-2xl">
-          <strong>{profile?.name || ''}</strong> {profile?.last_name || ''}
-        </div>
-      </div>
+      <ProfilePagePhoto
+        name={profile.name}
+        last_name={profile.last_name}
+        picture={profile.picture}
+      />
 
-      <div className="flex justify-between">
-        <div>
-          <p>Miembro desde</p>
-          <strong>{getDateFormat(profile?.inserted_at)}</strong>
-        </div>
-        <div>
-          <p>Calificación</p>
-          <div className="text-gold flex font-semibold">
-            <strong>{profile?.calification || '5'}</strong>
-            <StarIcon className="w-6 h-6" />
-          </div>
-        </div>
-      </div>
+      <ProfileDateAndCalification
+        date={profile.inserted_at}
+        calification={profile.calification}
+      />
 
       <div>
-        <p className="text-center">{profile?.resume}</p>
+        <p className="text-center">{profile.resume}</p>
       </div>
 
-      <section className="">
-        <Collabs
-          title="¿Quién soy?"
-          icon={<UserIcon className="w-6 h-6 text-primary" />}
-          desc={profile?.who_am_i}
-        />
-        <Collabs
-          title="Mis Servicios"
-          icon={<ClipboardListIcon className="w-6 h-6 text-primary" />}
-          desc={profile?.resume}
-        />
-        <Collabs
-          title="Contactame"
-          icon={<PhoneIcon className="w-6 h-6 text-primary" />}
-          desc={profile?.contact_me}
-        />
-      </section>
+      <ProfileInformation
+        who_am_i={profile?.who_am_i}
+        resume={profile?.resume}
+        contact_me={profile?.contact_me}
+      />
+
       <Link href={`${router.pathname}create-offer/${profile.id}`}>
         <a className="bg-primary rounded-full w-fit py-2 px-6 self-center">
           Proponer trabajo
