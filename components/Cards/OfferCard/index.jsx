@@ -2,7 +2,7 @@ import { ProfileUserWithDate } from '../../ProfileUserWithDate';
 import { AnchorButton } from '../../AnchorButton';
 import { CardTemplate } from '../CardTemplate';
 
-const OfferCard = ({ offer, profile }) => {
+const OfferCard = ({ offer, profile, children }) => {
   return (
     <CardTemplate offer={offer}>
       <div className="flex justify-between gap-4">
@@ -19,6 +19,8 @@ const OfferCard = ({ offer, profile }) => {
           <AnchorButton href={`offers/${offer.id}`} text="Ver oferta" />
         </div>
       </div>
+
+      {children}
     </CardTemplate>
   );
 };

@@ -24,7 +24,7 @@ export async function getStaticProps() {
     .select(
       `id, offers (id, name, resume, created_at), origin_id (id, name, last_name, picture)`
     )
-    .eq('type', 'postulations');
+    .eq('type', 'postulation');
 
   console.log(recievedOffers);
   return {

@@ -99,7 +99,7 @@ const Navbar = ({ isAuth, notifications }) => {
         />
 
         <NavbarIcon
-          href="/postulations"
+          href="/recieved-postulations"
           title="Postulaciones Recibidas"
           icon={<UserGroupIcon />}
           onClick={onNavigation}
