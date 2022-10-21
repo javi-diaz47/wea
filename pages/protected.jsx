@@ -1,6 +1,6 @@
-import { getCookie } from 'cookies-next';
-import { supabase } from '../utils/supabaseClient';
-import jwt from 'jsonwebtoken';
+import { getCookie } from "cookies-next";
+import { supabase } from "../utils/supabaseClient";
+import jwt from "jsonwebtoken";
 
 export default function Protected({ user }) {
   return (
@@ -15,10 +15,10 @@ export default function Protected({ user }) {
 }
 
 export async function getServerSideProps({ req, res }) {
-  const token = getCookie('token', { req, res });
+  const token = getCookie("token", { req, res });
 
   if (!token) {
-    return { props: {}, redirect: { destination: '/login' } };
+    return { props: {}, redirect: { destination: "/login" } };
   }
 
   return { props: { user: jwt.decode(token) } };

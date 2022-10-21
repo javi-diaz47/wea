@@ -1,13 +1,3 @@
-import { ProfilePhoto } from '../../components/ProfilePhoto';
-import { Collabs } from '../../components/Collabs';
-import { getDateFormat } from '../../utils/getDateFormat';
-import { StarIcon } from '@heroicons/react/solid';
-import {
-  UserIcon,
-  ClipboardListIcon,
-  PhoneIcon,
-  LogoutIcon,
-} from '@heroicons/react/outline';
 import Link from 'next/link';
 import { supabase } from '../../utils/supabaseClient';
 import { useRouter } from 'next/router';
@@ -15,10 +5,8 @@ import { ProfilePagePhoto } from '../../components/ProfilePage/ProfileUserWithNa
 import { ProfileDateAndCalification } from '../../components/ProfilePage/ProfileDateAndCalification';
 import { ProfileInformation } from '../../components/ProfilePage/ProfileInformation';
 
-export default function ProfileId(props) {
+export default function ProfileId({profile}) {
   const router = useRouter();
-  console.log(props);
-  const { profile } = props;
 
   return (
     <div className="h-screen bg-background px-8 py-8 flex flex-col gap-7">

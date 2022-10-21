@@ -27,7 +27,7 @@
   }
 
   .offer {
-    @apply h-screen bg-slate-900;
+    @apply h-screen bg-background text-color-text;
   }
   .offer  h1 {
     @apply text-5xl font-bold !important;

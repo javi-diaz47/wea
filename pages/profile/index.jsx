@@ -5,15 +5,9 @@ import { fetchProfile } from '../../utils/fetchProfile';
 import { getprofileType } from '../../utils/getUserType';
 import { BIO_ROWS, MAX_BIO_LENGTH } from '../../utils/constants';
 import { updateProfileBio } from '../../utils/updateProfile';
-import { ProfilePhoto } from '../../components/ProfilePhoto';
 import { getCookie } from 'cookies-next';
 import jwt from 'jsonwebtoken';
-
-import { StarIcon } from '@heroicons/react/solid';
 import {
-  UserIcon,
-  ClipboardListIcon,
-  PhoneIcon,
   LogoutIcon,
 } from '@heroicons/react/outline';
 import { supabase } from '../../utils/supabaseClient';
@@ -21,9 +15,7 @@ import { getDateFormat } from '../../utils/getDateFormat';
 import { Collabs } from '../../components/Collabs';
 import { ProfilePagePhoto } from '../../components/ProfilePage/ProfileUserWithName';
 import {
-  DateAndCalification,
   ProfileDateAndCalification,
-  ProfileResume,
 } from '../../components/ProfilePage/ProfileDateAndCalification';
 import { ProfileInformation } from '../../components/ProfilePage/ProfileInformation';
 
