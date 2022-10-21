@@ -20,6 +20,7 @@ const ProfileInformation = ({ who_am_i, resume, contact_me, children }) => {
     <section className="">
       {info.map(({ title, icon, desc }) => (
         <Collabs
+          key={title}
           title={title}
           icon={cloneElement(icon, { className: 'w-6 h-6 text-primary' })}
           desc={desc}
