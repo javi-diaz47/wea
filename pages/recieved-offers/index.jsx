@@ -1,3 +1,5 @@
+import { getCookie } from 'cookies-next';
+import jwt from 'jsonwebtoken';
 import { OfferCard } from '../../components/Cards/OfferCard';
 import { supabase } from '../../utils/supabaseClient';
 
@@ -41,13 +43,15 @@ function RecievedOffers({ recievedOffers }) {
 
 export default RecievedOffers;
 
-export async function getStaticProps() {
+export async function getServerSideProps({ req, res }) {
+  const token = getCookie('token', { req, res });
   const { data: recievedOffers, error } = await supabase
     .from('notifications')
     .select(
-      `id, offers (id, name, resume, created_at), origin_id (id, name, last_name, picture)`
+      `id, destination_id, offers (id, name, resume, created_at), origin_id (id, name, last_name, picture)`
     )
-    .eq('type', 'offer');
+    .eq('type', 'offer')
+    .eq('destination_id', jwt.decode(token).sub);
 
   console.log(recievedOffers);
   return {
