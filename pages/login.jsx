@@ -1,6 +1,8 @@
-import { FormElement } from '../components/FormElement';
-import { signIn } from '../utils/auth';
-import { MIN_PASSWORD_LENGTH } from '../utils/constants';
+import { FormElement } from "../components/FormElement";
+import { Facebook } from "../components/Icons/facebook";
+import { signIn } from "../utils/auth";
+import { MIN_PASSWORD_LENGTH } from "../utils/constants";
+import { Footer } from "../components/Footer";
 
 export default function Login() {
   const handleSubmit = (ev) => {
@@ -10,25 +12,40 @@ export default function Login() {
     signIn(inputObject);
   };
   return (
-    <div className="h-screen bg-black flex justify-center items-center">
+    <div className=" bg-black flex justify-center">
       <form onSubmit={handleSubmit}>
-        <h2 className="text-white text-2xl text-center mb-4">Ingresar</h2>
-        <FormElement label="Correo" name="email" type="email" required={true} />
-        <FormElement
-          label="Contraseña"
-          name="password"
-          type="password"
-          required={true}
-          minLength={MIN_PASSWORD_LENGTH}
-        />
-
-        <button
-          className="hover:text-white p-2 hover:bg-rose-600 bg-white bold duration-300 rounded-lg"
-          type="submit"
-        >
-          Iniciar sesión
-        </button>
+        <div className="mt-11">
+          <h2 className="text-white text-2xl mb-4">Ingresar</h2>
+          <p className="text-white mb-5">
+            Bienvenido a WEA, ingresa tus datos para iniciar sesión
+          </p>
+        </div>
+        <div>
+          <FormElement
+            label="Correo"
+            name="email"
+            type="email"
+            placeholder=""
+            required={true}
+          />
+          <FormElement
+            label="Contraseña"
+            name="password"
+            type="password"
+            required={true}
+            minLength={MIN_PASSWORD_LENGTH}
+          />
+        </div>
+        <div className=" flex justify-center">
+          <button
+            className="hover:text-white p-2 hover:bg-blue-600 bg-white bold duration-300 rounded-lg  mx-auto w-fit px-7"
+            type="submit"
+          >
+            Iniciar sesión
+          </button>
+        </div>
       </form>
+      <Footer />
     </div>
   );
 }
