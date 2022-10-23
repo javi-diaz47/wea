@@ -17,12 +17,16 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.3",
+    "react-query": "^3.39.2",
     "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-next": "12.2.3",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
