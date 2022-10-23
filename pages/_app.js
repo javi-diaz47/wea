@@ -1,13 +1,17 @@
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { Layout } from '../components/Layout';
-import '../styles/globals.css';
-import { checkUser, handleAuthChange } from '../utils/auth';
-import { supabase } from '../utils/supabaseClient';
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { Layout } from "../components/Layout";
+import "../styles/globals.css";
+import { checkUser, handleAuthChange } from "../utils/auth";
+import { supabase } from "../utils/supabaseClient";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function MyApp({ Component, pageProps }) {
   const [authenticatedState, setAuthenticatedState] = useState(null);
   const router = useRouter();
+
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
@@ -15,13 +19,13 @@ function MyApp({ Component, pageProps }) {
         handleAuthChange(event, session);
 
         //redirect the user signed from the magiclink to the profile page
-        if (event === 'SIGNED_IN') {
-          setAuthenticatedState('authenticated');
+        if (event === "SIGNED_IN") {
+          setAuthenticatedState("authenticated");
           // router.push('/profile');
         }
 
-        if (event === 'SIGNED_OUT') {
-          setAuthenticatedState('not-authenticated');
+        if (event === "SIGNED_OUT") {
+          setAuthenticatedState("not-authenticated");
         }
       }
     );
@@ -34,9 +38,14 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <Layout isAuth={authenticatedState === 'authenticated' ? true : false}>
-      <Component {...pageProps} />
-    </Layout>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Layout isAuth={authenticatedState === "authenticated" ? true : false}>
+          <Component {...pageProps} />
+        </Layout>
+      </Hydrate>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }
 

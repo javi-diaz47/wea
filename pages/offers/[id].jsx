@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import remarkGfm from 'remark-gfm';
-import { getDateFormat } from '../../utils/getDateFormat';
-import { supabase } from '../../utils/supabaseClient';
+import Link from "next/link";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
+import { getDateFormat } from "../../utils/getDateFormat";
+import { supabase } from "../../utils/supabaseClient";
 
 export default function Offer(offer) {
   const { title, resume, description, created_at, profiles } = offer;
@@ -31,9 +31,9 @@ export default function Offer(offer) {
 export async function getStaticProps({ params }) {
   // fetch for the offer information
   const { data: offer, error } = await supabase
-    .from('offers')
+    .from("offers")
     .select(`*, profiles (name, last_name)`)
-    .eq('id', params.id);
+    .eq("id", params.id);
 
   return {
     props: offer[0],
@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   // Generate all the offers paths at build time
-  const { data: offers, error } = await supabase.from('offers').select('id');
+  const { data: offers, error } = await supabase.from("offers").select("id");
   console.log(offers);
 
   return {
