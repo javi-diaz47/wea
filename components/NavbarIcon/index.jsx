@@ -9,7 +9,7 @@ const NavbarIcon = ({ href, title, icon, onClick }) => {
       <a
         onClick={onClick}
         className={`
-         w-fit flex flex-col justify-center align-center place-items-center text-center
+         w-24 flex flex-col justify-center align-center place-items-center text-center
         ${router.pathname === href ? "text-primary" : ""}
       `}
       >

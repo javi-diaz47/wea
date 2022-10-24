@@ -23,15 +23,15 @@ const CreateOfferForm = ({
   onHandleTags,
 }: Props) => {
   return (
-    <form onSubmit={onSubmit} className="grid gap-4">
+    <form onSubmit={onSubmit} className="grid gap-8 text-xl">
       <h2 className="text-4xl font-semibold">Crear oferta de trabajo</h2>
-      <div className="grid">
-        <FormElement
-          label="Titulo"
+      <div className="grid gap-1 w-full">
+        <label>Titulo</label>
+        <input
           name="name"
           value={name}
           onChange={onHandleChange}
-          className="text-2xl font-bold p-4"
+          className="md:text-xl text-2xl font-bold w-full p-2 rounded-lg shadow-md"
           placeholder="Escribe aqui el titulo de tu oferta..."
           required={true}
           autoFocus={true}
@@ -40,18 +40,20 @@ const CreateOfferForm = ({
 
       <TagsInput tags={tags} onHandleTags={onHandleTags} />
 
-      <div className="grid">
-        <FormElement label="Descripcion" name="description">
-          <textarea
-            className="text-lg p-4"
-            name="description"
-            value={description}
-            placeholder="Escribe aqui la descripciond de tu oferta..."
-            onChange={onHandleChange}
-            maxLength={Number(MAX_OFFER_DESC_LENGTH)}
-            required
-          />
-        </FormElement>
+      <div className="grid gap-2 w-full">
+        <label htmlFor={name} className="">
+          Descripcion
+        </label>
+        <textarea
+          className="text-lg p-4 rounded-lg shadow-md"
+          rows={10}
+          name="description"
+          value={description}
+          placeholder="Escribe aqui la descripciond de tu oferta..."
+          onChange={onHandleChange}
+          maxLength={Number(MAX_OFFER_DESC_LENGTH)}
+          required
+        />
         <span>
           {description?.length}/{MAX_OFFER_DESC_LENGTH}
         </span>

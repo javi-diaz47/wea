@@ -1,6 +1,7 @@
 import { FormElement } from "../FormElement";
 
 const InputWithCounter = ({
+  label,
   currentLength,
   maxLength,
   value,
@@ -10,8 +11,9 @@ const InputWithCounter = ({
   placeholder,
 }) => {
   return (
-    <div>
-      <FormElement
+    <div className="flex flex-col">
+      <label>{label}</label>
+      <input
         placeholder={placeholder}
         list={list}
         value={value}

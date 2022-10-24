@@ -1,4 +1,4 @@
-import { Facebook } from "../Icons/facebook";
+import { Facebook } from "../Icons/Facebook";
 import { Wea } from "../Icons/Wea";
 const Footer = () => {
   return (

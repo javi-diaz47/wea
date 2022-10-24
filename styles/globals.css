@@ -59,7 +59,7 @@
     @apply m-2 !important;
   }
   .offer tr, .offer thead{
-    @apply hover:bg-slate-800  duration-200 border-b text-center !important;
+    @apply hover:bg-[#00000008] duration-200 border-b text-center !important;
   }
   .offer th, .offer td{
     @apply p-2 !important;

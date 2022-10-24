@@ -1,5 +1,4 @@
 import { FormElement } from "../components/FormElement";
-import { Facebook } from "../components/Icons/facebook";
 import { signIn } from "../utils/auth";
 import { MIN_PASSWORD_LENGTH } from "../utils/constants";
 import { Footer } from "../components/Footer";

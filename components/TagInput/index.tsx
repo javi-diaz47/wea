@@ -13,29 +13,30 @@ const TagsInput = ({ tags: current_tags, onHandleTags }: TagsHandler) => {
   } = useTags({ tags: current_tags, onHandleTags });
 
   return (
-    <div>
+    <div className="">
       <InputWithCounter
+        label="Etiquetas"
         list="job-types"
         currentLength={Number(tags.length)}
         maxLength={Number(MAX_OFFER_TAGS_LENGTH)}
         placeholder="Agrega hasta 4 etiquetas"
-        className="p-4 bg-slate-800 disabled:bg-gray-500"
+        className="p-4 disabled:bg-gray-500 rounded-lg shadow-md"
         value={inputTag}
         onChange={onHandleChange}
       />
       <datalist id="job-types">
-        <option value="desarrollo-web">Desarrollo web</option>
+        <option value="web">web</option>
         <option value="electronica">Electronica</option>
-        <option value="desarrollo-backend">Desarrollo Backend</option>
+        <option value="backend">Backend</option>
       </datalist>
       <button
         onClick={onAddTag}
-        className="px-4 py-2 bg-primary rounded-lg hover:bg-love duration-200 "
+        className="text-sm px-4 py-2 border-2 text-primary border-primary rounded-lg hover:border-love hover:text-love duration-200 "
       >
         Agregar Etiqueta
       </button>
 
-      <ul className="flex gap-1">
+      <ul className="flex gap-2 flex-wrap duration-250 transition-all">
         {tags.map((name, i) => (
           <li key={`${name}-${i}`}>
             <TagButton name={name} onClick={() => onRemoveTag(name)} />

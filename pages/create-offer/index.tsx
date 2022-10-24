@@ -62,7 +62,7 @@ export default function createOffer({ profile_id }) {
 
   return (
     <div>
-      <div className="flex gap-8">
+      <div className="flex gap-8 px-8">
         <button
           className={condTextColor(!preview, "text-rose-500")}
           onClick={onEdit}
@@ -77,27 +77,32 @@ export default function createOffer({ profile_id }) {
         </button>
       </div>
       {!!preview && (
-        <div className="offer">
+        <div className="grid gap-4 p-8">
           {/* <ReactMarkdown children={`# ${inputValues.name}  \n---`} /> */}
-          <h2 className="text-3xl">{inputValues.name}</h2>
+          <h2 className="text-5xl font-semibold">{inputValues.name}</h2>
           <TagList tags={inputValues.tags} />
-          <ReactMarkdown
-            children={inputValues.description}
-            remarkPlugins={[remarkGfm]}
-          />
+          <hr />
+          <div className="offer">
+            <ReactMarkdown
+              children={inputValues.description}
+              remarkPlugins={[remarkGfm]}
+            />
+          </div>
         </div>
       )}
       {!preview && (
-        <CreateOfferForm
-          name={inputValues.name}
-          description={inputValues.description}
-          resume={inputValues.resume}
-          price={inputValues.price}
-          tags={inputValues.tags}
-          onHandleChange={onHandleChange}
-          onHandleTags={onHandleTags}
-          onSubmit={onSave}
-        />
+        <div className=" max-w-6xl p-8">
+          <CreateOfferForm
+            name={inputValues.name}
+            description={inputValues.description}
+            resume={inputValues.resume}
+            price={inputValues.price}
+            tags={inputValues.tags}
+            onHandleChange={onHandleChange}
+            onHandleTags={onHandleTags}
+            onSubmit={onSave}
+          />
+        </div>
       )}
     </div>
   );
