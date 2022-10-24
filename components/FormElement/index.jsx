@@ -10,7 +10,7 @@ const FormElement = (props) => {
         <input
           {...props}
           className={
-            className ?? 'border-2 border-rose-500 bg-transparent text-white'
+            className ?? "border-2 border-rose-500 bg-transparent text-white"
           }
         />
       )}

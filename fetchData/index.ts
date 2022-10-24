@@ -44,14 +44,4 @@ const getProfileById = async (params: Params): Promise<Profile> => {
   return data;
 };
 
-// const getProfiles = async (params: Params): Promise<Profiles> => {
-//   const data = await supabase
-//     .from("profiles")
-//     .select("id")
-//     .then(handleSupabaseError)
-//     .then(({ data }) => data);
-
-//   return data;
-// };
-
 export { getProfileById };

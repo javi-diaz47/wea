@@ -14,6 +14,15 @@ interface notification {
   created_at: string;
 }
 
-interface Profiles {
-  profiles: Array<Profile>;
-}
+// export interface Profiles {
+//   profiles: Array<Profile>;
+// }
+
+export type input_offer_type = {
+  name: string;
+  resume: string;
+  description: string;
+  price: string;
+  tags: Array<string>;
+  // tags?: [string?, string?, string?, string?];
+};

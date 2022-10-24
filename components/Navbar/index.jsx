@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import {
   MenuAlt4Icon,
   HomeIcon,
@@ -9,20 +9,20 @@ import {
   UserIcon,
   XIcon,
   BellIcon,
-} from '@heroicons/react/outline';
-import { useState } from 'react';
-import { NavbarIcon } from '../NavbarIcon';
-import { Sidebar } from '../Sidebar';
-import { AnchorButton } from '../AnchorButton';
-import { useEffect } from 'react';
-import { supabase } from '../../utils/supabaseClient';
-import { useRouter } from 'next/router';
-import { OfferCard } from '../Cards/OfferCard';
-import { CardTemplate } from '../Cards/CardTemplate';
-import { Card } from '../Cards/Card';
-import { TagList } from '../TagList';
-import { ProfileUserWithDate } from '../ProfileUserWithDate';
-import { Tag } from '../Tag';
+} from "@heroicons/react/outline";
+import { useState } from "react";
+import { NavbarIcon } from "../NavbarIcon";
+import { Sidebar } from "../Sidebar";
+import { AnchorButton } from "../AnchorButton";
+import { useEffect } from "react";
+import { supabase } from "../../utils/supabaseClient";
+import { useRouter } from "next/router";
+import { OfferCard } from "../Cards/OfferCard";
+import { CardTemplate } from "../Cards/CardTemplate";
+import { Card } from "../Cards/Card";
+import { TagList } from "../TagList";
+import { ProfileUserWithDate } from "../ProfileUserWithDate";
+import { Tag } from "../Tag";
 
 const Navbar = ({ isAuth, notifications }) => {
   const [navigation, setNavigation] = useState(false);
@@ -45,7 +45,7 @@ const Navbar = ({ isAuth, notifications }) => {
         {!navigation && (
           <MenuAlt4Icon
             className={`w-10 h-10 duration-200 delay-200 ${
-              notification ? 'opacity-0' : ' opacity-100'
+              notification ? "opacity-0" : " opacity-100"
             }`}
           />
         )}
@@ -61,7 +61,7 @@ const Navbar = ({ isAuth, notifications }) => {
           {!notification && (
             <BellIcon
               className={`w-10 h-10 duration-200 delay-200 ${
-                navigation ? 'opacity-0' : ' opacity-100'
+                navigation ? "opacity-0" : " opacity-100"
               }`}
             />
           )}
@@ -128,16 +128,16 @@ const Navbar = ({ isAuth, notifications }) => {
               <li key={id} className="">
                 <Link
                   href={`${process.env.NEXT_PUBLIC_ROOT_URL}/${
-                    type === 'offer'
-                      ? 'recieved-offers'
-                      : 'recieved-postulations'
+                    type === "offer"
+                      ? "recieved-offers"
+                      : "recieved-postulations"
                   }/${id}`}
                 >
                   <a>
                     <Card>
                       <h2 className="text-3xl font-semibold">{offer.name}</h2>
                       <p>{offer.resume}</p>
-                      <TagList tags={offer.tag || ['react', 'html']} />
+                      <TagList tags={offer.tag || ["react", "html"]} />
                     </Card>
                   </a>
                 </Link>
