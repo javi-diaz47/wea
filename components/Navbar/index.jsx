@@ -23,6 +23,7 @@ import { Card } from "../Cards/Card";
 import { TagList } from "../TagList";
 import { ProfileUserWithDate } from "../ProfileUserWithDate";
 import { Tag } from "../Tag";
+import { Wea } from "../Icons/Wea";
 
 const Navbar = ({ isAuth, notifications }) => {
   const [navigation, setNavigation] = useState(false);
@@ -119,6 +120,12 @@ const Navbar = ({ isAuth, notifications }) => {
           onClick={onNavigation}
         />
       </Sidebar>
+
+      <Link href={`${process.env.NEXT_PUBLIC_ROOT_URL}/create-offer`}>
+        <a>
+          <Wea className="mt-3 scale-150" />
+        </a>
+      </Link>
 
       {notificationBell()}
       <Sidebar open={notification} leftRight={false}>

@@ -1,7 +1,7 @@
 const FormElement = (props) => {
   const { name, label, className, children } = props;
   return (
-    <div className="flex gap-4">
+    <div className="my-6">
       <label htmlFor={name} className="text-white">
         {label}
       </label>
@@ -10,16 +10,11 @@ const FormElement = (props) => {
         <input
           {...props}
           className={
-            className ?? "border-2 border-rose-500 bg-transparent text-white"
+            className ??
+            "border-2 border-gray-300 bg-transparent text-white w-full focus:outline-none rounded"
           }
         />
       )}
-      {/* <input
-        {...props}
-        className={
-          className ?? 'border-2 border-rose-500 bg-transparent text-white'
-        }
-      /> */}
     </div>
   );
 };
