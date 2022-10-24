@@ -8,7 +8,7 @@ import { ProfilePagePhoto } from "../../components/ProfilePage/ProfileUserWithNa
 import { ProfileDateAndCalification } from "../../components/ProfilePage/ProfileDateAndCalification";
 import { ProfileInformation } from "../../components/ProfilePage/ProfileInformation";
 import { dehydrate, QueryCache, QueryClient, useQuery } from "react-query";
-import { getProfileById, queryKey_type } from "../../fetchData";
+import { getProfileById, queryKey_type } from "../../fetchData/UserDAO";
 
 interface PageProps {
   queryKey: queryKey_type;

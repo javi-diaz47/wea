@@ -1,3 +1,5 @@
+import { Offer } from "./BusinessEntities/Offer";
+
 type notification_type = "offer" | "postulation";
 
 interface notification {
@@ -26,3 +28,11 @@ export type input_offer_type = {
   tags: Array<string>;
   // tags?: [string?, string?, string?, string?];
 };
+
+export interface offerCard extends Offer {
+  profile: {
+    name: string;
+    last_name?: string;
+    picture?: string;
+  };
+}

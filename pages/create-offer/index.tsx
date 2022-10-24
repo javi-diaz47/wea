@@ -28,7 +28,6 @@ export default function createOffer({ profile_id }) {
   };
 
   const onHandleTags = (tags: Array<string>) => {
-    console.log(tags);
     const newInputValues = { ...inputValues, tags };
     setInputValues(newInputValues);
   };

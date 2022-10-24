@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { ProfilePagePhoto } from "../../components/ProfilePage/ProfileUserWithName";
 import { ProfileDateAndCalification } from "../../components/ProfilePage/ProfileDateAndCalification";
 import { ProfileInformation } from "../../components/ProfilePage/ProfileInformation";
-import { getProfileById, queryKey_type } from "../../fetchData";
+import { getProfileById } from "../../fetchData/UserDAO";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
 export default function ProfileId({ queryKey }) {
@@ -55,7 +55,7 @@ export async function getStaticProps({ params }: Params) {
   const { id } = params;
   const queryClient = new QueryClient();
 
-  const queryKey: queryKey_type = ["profile", { id }];
+  const queryKey = ["profile", { id }];
 
   await queryClient.prefetchQuery(queryKey, getProfileById);
 
