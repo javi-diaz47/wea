@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { ProfilePagePhoto } from "@/components/ProfilePage/ProfileUserWithName";
 import { ProfileDateAndCalification } from "@/components/ProfilePage/ProfileDateAndCalification";
 import { ProfileInformation } from "@/components/ProfilePage/ProfileInformation";
-import { getProfileById } from "@/fetchData/UserDAO";
+import { getProfileById } from "Persistence/UserDAO";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";

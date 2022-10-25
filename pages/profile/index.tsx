@@ -8,7 +8,7 @@ import { ProfilePagePhoto } from "@/components/ProfilePage/ProfileUserWithName";
 import { ProfileDateAndCalification } from "@/components/ProfilePage/ProfileDateAndCalification";
 import { ProfileInformation } from "@/components/ProfilePage/ProfileInformation";
 import { dehydrate, QueryCache, QueryClient, useQuery } from "react-query";
-import { getProfileById } from "@/fetchData/UserDAO";
+import { getProfileById } from "@/Persistence/UserDAO";
 
 export default function Profile({ queryKey }) {
   const router = useRouter();

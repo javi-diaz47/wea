@@ -43,6 +43,7 @@ export default function createOfferPrivate({ profile_id, worker }) {
       {!preview && (
         <div className=" max-w-6xl">
           <CreateOfferForm
+            worker_id={worker.id}
             name={inputValues.name}
             description={inputValues.description}
             resume={inputValues.resume}
@@ -50,7 +51,14 @@ export default function createOfferPrivate({ profile_id, worker }) {
             tags={inputValues.tags}
             onHandleChange={onHandleChange}
             onHandleTags={onHandleTags}
-            onSubmit={onSave}
+            onSubmit={(ev) =>
+              onSave({
+                ev,
+                offer: inputValues,
+                owner_id: profile_id,
+                worker_id: worker.id,
+              })
+            }
           />
         </div>
       )}

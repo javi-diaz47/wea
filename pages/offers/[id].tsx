@@ -5,7 +5,7 @@ import { ProfilePhoto } from "@/components/ProfilePhoto";
 import { TagList } from "@/components/TagList";
 import { supabase } from "@/utils/supabaseClient";
 import { dehydrate, QueryClient, useQuery } from "react-query";
-import { getOfferById } from "@/fetchData/OfferDAO";
+import { getOfferById } from "Persistence/OfferDAO";
 
 export default function Offer({ queryKey }) {
   const { data: offer } = useQuery(queryKey, getOfferById);

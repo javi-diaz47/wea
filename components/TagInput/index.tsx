@@ -31,6 +31,7 @@ const TagsInput = ({ tags: current_tags, onHandleTags }: TagsHandler) => {
       </datalist>
       <button
         onClick={onAddTag}
+        type="button"
         className="text-sm px-4 py-2 border-2 text-primary border-primary rounded-lg hover:border-love hover:text-love duration-200 "
       >
         Agregar Etiqueta

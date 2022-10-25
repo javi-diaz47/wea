@@ -1,4 +1,4 @@
-import { setOffer } from "@/fetchData/OfferDAO";
+import { setOffer } from "@/Persistence/OfferDAO";
 import { Offer } from "@/types/BusinessEntities/Offer";
 import { input_offer_type } from "@/types/types";
 import { useState } from "react";
