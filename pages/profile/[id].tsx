@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { supabase } from "../../utils/supabaseClient";
+import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/router";
-import { ProfilePagePhoto } from "../../components/ProfilePage/ProfileUserWithName";
-import { ProfileDateAndCalification } from "../../components/ProfilePage/ProfileDateAndCalification";
-import { ProfileInformation } from "../../components/ProfilePage/ProfileInformation";
-import { getProfileById } from "../../fetchData/UserDAO";
+import { ProfilePagePhoto } from "@/components/ProfilePage/ProfileUserWithName";
+import { ProfileDateAndCalification } from "@/components/ProfilePage/ProfileDateAndCalification";
+import { ProfileInformation } from "@/components/ProfilePage/ProfileInformation";
+import { getProfileById } from "@/fetchData/UserDAO";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
 export default function ProfileId({ queryKey }) {
@@ -36,7 +36,9 @@ export default function ProfileId({ queryKey }) {
         contact_me={profile?.contact_me}
       />
 
-      <Link href={`${router.pathname}create-offer/${profile?.id}`}>
+      <Link
+        href={`${process.env.NEXT_PUBLIC_ROOT_URL}/create-offer/${profile.id}`}
+      >
         <a className="bg-primary rounded-full w-fit py-2 px-6 self-center">
           Proponer trabajo
         </a>

@@ -54,10 +54,28 @@ const CreateOfferForm = ({
           maxLength={Number(MAX_OFFER_DESC_LENGTH)}
           required
         />
-        <span>
-          {description?.length}/{MAX_OFFER_DESC_LENGTH}
-        </span>
+        <div className="flex justify-end px-2">
+          <span>
+            {description?.length}/{MAX_OFFER_DESC_LENGTH}
+          </span>
+        </div>
       </div>
+
+      <div className="grid gap-1 w-full">
+        <label>Precio base</label>
+        <input
+          name="price"
+          value={price}
+          type="number"
+          min="1"
+          step="any"
+          onChange={onHandleChange}
+          className="text-xl w-full p-2 rounded-lg shadow-md"
+          placeholder="Costo base de la oferta"
+          required={true}
+        />
+      </div>
+
       <button
         className="text-white hover:bg-white hover:text-blue-600 m-w-24 p-2 font-bold bg-blue-600 rounded-lg"
         type="submit"

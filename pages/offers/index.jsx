@@ -1,10 +1,7 @@
-import Link from "next/link";
-import { EndJobCard } from "../../components/Cards/EndJobCard";
-import { OfferCard } from "../../components/Cards/OfferCard";
-import { PostulationCard } from "../../components/Cards/PostulationCard";
-import { supabase } from "../../utils/supabaseClient";
+import { OfferCard } from "@/components/Cards/OfferCard";
+import { supabase } from "@/utils/supabaseClient";
 import { PlusIcon } from "@heroicons/react/outline";
-import { NavbarIcon } from "../../components/NavbarIcon";
+import { NavbarIcon } from "@/components/NavbarIcon";
 
 export default function Offers({ offers }) {
   return (

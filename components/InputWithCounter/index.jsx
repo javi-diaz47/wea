@@ -21,9 +21,11 @@ const InputWithCounter = ({
         className={className}
         disabled={currentLength < maxLength ? false : true}
       />
-      <span>
-        {currentLength}/{maxLength}
-      </span>
+      <div className="flex justify-end px-2">
+        <span>
+          {currentLength}/{maxLength}
+        </span>
+      </div>
     </div>
   );
 };

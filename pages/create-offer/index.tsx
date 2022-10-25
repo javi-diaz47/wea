@@ -1,96 +1,35 @@
-import { useState } from "react";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import remarkGfm from "remark-gfm";
-import { saveOffer } from "../../utils/offers";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
-import { input_offer_type } from "../../types/types";
-import { CreateOfferForm } from "../../components/CreateOfferForm";
-import { TagList } from "../../components/TagList";
-
-const INITIAL_STATE: input_offer_type = {
-  name: "",
-  resume: "",
-  description: "",
-  price: "",
-  tags: [],
-};
+import { CreateOfferForm } from "@/components/CreateOfferForm";
+import { useCreateOffer } from "@/hooks/useCreateOffer";
+import { PreviewBar } from "@/components/PreviewBar";
+import { OfferMd } from "@/components/OfferMd";
 
 export default function createOffer({ profile_id }) {
-  const [inputValues, setInputValues] = useState(INITIAL_STATE);
-
-  const onHandleChange = (
-    ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = ev.target;
-    const newInputValues = { ...inputValues, [name]: value };
-    setInputValues(newInputValues);
-  };
-
-  const onHandleTags = (tags: Array<string>) => {
-    const newInputValues = { ...inputValues, tags };
-    setInputValues(newInputValues);
-  };
-
-  const [preview, setPreview] = useState(false);
-  const onPreview = () => {
-    setPreview(true);
-  };
-  const onEdit = () => {
-    setPreview(false);
-  };
-
-  const onSave = async (ev: React.FormEvent<HTMLFormElement>) => {
-    ev.preventDefault();
-    // console.log(owner_id);
-    // console.log(profile_id);
-    // const htmlFormData = new FormData(ev.target);
-    // const inputObject = Object.fromEntries(htmlFormData);
-    // inputObject["owner_id"] = profile_id;
-    // const res = saveOffer(inputObject);
-    // console.log(res);
-  };
-
-  const onPublish = () => {
-    // Set public on supabase
-  };
-
-  const condTextColor = (state, color) => {
-    return `${state ? color : ""}`;
-  };
+  const {
+    inputValues,
+    onHandleChange,
+    onHandleTags,
+    onSave,
+    preview,
+    onPreview,
+    onEdit,
+  } = useCreateOffer();
 
   return (
-    <div>
-      <div className="flex gap-8 px-8">
-        <button
-          className={condTextColor(!preview, "text-rose-500")}
-          onClick={onEdit}
-        >
-          Editar
-        </button>
-        <button
-          className={condTextColor(preview, "text-rose-500")}
-          onClick={onPreview}
-        >
-          Vista previa
-        </button>
-      </div>
+    <div className="flex flex-col gap-8 px-8">
+      <PreviewBar state={preview} onState={onPreview} onNotState={onEdit} />
+
       {!!preview && (
-        <div className="grid gap-4 p-8">
-          {/* <ReactMarkdown children={`# ${inputValues.name}  \n---`} /> */}
-          <h2 className="text-5xl font-semibold">{inputValues.name}</h2>
-          <TagList tags={inputValues.tags} />
-          <hr />
-          <div className="offer">
-            <ReactMarkdown
-              children={inputValues.description}
-              remarkPlugins={[remarkGfm]}
-            />
-          </div>
-        </div>
+        <OfferMd
+          name={inputValues.name}
+          price={inputValues.price}
+          tags={inputValues.tags}
+          description={inputValues.description}
+        />
       )}
       {!preview && (
-        <div className=" max-w-6xl p-8">
+        <div className=" max-w-6xl ">
           <CreateOfferForm
             name={inputValues.name}
             description={inputValues.description}
@@ -99,7 +38,9 @@ export default function createOffer({ profile_id }) {
             tags={inputValues.tags}
             onHandleChange={onHandleChange}
             onHandleTags={onHandleTags}
-            onSubmit={onSave}
+            onSubmit={(ev) =>
+              onSave({ ev, owner_id: profile_id, offer: inputValues })
+            }
           />
         </div>
       )}

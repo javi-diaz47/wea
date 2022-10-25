@@ -40,4 +40,12 @@ const getOfferById = async (params): Promise<offerCard> => {
   return data;
 };
 
-export { getOfferById };
+const setOffer = async (offer: Offer) => {
+  const { data, error } = await supabase
+    .from("offers")
+    .insert([{ ...offer }], { upsert: true });
+
+  console.log(data);
+};
+
+export { getOfferById, setOffer };

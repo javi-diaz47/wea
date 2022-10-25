@@ -1,14 +1,14 @@
 export interface Offer {
-  id: string;
+  id?: string;
   name: string;
-  resume: string;
+  resume?: string;
   description: string;
-  tags?: string;
+  tags?: Array<string>;
   price: string;
-  calification: number;
+  calification?: number;
   owner_id: string;
   worker_id?: string;
   offer_type: string;
   in_progress: boolean;
-  created_at: string;
+  created_at?: string;
 }

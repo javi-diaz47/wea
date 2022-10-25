@@ -121,7 +121,7 @@ const Navbar = ({ isAuth, notifications }) => {
         />
       </Sidebar>
 
-      <Link href={`${process.env.NEXT_PUBLIC_ROOT_URL}`}>
+      <Link href={`${process.env.NEXT_PUBLIC_ROOT_URL}/`}>
         <a>
           <Wea className="mt-3 scale-150" />
         </a>
