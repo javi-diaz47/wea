@@ -6,7 +6,7 @@
       "@/hooks/*": ["hooks/*"],
       "@/reducers/*": ["reducers/*"],
       "@/utils/*": ["utils/*"],
-      "@/fetchData/*": ["fetchData/*"],
+      "@/Persistence/*": ["Persistence/*"],
       "@/types/*": ["types/*"],
     },
     "target": "es5",

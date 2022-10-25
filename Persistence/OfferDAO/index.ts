@@ -1,7 +1,7 @@
-import { Offer } from "../../types/BusinessEntities/Offer";
-import { supabase } from "../../utils/supabaseClient";
-import { handleSupabaseError } from "../../utils/handleSupabaseError";
-import { offerCard } from "../../types/types";
+import { Offer } from "@/types/BusinessEntities/Offer";
+import { supabase } from "@/utils/supabaseClient";
+import { handleSupabaseError } from "@/utils/handleSupabaseError";
+import { offerCard } from "@/types/types";
 
 const mapOfferFromApi = (data): offerCard => {
   return {

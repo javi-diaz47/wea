@@ -1,6 +1,6 @@
-import { Profile } from "../../types/BusinessEntities/Profile";
-import { handleSupabaseError } from "../../utils/handleSupabaseError";
-import { supabase } from "../../utils/supabaseClient";
+import { Profile } from "@/types/BusinessEntities/Profile";
+import { handleSupabaseError } from "@/utils/handleSupabaseError";
+import { supabase } from "@/utils/supabaseClient";
 
 const getProfileById = async (params): Promise<Profile> => {
   const { id } = params.queryKey[1];
