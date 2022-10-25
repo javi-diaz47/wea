@@ -17,7 +17,7 @@ export default function createOffer({ profile_id }) {
   } = useCreateOffer();
 
   return (
-    <div className="flex flex-col gap-8 px-8">
+    <div className="flex flex-col gap-6 p-8">
       <PreviewBar state={preview} onState={onPreview} onNotState={onEdit} />
 
       {!!preview && (
