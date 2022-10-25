@@ -6,6 +6,8 @@ import { ProfileDateAndCalification } from "@/components/ProfilePage/ProfileDate
 import { ProfileInformation } from "@/components/ProfilePage/ProfileInformation";
 import { getProfileById } from "@/fetchData/UserDAO";
 import { dehydrate, QueryClient, useQuery } from "react-query";
+import { getCookie } from "cookies-next";
+import jwt from "jsonwebtoken";
 
 export default function ProfileId({ queryKey }) {
   const router = useRouter();
@@ -48,13 +50,27 @@ export default function ProfileId({ queryKey }) {
 }
 
 interface Params {
+  req: any;
+  res: any;
   params: {
     id: string;
   };
 }
 
-export async function getStaticProps({ params }: Params) {
+export async function getServerSideProps({ req, res, params }: Params) {
   const { id } = params;
+
+  const token = getCookie("token", { req, res });
+  const current_profile_id = jwt.decode(token).sub;
+
+  if (id === current_profile_id) {
+    return {
+      redirect: {
+        destination: "/profile",
+      },
+    };
+  }
+
   const queryClient = new QueryClient();
 
   const queryKey = ["profile", { id }];
@@ -69,7 +85,7 @@ export async function getStaticProps({ params }: Params) {
   };
 }
 
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
   const { data: profiles, error } = await supabase
     .from("profiles")
     .select("id");
