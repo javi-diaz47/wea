@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { FormElement } from '../components/FormElement';
-import { signUpUser } from '../utils/auth';
-import { MIN_PASSWORD_LENGTH, USER_TYPES } from '../utils/constants';
+import { useState } from "react";
+import { FormElement } from "../components/FormElement";
+import { signUpUser } from "../utils/auth";
+import { MIN_PASSWORD_LENGTH, USER_TYPES } from "../utils/constants";
+import { Footer } from "../components/Footer";
 
 export default function signUp() {
   const [userType, setUserType] = useState(USER_TYPES.PERSON);
@@ -28,35 +29,14 @@ export default function signUp() {
   }
 
   return (
-    <div className="h-screen bg-black flex justify-center items-center">
+    <div className="  flex flex-col  items-center mb-40 relative">
       <form onSubmit={handleSubmit}>
         <div className="flex gap-8">
-          <FormElement
-            label="Persona"
-            name="userType"
-            type="radio"
-            value={USER_TYPES.PERSON}
-            checked={true}
-            required={true}
-            onChange={onChangeUserType}
-          />
-
-          <FormElement
-            label="Empresa"
-            name="userType"
-            type="radio"
-            value={USER_TYPES.ENTERPRISE}
-            required={true}
-            onChange={onChangeUserType}
-          />
+          <h1>Registrate</h1>
         </div>
 
         <FormElement label="Nombre" name="name" required={true} />
-        {userType === USER_TYPES.PERSON ? (
-          <FormElement label="Apellido" name="lastName" required={true} />
-        ) : (
-          <FormElement label="NIT" name="nit" required={true} type="number" />
-        )}
+        <FormElement label="Apellido" name="lastName" />
         <FormElement label="Correo" name="email" type="email" required={true} />
         <FormElement
           label="Contraseña"
@@ -70,6 +50,7 @@ export default function signUp() {
           Crear cuenta
         </button>
       </form>
+      <Footer />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { Facebook } from "../Icons/Facebook";
 import { Wea } from "../Icons/Wea";
 const Footer = () => {
   return (
-    <footer className="bg-black md:flex w-full absolute bottom-0">
+    <footer className="bg-black flex w-full absolute -bottom-10 translate-y-[100%] ">
       <ul className="text-white md:w-1/2 mx-3 my-3 px-2">
         <li>
           <Wea fill="#fff" className="" />
@@ -19,10 +19,10 @@ const Footer = () => {
             <Facebook />
           </div>
           <div className="px-2">
-            <img src="/public/img/instagram 1.svg" alt="Logo instagram" />
+            <Facebook />
           </div>
           <div className="px-2">
-            <img src="/public/img/twitter 1.svg" alt="Logo twitter" />
+            <Facebook />
           </div>
         </div>
       </div>
