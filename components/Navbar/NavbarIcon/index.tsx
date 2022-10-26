@@ -2,7 +2,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { cloneElement } from "react";
 
-const NavbarIcon = ({ href, title, icon, onClick }) => {
+interface Props {
+  href: string;
+  title?: string;
+  icon?: JSX.Element;
+  onClick?: () => void;
+}
+
+const NavbarIcon = ({ href, title, icon, onClick }: Props) => {
   const router = useRouter();
   return (
     <Link href={href}>

@@ -1,7 +1,7 @@
 import { OfferCard } from "@/components/Cards/OfferCard";
 import { supabase } from "@/utils/supabaseClient";
 import { PlusIcon } from "@heroicons/react/outline";
-import { NavbarIcon } from "@/components/NavbarIcon";
+import { NavbarIcon } from "@/Navbar/NavbarIcon";
 
 export default function Offers({ offers }) {
   return (
