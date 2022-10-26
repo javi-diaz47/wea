@@ -3,17 +3,13 @@ import { Offer } from "./BusinessEntities/Offer";
 type notification_type = "offer" | "postulation";
 
 interface notification {
-  id: string;
-  name: string;
-  resume: string;
-  description: string;
-  tags?: string;
+  id?: string;
   origin_id: string;
   destination_id: string;
   offer_id: string;
-  viewed: boolean;
+  viewed?: boolean;
   type: notification_type;
-  created_at: string;
+  created_at?: string;
 }
 
 // export interface Profiles {

@@ -1,6 +1,6 @@
 import { setOffer } from "@/Persistence/OfferDAO";
 import { Offer } from "@/types/BusinessEntities/Offer";
-import { input_offer_type } from "@/types/types";
+import { input_offer_type, notification } from "@/types/types";
 import { useState } from "react";
 
 interface onSaveProps {
@@ -49,7 +49,8 @@ const useCreateOffer = () => {
 
     console.log(newOffer);
 
-    const res = setOffer(newOffer);
+    // const res = await setOffer(newOffer);
+
     // console.log(res);
   };
 

@@ -3,7 +3,7 @@ import { supabase } from "@/utils/supabaseClient";
 import { handleSupabaseError } from "@/utils/handleSupabaseError";
 import { offerCard } from "@/types/types";
 
-const mapOfferFromApi = (data): offerCard => {
+const mapOfferCardFromApi = (data): offerCard => {
   return {
     id: data.id,
     name: data.name,
@@ -25,6 +25,23 @@ const mapOfferFromApi = (data): offerCard => {
   };
 };
 
+const mapOfferFromApi = (data): Offer => {
+  return {
+    id: data.id,
+    name: data.name,
+    resume: data.resume,
+    description: data.description,
+    tags: data.tags,
+    price: data.price,
+    calification: data.calification,
+    owner_id: data.owner_id,
+    worker_id: data.worker_id,
+    offer_type: data.offer_type,
+    in_progress: data.in_progress,
+    created_at: data.created_at,
+  };
+};
+
 const getOfferById = async (params): Promise<offerCard> => {
   const { id } = params.queryKey[1];
   const data = await supabase
@@ -34,18 +51,18 @@ const getOfferById = async (params): Promise<offerCard> => {
     .limit(1)
     .single()
     .then(handleSupabaseError)
-    .then(({ data }) => mapOfferFromApi(data));
+    .then(({ data }) => mapOfferCardFromApi(data));
 
   console.log("fetching from supabase");
   return data;
 };
 
-const setOffer = async (offer: Offer) => {
+const setOffer = async (offer: Offer): Promise<Offer> => {
   const { data, error } = await supabase
     .from("offers")
     .insert([{ ...offer }], { upsert: true });
 
-  console.log(data);
+  return mapOfferFromApi(data);
 };
 
 export { getOfferById, setOffer };

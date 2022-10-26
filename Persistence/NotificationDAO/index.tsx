@@ -1,3 +1,4 @@
+import { notification } from "@/types/types";
 import { handleSupabaseError } from "@/utils/handleSupabaseError";
 import { supabase } from "@/utils/supabaseClient";
 
@@ -15,6 +16,4 @@ const getNotifications = async () => {
   return data;
 };
 
-const setNotification = () => {};
-
-export { getNotifications, setNotification };
+export { getNotifications };

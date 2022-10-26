@@ -4,6 +4,7 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/Navbar/*": ["components/Navbar/*"],
+      "@/Profile/*": ["components/Profile/*"],
       "@/hooks/*": ["hooks/*"],
       "@/reducers/*": ["reducers/*"],
       "@/utils/*": ["utils/*"],
