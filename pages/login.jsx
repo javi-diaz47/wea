@@ -1,5 +1,4 @@
 import { FormElement } from "../components/FormElement";
-import { Facebook } from "../components/Icons/facebook";
 import { signIn } from "../utils/auth";
 import { MIN_PASSWORD_LENGTH } from "../utils/constants";
 import { Footer } from "../components/Footer";
@@ -12,15 +11,15 @@ export default function Login() {
     signIn(inputObject);
   };
   return (
-    <div className=" bg-black flex justify-center">
+    <div className="  flex justify-center md:mx-3 h-screen">
       <form onSubmit={handleSubmit}>
-        <div className="mt-11">
-          <h2 className="text-white text-2xl mb-4">Ingresar</h2>
-          <p className="text-white mb-5">
+        <div className="mt-11 mx-3">
+          <h2 className="text-2xl mb-4 bold">Ingresar</h2>
+          <p className="mb-5 text-lg">
             Bienvenido a WEA, ingresa tus datos para iniciar sesión
           </p>
         </div>
-        <div>
+        <div className="mx-4">
           <FormElement
             label="Correo"
             name="email"
@@ -36,9 +35,9 @@ export default function Login() {
             minLength={MIN_PASSWORD_LENGTH}
           />
         </div>
-        <div className=" flex justify-center">
+        <div className=" flex justify-center mb-10">
           <button
-            className="hover:text-white p-2 hover:bg-blue-600 bg-white bold duration-300 rounded-lg  mx-auto w-fit px-7"
+            className="hover:text-white p-2 hover:bg-blue-400 bg-blue-600 bold duration-300 rounded-lg  mx-auto w-fit px-7 my-5"
             type="submit"
           >
             Iniciar sesión
