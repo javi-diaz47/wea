@@ -1,20 +1,16 @@
 import { useRouter } from "next/router";
-import { signOut } from "../../utils/auth";
+import { signOut } from "@/utils/auth";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { LogoutIcon } from "@heroicons/react/outline";
-import { Collabs } from "../../components/Collabs";
-import { ProfilePagePhoto } from "../../components/ProfilePage/ProfileUserWithName";
-import { ProfileDateAndCalification } from "../../components/ProfilePage/ProfileDateAndCalification";
-import { ProfileInformation } from "../../components/ProfilePage/ProfileInformation";
+import { Collabs } from "@/components/Collabs";
+import { ProfilePagePhoto } from "@/components/ProfilePage/ProfileUserWithName";
+import { ProfileDateAndCalification } from "@/components/ProfilePage/ProfileDateAndCalification";
+import { ProfileInformation } from "@/components/ProfilePage/ProfileInformation";
 import { dehydrate, QueryCache, QueryClient, useQuery } from "react-query";
-import { getProfileById, queryKey_type } from "../../fetchData";
+import { getProfileById } from "@/Persistence/UserDAO";
 
-interface PageProps {
-  queryKey: queryKey_type;
-}
-
-export default function Profile({ queryKey }: PageProps) {
+export default function Profile({ queryKey }) {
   const router = useRouter();
 
   const { data: profile } = useQuery(queryKey, getProfileById);
@@ -71,7 +67,7 @@ export async function getServerSideProps({ req, res }) {
 
   const queryClient = new QueryClient();
 
-  const queryKey: queryKey_type = ["profile", { id }];
+  const queryKey = ["profile", { id }];
 
   await queryClient.prefetchQuery(queryKey, getProfileById);
 

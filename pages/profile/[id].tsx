@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { supabase } from "../../utils/supabaseClient";
+import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/router";
-import { ProfilePagePhoto } from "../../components/ProfilePage/ProfileUserWithName";
-import { ProfileDateAndCalification } from "../../components/ProfilePage/ProfileDateAndCalification";
-import { ProfileInformation } from "../../components/ProfilePage/ProfileInformation";
-import { getProfileById, queryKey_type } from "../../fetchData";
+import { ProfilePagePhoto } from "@/components/ProfilePage/ProfileUserWithName";
+import { ProfileDateAndCalification } from "@/components/ProfilePage/ProfileDateAndCalification";
+import { ProfileInformation } from "@/components/ProfilePage/ProfileInformation";
+import { getProfileById } from "Persistence/UserDAO";
 import { dehydrate, QueryClient, useQuery } from "react-query";
+import { getCookie } from "cookies-next";
+import jwt from "jsonwebtoken";
 
 export default function ProfileId({ queryKey }) {
   const router = useRouter();
@@ -36,7 +38,9 @@ export default function ProfileId({ queryKey }) {
         contact_me={profile?.contact_me}
       />
 
-      <Link href={`${router.pathname}create-offer/${profile?.id}`}>
+      <Link
+        href={`${process.env.NEXT_PUBLIC_ROOT_URL}/create-offer/${profile.id}`}
+      >
         <a className="bg-primary rounded-full w-fit py-2 px-6 self-center">
           Proponer trabajo
         </a>
@@ -46,16 +50,30 @@ export default function ProfileId({ queryKey }) {
 }
 
 interface Params {
+  req: any;
+  res: any;
   params: {
     id: string;
   };
 }
 
-export async function getStaticProps({ params }: Params) {
+export async function getServerSideProps({ req, res, params }: Params) {
   const { id } = params;
+
+  const token = getCookie("token", { req, res });
+  const current_profile_id = jwt.decode(token).sub;
+
+  if (id === current_profile_id) {
+    return {
+      redirect: {
+        destination: "/profile",
+      },
+    };
+  }
+
   const queryClient = new QueryClient();
 
-  const queryKey: queryKey_type = ["profile", { id }];
+  const queryKey = ["profile", { id }];
 
   await queryClient.prefetchQuery(queryKey, getProfileById);
 
@@ -67,7 +85,7 @@ export async function getStaticProps({ params }: Params) {
   };
 }
 
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
   const { data: profiles, error } = await supabase
     .from("profiles")
     .select("id");

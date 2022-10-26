@@ -3,7 +3,6 @@ import { AnchorButton } from "../../AnchorButton";
 import { CardTemplate } from "../CardTemplate";
 
 const OfferCard = ({ offer, profile, children }) => {
-  console.log(offer);
   return (
     <CardTemplate offer={offer}>
       <div className="flex justify-between gap-4">

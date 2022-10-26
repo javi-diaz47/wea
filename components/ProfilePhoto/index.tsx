@@ -1,16 +1,22 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import user from '../../public/user.jpg';
+import Image from "next/image";
+import Link from "next/link";
+import user from "../../public/user.jpg";
 
-const ProfilePhoto = ({ href, width, height }) => {
+interface Props {
+  href: string;
+  width?: string | number;
+  height?: string | number;
+}
+
+const ProfilePhoto = ({ href, width, height }: Props) => {
   return (
     <>
       <Link href={href}>
         <a>
           <figure
             className={`
-              ${width || 'w-12'}
-              ${height || 'h-12'}
+              ${width || "w-12"}
+              ${height || "h-12"}
               rounded-full bg-slate-300 relative overflow-hidden 
             `}
           >

@@ -1,5 +1,15 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/Navbar/*": ["components/Navbar/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/reducers/*": ["reducers/*"],
+      "@/utils/*": ["utils/*"],
+      "@/Persistence/*": ["Persistence/*"],
+      "@/types/*": ["types/*"],
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -23,7 +33,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/FormElement/index.jsx"  ],
   "exclude": [
     "node_modules"
   ]

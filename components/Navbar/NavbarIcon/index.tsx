@@ -2,14 +2,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { cloneElement } from "react";
 
-const NavbarIcon = ({ href, title, icon, onClick }) => {
+interface Props {
+  href: string;
+  title?: string;
+  icon?: JSX.Element;
+  onClick?: () => void;
+}
+
+const NavbarIcon = ({ href, title, icon, onClick }: Props) => {
   const router = useRouter();
   return (
     <Link href={href}>
       <a
         onClick={onClick}
         className={`
-         w-fit flex flex-col justify-center align-center place-items-center text-center
+         w-24 flex flex-col justify-center align-center place-items-center text-center
         ${router.pathname === href ? "text-primary" : ""}
       `}
       >
