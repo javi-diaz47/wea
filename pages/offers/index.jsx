@@ -23,10 +23,10 @@ export default function Offers({ offers }) {
 
 export async function getStaticProps() {
   // fetch all offers
-  const { data: offers, error } = await supabase.from("offers").select(`
-    *,
-    owner_id (id, name, last_name, picture)
-  `);
+  const { data: offers, error } = await supabase
+    .from("offers")
+    .select(` *, owner_id (id, name, last_name, picture)`)
+    .eq("offer_type", "public");
 
   return { props: { offers } };
 }
