@@ -49,7 +49,7 @@ const useCreateOffer = () => {
 
     console.log(newOffer);
 
-    // const res = await setOffer(newOffer);
+    const res = await setOffer(newOffer);
 
     // console.log(res);
   };
