@@ -27,9 +27,6 @@ const NotificationBellIcon = ({
         {!!notification && <XIcon className="w-10 h-10" />}
       </button>
     );
-
-  if (!navigation && !isAuth)
-    return <NavbarIcon href="/login" title="Ingresar" />;
 };
 
 export { NotificationBellIcon };
