@@ -27,18 +27,7 @@ const mapOfferCardFromApi = (data): offerCard => {
 
 const mapOfferFromApi = (data): Offer => {
   return {
-    id: data.id,
-    name: data.name,
-    resume: data.resume,
-    description: data.description,
-    tags: data.tags,
-    price: data.price,
-    calification: data.calification,
-    owner_id: data.owner_id,
-    worker_id: data.worker_id,
-    offer_type: data.offer_type,
-    in_progress: data.in_progress,
-    created_at: data.created_at,
+    ...data,
   };
 };
 

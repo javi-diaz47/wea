@@ -13,7 +13,6 @@ export default function ProfileId({ queryKey }) {
   const router = useRouter();
 
   const { data: profile } = useQuery(queryKey, getProfileById);
-  console.log({ queryKey, profile });
 
   return (
     <div className="h-screen bg-background px-8 py-8 flex flex-col gap-7">
