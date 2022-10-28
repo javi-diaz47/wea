@@ -58,6 +58,7 @@ const getAllNotifications = async (params): Promise<Array<notification>> => {
   } = params.queryKey[1];
 
   if (!!value) {
+    console.log({ column, value });
     const data = await supabase
       .from("notifications")
       .select(notificationQuery)

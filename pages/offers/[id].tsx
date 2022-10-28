@@ -38,18 +38,22 @@ export default function Offer({ profileId, queryKey }) {
           />
         </div>
       </div>
-      <div className="mt-8 flex justify-center">
-        <Button
-          text="Postularme a la oferta de trabajo"
-          onClick={() =>
-            handleOnPostulation({
-              offer_id: offer.id,
-              destination_id: offer.owner_id,
-              origin_id: profileId,
-            })
-          }
-        />
-      </div>
+      {profileId !== offer.owner_id ? (
+        <div className="mt-8 flex justify-center">
+          <Button
+            text="Postularme a la oferta de trabajo"
+            onClick={() =>
+              handleOnPostulation({
+                offer_id: offer.id,
+                destination_id: offer.owner_id,
+                origin_id: profileId,
+              })
+            }
+          />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
