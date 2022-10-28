@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Card } from "@/components/Cards/Card";
-import { TagList } from "@/components/TagList";
+import { Card } from "@/Cards/Card";
+import { TagList } from "@/Tag/TagList";
 
 const NotificationList = ({
   notifications,

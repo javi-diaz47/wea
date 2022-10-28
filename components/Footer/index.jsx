@@ -1,5 +1,5 @@
-import { Facebook } from "../Icons/Facebook";
-import { Wea } from "../Icons/Wea";
+import { Facebook } from "@/Icons/Facebook";
+import { Wea } from "@/Icons/Wea";
 const Footer = () => {
   return (
     <footer className="bg-black flex w-full absolute -bottom-10 translate-y-[100%] ">

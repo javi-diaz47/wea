@@ -1,5 +1,4 @@
 import { getAllNotifications } from "@/Persistence/NotificationDAO";
-import { getProfileById } from "@/Persistence/UserDAO";
 import {
   onAcceptRecievedJobOffer,
   onDenyRecievedJobOffer,
@@ -7,7 +6,7 @@ import {
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { dehydrate, QueryClient, useQuery } from "react-query";
-import { OfferCard } from "../../components/Cards/OfferCard";
+import { OfferCard } from "@/Cards/OfferCard";
 
 function RecievedOffers({ profileId, queryKey }) {
   const { data: notifications } = useQuery(queryKey, getAllNotifications);

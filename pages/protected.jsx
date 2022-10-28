@@ -1,5 +1,5 @@
 import { getCookie } from "cookies-next";
-import { supabase } from "../utils/supabaseClient";
+import { supabase } from "@/utils/supabaseClient";
 import jwt from "jsonwebtoken";
 
 export default function Protected({ user }) {

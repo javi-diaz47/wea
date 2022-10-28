@@ -1,5 +1,5 @@
 import { Card } from "../Card";
-import { TagList } from "../../TagList";
+import { TagList } from "@/Tag/TagList";
 
 const CardTemplate = ({ offer, children }) => {
   const { name, resume, tags } = offer;

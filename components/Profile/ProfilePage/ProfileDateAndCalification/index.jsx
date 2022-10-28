@@ -1,5 +1,5 @@
-import { StarIcon } from '@heroicons/react/solid';
-import { getDateFormat } from '../../../utils/getDateFormat';
+import { StarIcon } from "@heroicons/react/solid";
+import { getDateFormat } from "@/utils/getDateFormat";
 
 const ProfileDateAndCalification = ({ date, calification }) => {
   return (
@@ -11,7 +11,7 @@ const ProfileDateAndCalification = ({ date, calification }) => {
       <div>
         <p>Calificación</p>
         <div className="text-gold flex justify-end font-semibold">
-          <strong>{calification || '5'}</strong>
+          <strong>{calification || "5"}</strong>
           <StarIcon className="w-6 h-6" />
         </div>
       </div>

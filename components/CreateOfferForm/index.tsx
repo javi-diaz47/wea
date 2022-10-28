@@ -1,11 +1,9 @@
-import { FormElement } from "../FormElement";
-import { TagsInput } from "../TagInput";
+import { TagsInput } from "@/Tag/TagInput";
 import {
   MAX_OFFER_DESC_LENGTH,
   MAX_OFFER_RESUME_LENGTH,
-} from "../../utils/constants";
-import { input_offer_type } from "../../types/types";
-import { tagsReducerState } from "../../reducers/TagReducer";
+} from "@/utils/constants";
+import { input_offer_type } from "@/types/types";
 import { InputWithLabel } from "../InputWithLabel";
 import { FormElementWithCounter } from "../FormElementWithCounter";
 

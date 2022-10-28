@@ -1,6 +1,6 @@
 import { supabase } from "@/utils/supabaseClient";
 import { getCookie } from "cookies-next";
-import { OfferCard } from "@/components/Cards/OfferCard";
+import { OfferCard } from "@/Cards/OfferCard";
 import jwt from "jsonwebtoken";
 
 function JobInProgress({ offers }) {

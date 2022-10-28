@@ -1,11 +1,11 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 import { getDateFormat } from "@/utils/getDateFormat";
-import { ProfilePhoto } from "@/components/ProfilePhoto";
-import { TagList } from "@/components/TagList";
+import { TagList } from "@/Tag/TagList";
 import { supabase } from "@/utils/supabaseClient";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getOfferById } from "Persistence/OfferDAO";
+import { ProfilePhoto } from "@/components/Profile/ProfilePhoto";
 
 export default function Offer({ queryKey }) {
   const { data: offer } = useQuery(queryKey, getOfferById);

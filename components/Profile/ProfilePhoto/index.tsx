@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import user from "../../public/user.jpg";
+import user from "@/public/user.jpg";
 
 interface Props {
   href: string;

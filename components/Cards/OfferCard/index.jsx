@@ -1,5 +1,5 @@
-import { ProfileUserWithDate } from "../../ProfileUserWithDate";
-import { AnchorButton } from "../../AnchorButton";
+import { ProfileUserWithDate } from "@/components/Profile/ProfileUserWithDate";
+import { AnchorButton } from "@/components/AnchorButton";
 import { CardTemplate } from "../CardTemplate";
 
 const OfferCard = ({ offer, href, profile, children }) => {

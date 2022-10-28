@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Wea } from "../Icons/Wea";
+import { Wea } from "@/Icons/Wea";
 import { NavbarSidebarMenu } from "./NavbarSidebarMenu";
 import { NavbarSidebarNotifications } from "./NavbarSidebarNotifications";
 import { useNavbar } from "@/hooks/useNavbar";

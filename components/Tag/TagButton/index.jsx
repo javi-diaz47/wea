@@ -1,5 +1,5 @@
-import { Tag } from "../Tag";
 import { XIcon } from "@heroicons/react/outline";
+import { Tag } from "..";
 
 const TagButton = ({ name, onClick }) => {
   return (

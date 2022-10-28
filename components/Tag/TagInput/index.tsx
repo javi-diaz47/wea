@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
-import { TagsHandler, useTags } from "../../hooks/useTags";
-import { MAX_OFFER_TAGS_LENGTH } from "../../utils/constants";
-import { InputWithCounter } from "../InputWithCounter";
+import { TagsHandler, useTags } from "@/hooks/useTags";
+import { MAX_OFFER_TAGS_LENGTH } from "@/utils/constants";
+import { InputWithCounter } from "@/components/InputWithCounter";
 import { TagButton } from "../TagButton";
 
 const TagsInput = ({ tags: current_tags, onHandleTags }: TagsHandler) => {

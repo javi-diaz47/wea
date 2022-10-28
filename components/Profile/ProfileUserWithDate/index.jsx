@@ -1,5 +1,5 @@
-import { getDateFormat } from '../../utils/getDateFormat';
-import { ProfileUser } from '../ProfileUser';
+import { getDateFormat } from "@/utils/getDateFormat";
+import { ProfileUser } from "../ProfileUser";
 
 const ProfileUserWithDate = ({ name, last_name, href, date }) => {
   return (

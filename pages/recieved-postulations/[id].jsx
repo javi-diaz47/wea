@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import { getDateFormat } from '../../utils/getDateFormat';
-import { supabase } from '../../utils/supabaseClient';
+import Link from "next/link";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { getDateFormat } from "@/utils/getDateFormat";
+import { supabase } from "@/utils/supabaseClient";
 
 // function RecievedOffersId({ offer, originProfile }) {
 function RecievedOffersId({ recievedPostulation }) {
@@ -31,12 +31,12 @@ function RecievedOffersId({ recievedPostulation }) {
 export default RecievedOffersId;
 
 export async function getStaticProps({ params }) {
-  console.log('from getStaticProps');
+  console.log("from getStaticProps");
   console.log(params);
   const { data: recievedPostulation, error } = await supabase
-    .from('notifications')
+    .from("notifications")
     .select(`id, offer_id (id, name, resume, description), origin_id (id)`)
-    .eq('id', params.id)
+    .eq("id", params.id)
     .limit(1)
     .single();
 
@@ -53,9 +53,9 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const { data: recievedPostulations, error } = await supabase
-    .from('notifications')
-    .select('id')
-    .eq('type', 'postulation');
+    .from("notifications")
+    .select("id")
+    .eq("type", "postulation");
 
   console.log(recievedPostulations);
 

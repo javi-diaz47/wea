@@ -1,6 +1,6 @@
-import { getDateFormat } from "../../utils/getDateFormat";
-import { supabase } from "../../utils/supabaseClient";
-import { ProfilePhoto } from "@/components/ProfilePhoto";
+import { getDateFormat } from "@/utils/getDateFormat";
+import { supabase } from "@/utils/supabaseClient";
+import { ProfilePhoto } from "@/Profile/ProfilePhoto";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { OfferMd } from "@/components/OfferMd";
