@@ -3,54 +3,52 @@ import { supabase } from "../../utils/supabaseClient";
 import { ProfilePhoto } from "@/components/ProfilePhoto";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
-import { getOfferByNotificationIdAndProfileId } from "@/Persistence/OfferDAO";
 import { OfferMd } from "@/components/OfferMd";
-import { OfferNotification } from "@/types/types";
 import {
   onAcceptRecievedJobOffer,
   onDenyRecievedJobOffer,
 } from "@/utils/handleRecievedJobOffer";
+import { dehydrate, QueryClient, useQuery } from "react-query";
+import { getNotification } from "@/Persistence/NotificationDAO";
 
-interface PageProps {
-  id: string;
-  data: OfferNotification;
-}
-
-function RecievedOffersId({ id, data }: PageProps) {
-  const { offer, origin_id } = data;
+function RecievedOffersId({ profileId, queryKey }) {
+  const { data: notification } = useQuery(queryKey, getNotification);
 
   return (
     <div className="p-8">
       <div className="flex gap-4 my-4">
         <ProfilePhoto
-          href={`${process.env.NEXT_PUBLIC_ROOT_URL}/profile/${offer?.owner_id}`}
+          href={`${process.env.NEXT_PUBLIC_ROOT_URL}/profile/${notification?.offer.owner_id}`}
         />
         <div className="flex flex-col">
           <span>
-            <strong>{origin_id.name}</strong> {data?.origin_id.last_name}
+            <strong>{notification?.origin_id.name}</strong>{" "}
+            {notification?.origin_id.last_name}
           </span>
-          <span className="capitalize">{getDateFormat(offer?.created_at)}</span>
+          <span className="capitalize">
+            {getDateFormat(notification?.offer.created_at)}
+          </span>
         </div>
       </div>
       <OfferMd
-        name={offer.name}
-        tags={offer.tags}
-        description={offer.description}
-        price={offer.price}
+        name={notification?.offer.name}
+        tags={notification?.offer.tags}
+        description={notification?.offer.description}
+        price={notification?.offer.price}
       />
       <div>
         <button
           onClick={() =>
             onAcceptRecievedJobOffer({
-              offer_id: offer.id,
-              worker_id: id,
-              notification_id: data.notification_id,
+              offer_id: notification?.offer.id,
+              worker_id: profileId,
+              notification_id: notification?.id,
             })
           }
         >
           Aceptar oferta de trabajo
         </button>
-        <button onClick={() => onDenyRecievedJobOffer(data.notification_id)}>
+        <button onClick={() => onDenyRecievedJobOffer(notification?.id)}>
           Rechazar oferta de trabajo
         </button>
       </div>
@@ -64,25 +62,24 @@ export async function getServerSideProps({ req, res, params }) {
   const token = getCookie("token", { req, res });
   const id = jwt.decode(token).sub;
 
-  const data = await getOfferByNotificationIdAndProfileId({
-    notification_id: params.id,
-    profile_id: id,
-  });
+  const queryClient = new QueryClient();
 
-  if (id === data.destination_id) {
-    return {
-      props: {
-        id,
-        data,
-      },
-    };
-  }
+  const queryCondition = {
+    column: "id",
+    value: params.id,
+  };
+
+  const queryKey = [
+    "recieved-offers-id",
+    { destination_id: id, queryCondition },
+  ];
+
+  await queryClient.prefetchQuery(queryKey, getNotification);
 
   return {
     props: {
-      redirect: {
-        destination: `${process.env.NEXT_PUBLIC_ROOT_URL}/recieved-offers`,
-      },
+      profileId: id,
+      queryKey,
     },
   };
 }
@@ -92,8 +89,6 @@ export async function getServerSidePaths() {
     .from("notifications")
     .select("id")
     .eq("type", "offer");
-
-  console.log(recievedOffers);
 
   return {
     paths: recievedOffers.map((recievedOffer) => ({

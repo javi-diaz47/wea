@@ -55,67 +55,6 @@ const setOffer = async (offer: Offer): Promise<Offer> => {
   return mapOfferFromApi(data);
 };
 
-const mapOfferNotificationFromApi = (data): OfferNotification => {
-  return {
-    notification_id: data.id,
-    offer: { ...data.offer_id },
-    origin_id: { ...data.origin_id },
-    destination_id: data.destination_id,
-  };
-};
-
-const getOfferNotificationByProfileId = async (
-  profile_id: string
-): Promise<Array<OfferNotification>> => {
-  const data = await supabase
-    .from("notifications")
-    .select(
-      `id, 
-      offer_id (id, name, resume, description, created_at), 
-      origin_id (id, name, last_name, picture), 
-      destination_id`
-    )
-    .eq("destination_id", profile_id)
-    .then(handleSupabaseError)
-    .then(({ data }) => data.map(mapOfferNotificationFromApi));
-  return data;
-};
-
-const getOfferByNotificationIdAndProfileId = async ({
-  notification_id,
-  profile_id,
-}: {
-  notification_id: string;
-  profile_id: string;
-}): Promise<OfferNotification> => {
-  const data = await supabase
-    .from("notifications")
-    .select(
-      `id, 
-      offer_id (
-        id, 
-        name, 
-        resume, 
-        description, 
-        created_at
-      ), 
-      origin_id (
-        id, 
-        name, 
-        last_name, 
-        picture
-      ), 
-      destination_id`
-    )
-    .eq("id", notification_id)
-    .eq("destination_id", profile_id)
-    .limit(1)
-    .single()
-    .then(handleSupabaseError)
-    .then(({ data }) => mapOfferNotificationFromApi(data));
-  return data;
-};
-
 const addWorkerToOffer = async ({ offer_id, worker_id }) => {
   const data = await supabase
     .from("offers")
@@ -125,10 +64,4 @@ const addWorkerToOffer = async ({ offer_id, worker_id }) => {
   console.log(data);
 };
 
-export {
-  getOfferById,
-  setOffer,
-  getOfferByNotificationIdAndProfileId,
-  getOfferNotificationByProfileId,
-  addWorkerToOffer,
-};
+export { getOfferById, setOffer, addWorkerToOffer };
