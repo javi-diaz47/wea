@@ -51,10 +51,6 @@ const getNotification = async (params): Promise<notification> => {
   return data;
 };
 
-// const mapNotificationsFromAPI = (data): Array<notification> => {
-//   return data.map(mapNotificationFromAPI);
-// };
-
 const getAllNotifications = async (params): Promise<Array<notification>> => {
   const {
     destination_id,
@@ -84,9 +80,22 @@ const getAllNotifications = async (params): Promise<Array<notification>> => {
   return data;
 };
 
+const setNotification = async (notification: notification) => {
+  const { data, error } = await supabase
+    .from("notifications")
+    .insert([{ ...notification }]);
+
+  console.log(data);
+};
+
 const removeNotification = async (id: string) => {
   const data = await supabase.from("notifications").delete().eq("id", id);
   console.log(data);
 };
 
-export { getNotification, getAllNotifications, removeNotification };
+export {
+  getNotification,
+  getAllNotifications,
+  removeNotification,
+  setNotification,
+};

@@ -9,7 +9,7 @@ interface notification {
   offer?: Offer;
   offer_id?: string;
   viewed?: boolean;
-  type: notification_type;
+  type?: notification_type;
   created_at?: string;
 }
 

@@ -6,8 +6,12 @@ import { supabase } from "@/utils/supabaseClient";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getOfferById } from "Persistence/OfferDAO";
 import { ProfilePhoto } from "@/components/Profile/ProfilePhoto";
+import { Button } from "@/components/Button";
+import { handleOnPostulation } from "@/utils/handleOnPostulation";
+import { getCookie } from "cookies-next";
+import jwt from "jsonwebtoken";
 
-export default function Offer({ queryKey }) {
+export default function Offer({ profileId, queryKey }) {
   const { data: offer } = useQuery(queryKey, getOfferById);
 
   return (
@@ -23,23 +27,34 @@ export default function Offer({ queryKey }) {
           <span className="capitalize">{getDateFormat(offer?.created_at)}</span>
         </div>
       </div>
-      {/* <ReactMarkdown children={`# ${name}  \n---`} /> */}
       <div className="flex flex-col gap-2">
         <h2 className="text-5xl font-semibold">{offer?.name}</h2>
         <TagList tags={offer?.tags} />
         <hr />
-        <div className="offer">
+        <div className="offer h-fit">
           <ReactMarkdown
             children={offer?.description}
             remarkPlugins={[remarkGfm]}
           />
         </div>
       </div>
+      <div className="mt-8 flex justify-center">
+        <Button
+          text="Postularme a la oferta de trabajo"
+          onClick={() =>
+            handleOnPostulation({
+              offer_id: offer.id,
+              destination_id: offer.owner_id,
+              origin_id: profileId,
+            })
+          }
+        />
+      </div>
     </div>
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params, req, res }) {
   const { id } = params;
   const queryClient = new QueryClient();
 
@@ -47,15 +62,19 @@ export async function getStaticProps({ params }) {
 
   await queryClient.prefetchQuery(queryKey, getOfferById);
 
+  const token = getCookie("token", { req, res });
+  const profileId = jwt.decode(token).sub;
+
   return {
     props: {
+      profileId,
       queryKey,
       dehydratedState: dehydrate(queryClient),
     },
   };
 }
 
-export async function getStaticPaths() {
+export async function getServerSidePaths() {
   const { data: offers, error } = await supabase.from("offers").select("id");
 
   return {
