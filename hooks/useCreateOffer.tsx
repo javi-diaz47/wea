@@ -41,7 +41,7 @@ const useCreateOffer = () => {
 
     const newOffer: Offer = {
       ...offer,
-      owner_id: owner_id,
+      owner_id,
       worker_id,
       offer_type: worker_id ? "private" : "public",
       in_progress: false,

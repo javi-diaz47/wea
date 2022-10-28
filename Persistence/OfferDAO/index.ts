@@ -1,7 +1,8 @@
 import { Offer } from "@/types/BusinessEntities/Offer";
 import { supabase } from "@/utils/supabaseClient";
 import { handleSupabaseError } from "@/utils/handleSupabaseError";
-import { offerCard } from "@/types/types";
+import { offerCard, OfferNotification } from "@/types/types";
+import { Profile } from "@/types/BusinessEntities/Profile";
 
 const mapOfferCardFromApi = (data): offerCard => {
   return {
@@ -54,4 +55,80 @@ const setOffer = async (offer: Offer): Promise<Offer> => {
   return mapOfferFromApi(data);
 };
 
-export { getOfferById, setOffer };
+const mapOfferNotificationFromApi = (data): OfferNotification => {
+  return {
+    notification_id: data.id,
+    offer: { ...data.offer_id },
+    origin_id: { ...data.origin_id },
+    destination_id: data.destination_id,
+  };
+};
+
+const getOfferNotificationByProfileId = async (
+  profile_id: string
+): Promise<Array<OfferNotification>> => {
+  const data = await supabase
+    .from("notifications")
+    .select(
+      `id, 
+      offer_id (id, name, resume, description, created_at), 
+      origin_id (id, name, last_name, picture), 
+      destination_id`
+    )
+    .eq("destination_id", profile_id)
+    .then(handleSupabaseError)
+    .then(({ data }) => data.map(mapOfferNotificationFromApi));
+  return data;
+};
+
+const getOfferByNotificationIdAndProfileId = async ({
+  notification_id,
+  profile_id,
+}: {
+  notification_id: string;
+  profile_id: string;
+}): Promise<OfferNotification> => {
+  const data = await supabase
+    .from("notifications")
+    .select(
+      `id, 
+      offer_id (
+        id, 
+        name, 
+        resume, 
+        description, 
+        created_at
+      ), 
+      origin_id (
+        id, 
+        name, 
+        last_name, 
+        picture
+      ), 
+      destination_id`
+    )
+    .eq("id", notification_id)
+    .eq("destination_id", profile_id)
+    .limit(1)
+    .single()
+    .then(handleSupabaseError)
+    .then(({ data }) => mapOfferNotificationFromApi(data));
+  return data;
+};
+
+const addWorkerToOffer = async ({ offer_id, worker_id }) => {
+  const data = await supabase
+    .from("offers")
+    .update({ worker_id, in_progress: true })
+    .eq("id", offer_id);
+
+  console.log(data);
+};
+
+export {
+  getOfferById,
+  setOffer,
+  getOfferByNotificationIdAndProfileId,
+  getOfferNotificationByProfileId,
+  addWorkerToOffer,
+};

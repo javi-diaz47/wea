@@ -13,7 +13,9 @@ const NavbarSidebarNotifications = ({
   isOpen: boolean;
   onNotification: () => void;
 }) => {
-  const { data: id } = useQuery("profileId", getProfileId);
+  const { data: id } = useQuery("profileId", getProfileId, {
+    staleTime: 10000,
+  });
   const {
     data: notifications,
     error,

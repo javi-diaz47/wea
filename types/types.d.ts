@@ -1,6 +1,6 @@
 import { Offer } from "./BusinessEntities/Offer";
 
-type notification_type = "offer" | "postulation";
+type notification_type = "offer" | "postulation" | "deny";
 
 interface notification {
   id?: string;
@@ -31,4 +31,11 @@ export interface offerCard extends Offer {
     last_name?: string;
     picture?: string;
   };
+}
+
+export interface OfferNotification {
+  offer: Offer;
+  origin_id: Profile;
+  destination_id: string;
+  notification_id: string;
 }

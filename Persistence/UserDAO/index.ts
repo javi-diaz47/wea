@@ -45,7 +45,7 @@ const getProfileById = async (params): Promise<Profile> => {
 };
 
 const getProfileId = async (): Promise<string> => {
-  const res = await fetch("api/auth", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}/api/auth`, {
     method: "GET",
     headers: new Headers({ "Content-Type": "application/json" }),
     credentials: "same-origin",

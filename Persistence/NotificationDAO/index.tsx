@@ -28,4 +28,9 @@ const getNotifications = async (params): Promise<Array<notification>> => {
   return data;
 };
 
-export { getNotifications };
+const removeNotification = async (id: string) => {
+  const data = await supabase.from("notifications").delete().eq("id", id);
+  console.log(data);
+};
+
+export { getNotifications, removeNotification };
