@@ -7,15 +7,13 @@ import { getAllNotifications } from "@/Persistence/NotificationDAO";
 function RecievedPostulations({ queryKey }) {
   const { data } = useQuery(queryKey, getAllNotifications);
 
-  console.log(data);
-
   return (
-    <div className="flex flex-wrap gap-8 m-8">
+    <div className="flex flex-col flex-wrap gap-8 m-8">
       <h2 className="text-4xl font-semibold">Postulaciones recibidas</h2>
       <ul className=" flex flex-col gap-12">
-        {data.map(({ id, offer, origin_id }) => (
-          <li key={id}>
-            <PostulationCard offer={offer} />
+        {data.map((data) => (
+          <li key={data?.id}>
+            <PostulationCard profile={data.origin_id} />
           </li>
         ))}
       </ul>

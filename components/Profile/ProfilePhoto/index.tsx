@@ -11,7 +11,7 @@ interface Props {
 const ProfilePhoto = ({ href, width, height }: Props) => {
   return (
     <>
-      <Link href={href}>
+      <Link href={`${process.env.NEXT_PUBLIC_ROOT_URL}/${href}`}>
         <a>
           <figure
             className={`

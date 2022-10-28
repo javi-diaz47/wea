@@ -7,7 +7,7 @@ import { getProfileById } from "../UserDAO";
 
 const notificationQuery = `id, 
       offer_id (id, name, resume, description, created_at), 
-      origin_id (id, name, last_name, picture), 
+      origin_id (id, name, resume, last_name, picture), 
       destination_id, type`;
 
 const mapNotificationFromAPI = (data): notification => {
