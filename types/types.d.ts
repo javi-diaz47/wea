@@ -52,3 +52,8 @@ export interface OfferNotification {
   destination_id: string;
   notification_id: string;
 }
+
+export interface getAllOffersType {
+  offers: Array<offerCard>;
+  services: Array<offerCard>;
+}

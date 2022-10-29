@@ -4,34 +4,37 @@ import { PlusIcon } from "@heroicons/react/outline";
 import { NavbarIcon } from "@/Navbar/NavbarIcon";
 import { Empty } from "@/components/Empty";
 import { SearchBar } from "@/components/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { input_offer_type, offerCard } from "@/types/types";
 import { Offer } from "@/types/BusinessEntities/Offer";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { isQueryKey } from "react-query/types/core/utils";
-import { getAllOffers } from "@/Persistence/OfferDAO";
+import { getAllOffers, setOffer } from "@/Persistence/OfferDAO";
 import { useBooleanState } from "@/hooks/useBooleanState";
 import { ConditionalBar } from "@/components/ConditionalBar";
+import { FilterIcon } from "@heroicons/react/solid";
+import { useSearchBar } from "@/hooks/useSearchBar";
 
 export default function Offers({ queryKey }) {
   const { data } = useQuery(queryKey, getAllOffers);
 
   const {
-    bool: isJobOffer,
-    onTrue: onJobOffer,
-    onFalse: onServiceOffer,
-  } = useBooleanState(true);
+    isJobOffer,
+    onJobOffer,
+    onServiceOffer,
+    isOnOfferType,
+    offers,
+    input,
+    onChange,
+  } = useSearchBar(data);
 
-  const isOnOfferType = () => {
-    return isJobOffer ? "offers" : "services";
-  };
   return (
     <div className="flex flex-col gap-4 p-8">
       <button className="fixed right-10 bottom-[10%] flex justify-center align-center w-14 h-14 bg-primary rounded-full text-white shadow-xl">
         <NavbarIcon href="create-offer" icon={<PlusIcon />} />
       </button>
       <h2 className="text-4xl font-semibold">ofertas</h2>
-      <SearchBar />
+      <SearchBar input={input} onChange={onChange} />
       <ConditionalBar
         state={isJobOffer}
         stateTrueText="Oferta de trabajo"
@@ -43,10 +46,10 @@ export default function Offers({ queryKey }) {
       />
 
       <ul className=" flex flex-col gap-12">
-        {data[isOnOfferType()].length === 0 ? (
+        {offers[isOnOfferType()].length === 0 ? (
           <Empty text="Lo sentimos, Aun no hay ofertas de trabajo.¡Animate y crea una!" />
         ) : (
-          data[isOnOfferType()].map((offer) => (
+          offers[isOnOfferType()].map((offer) => (
             <li key={offer.id}>
               <OfferCard offer={offer} profile={offer.profile} />
             </li>

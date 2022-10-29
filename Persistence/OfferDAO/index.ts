@@ -1,7 +1,7 @@
 import { Offer } from "@/types/BusinessEntities/Offer";
 import { supabase } from "@/utils/supabaseClient";
 import { handleSupabaseError } from "@/utils/handleSupabaseError";
-import { offerCard, OfferNotification } from "@/types/types";
+import { getAllOffersType, offerCard, OfferNotification } from "@/types/types";
 import { Profile } from "@/types/BusinessEntities/Profile";
 import { mapServiceCardFromApi } from "../ServiceDAO";
 
@@ -49,11 +49,6 @@ const getOfferById = async (params): Promise<offerCard> => {
 };
 
 const offersQuery = `*, owner_id (id, name, last_name, picture)`;
-
-interface getAllOffersType {
-  offers: Array<offerCard>;
-  services: Array<offerCard>;
-}
 
 const getAllOffers = async (): Promise<getAllOffersType> => {
   const offers = await supabase
