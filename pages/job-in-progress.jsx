@@ -2,16 +2,23 @@ import { supabase } from "@/utils/supabaseClient";
 import { getCookie } from "cookies-next";
 import { OfferCard } from "@/Cards/OfferCard";
 import jwt from "jsonwebtoken";
+import { Empty } from "@/components/Empty";
 
 function JobInProgress({ offers }) {
   return (
-    <div>
-      <h2 className="text-3xl">Job in Progress</h2>
-      <section>
-        {offers.map((offer) => (
-          <OfferCard offer={offer} profile={offer.owner_id} />
-        ))}
-      </section>
+    <div className="flex flex-col gap-8 m-8">
+      <h2 className="text-4xl font-semibold">Trabajo en progreso</h2>
+      <ul className="flex flex-col gap-12">
+        {offers.length === 0 ? (
+          <Empty text="Todavia no tienes ningun trabajo en progreso" />
+        ) : (
+          offers.map((offer) => (
+            <li>
+              <OfferCard offer={offer} profile={offer.owner_id} />
+            </li>
+          ))
+        )}
+      </ul>
     </div>
   );
 }

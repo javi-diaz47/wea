@@ -3,19 +3,24 @@ import jwt from "jsonwebtoken";
 import { PostulationCard } from "@/components/Cards/PostulationCard";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getAllNotifications } from "@/Persistence/NotificationDAO";
+import { Empty } from "@/components/Empty";
 
 function RecievedPostulations({ queryKey }) {
   const { data } = useQuery(queryKey, getAllNotifications);
-
+  console.log(data.length);
   return (
     <div className="flex flex-col flex-wrap gap-8 m-8">
       <h2 className="text-4xl font-semibold">Postulaciones recibidas</h2>
       <ul className=" flex flex-col gap-12">
-        {data.map((data) => (
-          <li key={data?.id}>
-            <PostulationCard notification={data} />
-          </li>
-        ))}
+        {data.length === 0 ? (
+          <Empty text="Por el momento no has recibido ninguna postulacion" />
+        ) : (
+          data.map((data) => (
+            <li key={data?.id}>
+              <PostulationCard notification={data} />
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );
