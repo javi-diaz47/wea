@@ -2,7 +2,6 @@ import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { CreateOfferForm } from "@/components/CreateOfferForm";
 import { useCreateOffer } from "@/hooks/useCreateOffer";
-import { PreviewBar } from "@/components/PreviewBar";
 import { OfferMd } from "@/components/OfferMd";
 import { useState } from "react";
 import { ConditionalBar } from "@/components/ConditionalBar";

@@ -1,8 +1,17 @@
 import { ProfileUserWithDate } from "@/components/Profile/ProfileUserWithDate";
 import { AnchorButton } from "@/components/AnchorButton";
 import { CardTemplate } from "../CardTemplate";
+import { Offer } from "@/types/BusinessEntities/Offer";
+import { Profile } from "@/types/BusinessEntities/Profile";
 
-const OfferCard = ({ offer, href, profile, children }) => {
+interface Props {
+  offer: Offer;
+  href?: String;
+  profile: Profile;
+  children?: JSX.Element;
+}
+
+const OfferCard = ({ offer, href, profile, children }: Props) => {
   return (
     <CardTemplate offer={offer}>
       <div className="flex justify-between gap-4">
