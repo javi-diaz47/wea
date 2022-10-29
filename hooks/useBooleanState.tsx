@@ -5,11 +5,9 @@ const useBooleanState = (defaultBool: boolean) => {
 
   const onTrue = () => {
     setBool(true);
-    console.log(bool);
   };
   const onFalse = () => {
     setBool(false);
-    console.log(bool);
   };
 
   return {

@@ -5,18 +5,18 @@ import { serviceCard } from "@/types/types";
 
 const mapServiceCardFromApi = (data): serviceCard => {
   return {
-    id: data.id,
-    name: data.name,
-    resume: data.resume,
-    description: data.description,
-    tags: data.tags,
-    price: data.price,
-    author_id: data.owner_id.id,
-    created_at: data.created_at,
+    id: data.id || "",
+    name: data.name || "",
+    resume: data.resume || "",
+    description: data.description || "",
+    tags: data.tags || [],
+    price: data.price || "",
+    owner_id: data.owner_id.id || "",
+    created_at: data.created_at || "",
     profile: {
-      name: data.author_id.name,
-      last_name: data.author_id?.last_name,
-      picture: data.author_id?.picture,
+      name: data.owner_id.name || "",
+      last_name: data.owner_id?.last_name || "",
+      picture: data.owner_id?.picture || "",
     },
   };
 };
@@ -50,4 +50,4 @@ const setService = async (service: Service): Promise<Service> => {
   return mapServiceFromApi(data);
 };
 
-export { getServiceById, setService };
+export { getServiceById, setService, mapServiceCardFromApi };

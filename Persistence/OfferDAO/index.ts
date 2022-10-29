@@ -3,25 +3,26 @@ import { supabase } from "@/utils/supabaseClient";
 import { handleSupabaseError } from "@/utils/handleSupabaseError";
 import { offerCard, OfferNotification } from "@/types/types";
 import { Profile } from "@/types/BusinessEntities/Profile";
+import { mapServiceCardFromApi } from "../ServiceDAO";
 
 const mapOfferCardFromApi = (data): offerCard => {
   return {
-    id: data.id,
-    name: data.name,
-    resume: data.resume,
-    description: data.description,
-    tags: data.tags,
-    price: data.price,
-    calification: data.calification,
-    owner_id: data.owner_id.id,
-    worker_id: data.worker_id,
-    offer_type: data.offer_type,
-    in_progress: data.in_progress,
-    created_at: data.created_at,
+    id: data.id || "",
+    name: data.name || "",
+    resume: data.resume || "",
+    description: data.description || "",
+    tags: data.tags || [],
+    price: data.price || "",
+    calification: data.calification || "",
+    owner_id: data.owner_id.id || "",
+    worker_id: data.worker_id || "",
+    offer_type: data.offer_type || "",
+    in_progress: data.in_progress || "",
+    created_at: data.created_at || "",
     profile: {
-      name: data.owner_id.name,
-      last_name: data.owner_id?.last_name,
-      picture: data.owner_id?.picture,
+      name: data.owner_id.name || "",
+      last_name: data.owner_id?.last_name || "",
+      picture: data.owner_id?.picture || "",
     },
   };
 };
@@ -47,6 +48,33 @@ const getOfferById = async (params): Promise<offerCard> => {
   return data;
 };
 
+const offersQuery = `*, owner_id (id, name, last_name, picture)`;
+
+interface getAllOffersType {
+  offers: Array<offerCard>;
+  services: Array<offerCard>;
+}
+
+const getAllOffers = async (): Promise<getAllOffersType> => {
+  const offers = await supabase
+    .from("offers")
+    .select(offersQuery)
+    .eq("offer_type", "public")
+    .then(handleSupabaseError)
+    .then(({ data }) => data.map(mapOfferCardFromApi));
+
+  const services = await supabase
+    .from("services")
+    .select(offersQuery)
+    .then(handleSupabaseError)
+    .then(({ data }) => data.map(mapServiceCardFromApi));
+
+  return {
+    offers,
+    services,
+  };
+};
+
 const setOffer = async (offer: Offer): Promise<Offer> => {
   const { data, error } = await supabase.from("offers").upsert([{ ...offer }]);
 
@@ -70,4 +98,4 @@ const addWorkerToOffer = async ({
   console.log(data);
 };
 
-export { getOfferById, setOffer, addWorkerToOffer };
+export { getAllOffers, getOfferById, setOffer, addWorkerToOffer };

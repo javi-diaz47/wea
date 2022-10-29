@@ -1,9 +1,15 @@
 import { Card } from "../Card";
 import { TagList } from "@/Tag/TagList";
+import { Offer } from "@/types/BusinessEntities/Offer";
 
-const CardTemplate = ({ offer, children }) => {
-  const { name, resume, tags } = offer;
+interface Props {
+  name: string;
+  resume: string;
+  tags: Array<string>;
+  children?: JSX.Element | JSX.Element[];
+}
 
+const CardTemplate = ({ name, resume, tags, children }: Props) => {
   return (
     <Card>
       <h2 className="text-3xl font-semibold text-title hover:underline">
@@ -11,8 +17,7 @@ const CardTemplate = ({ offer, children }) => {
       </h2>
 
       <p className="ellipsis-2">{resume}</p>
-
-      <TagList tags={tags || ["react", "js", "mongodb"]} />
+      {tags.length !== 0 && <TagList tags={tags} />}
 
       {children}
     </Card>

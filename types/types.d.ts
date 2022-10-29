@@ -1,4 +1,5 @@
 import { Offer } from "./BusinessEntities/Offer";
+import { Profile } from "./BusinessEntities/Profile";
 import { Service } from "./BusinessEntities/Service";
 
 type notification_type = "offer" | "postulation" | "deny";
@@ -27,12 +28,14 @@ export type input_offer_type = {
   // tags?: [string?, string?, string?, string?];
 };
 
+export interface profileCard {
+  name: string;
+  last_name?: string;
+  picture?: string;
+}
+
 export interface offerCard extends Offer {
-  profile: {
-    name: string;
-    last_name?: string;
-    picture?: string;
-  };
+  profile: profileCard;
 }
 
 export interface serviceCard extends Service {
