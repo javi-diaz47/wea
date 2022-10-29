@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import { Wea } from "../components/Icons/Wea";
 export default function Home() {
   return (
     <div>
@@ -9,17 +9,111 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex items-center justify-center flex-col gap-6 bg-background text-white h-screen text-2xl">
-        <h1 className="text-6xl font-sans font-bold">
-          Welcome to{" "}
-          <a
-            href="https://nextjs.org"
-            className="text-blue-500 hover:underline duration-200"
-          >
-            WEA
-          </a>
-        </h1>
-        <p>Web entrepreneur assistance </p>
+      <main className="">
+        <div className="bg-blue-300">
+          <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+            <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+              <h1 className="mb-4 mt-2 text-5xl font-bold leading-tight">
+                Conectate con miles de personas
+              </h1>
+              <p className="leading-normal text-3xl mb-8">
+                De manera simple y rapida. Ofrece tus servicios o encuentra a la
+                persona correcta para hacer eso que tanto necesitas ¿Qué
+                esperas?
+              </p>
+              <button className="mx-auto lg:mx-0 bg-white text-gray-800  rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out text-2xl">
+                Registrate
+              </button>
+            </div>
+            <div className="w-full md:w-3/5 py-6 text-center flex justify-center">
+              <img
+                src="https://i.postimg.cc/qq3gGtB5/Helping-a-partner-rafiki.png"
+                className="w-full md:w-4/5 z-50  "
+              />
+            </div>
+          </div>
+        </div>
+
+        <section className="bg-white border-b py-8">
+          <div className="container max-w-5xl mx-auto m-8">
+            <h2 className="w-full mt-2 mb-9 text-5xl font-bold leading-tight text-center text-gray-800">
+              Wea es tu mejor aliado
+            </h2>
+            <div className="flex flex-wrap">
+              <div className="w-5/6 sm:w-1/2 p-6">
+                <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
+                  Ofrece tus servicios
+                </h3>
+                <p className="text-gray-600 mb-8 text-xl">
+                  Da a conocer eso que amas y en que eres bueno, con la
+                  posibilidad de que miles de personas puedan interesarse y
+                  contactar contigo, tambien puedes acceder a ofertas realizadas
+                  por otras personas que puedan ser de tu interes.
+                </p>
+              </div>
+
+              <div className="w-full sm:w-1/2 p-6">
+                <img src="https://i.postimg.cc/NjkFb9mK/Task-bro.png" alt="" />
+              </div>
+            </div>
+
+            <div className="flex flex-wrap">
+              <div className="w-5/6 sm:w-1/2 p-6">
+                <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
+                  Encuentra lo que necesitas
+                </h3>
+                <p className="text-gray-600 mb-8">
+                  De manera simple publica ofertas de trabajos que podrán ser
+                  vistas por talentosas personas interesadas, ademas tienes la
+                  posibilidad de ofertar directamente con los usuarios que
+                  cumplan con el perfil que buscas.
+                </p>
+              </div>
+
+              <div className="w-full sm:w-1/2 p-6">
+                <img
+                  src="https://i.postimg.cc/W1hYwrQn/Job-hunt-rafiki.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer
+          w-full
+          className="sticky top-[100vh] bg-black w-full flex py-4 pl-8"
+        >
+          <ul className="text-white md:w-1/2 mx-3 my-3 text-xl space-y-3">
+            <li className=" pt-4">
+              <Wea fill="#fff" className="" />
+            </li>
+            <li className="">Acerca de nosotros</li>
+            <li className="">Contactanos</li>
+            <li className="">Ayuda</li>
+            <li className="">Creado con &hearts; desde Colombia</li>
+            <div className="flex flex-row space-x-10 py-2">
+              <li>
+                <img
+                  src="https://i.postimg.cc/CLDhnyGK/icons8-facebook-f-42.png"
+                  alt=""
+                />
+              </li>
+              <li>
+                <img
+                  src="https://i.postimg.cc/Y9y9RpVc/icons8-twitter-42.png"
+                  alt=""
+                />
+              </li>
+              <li>
+                <img
+                  src="https://i.postimg.cc/0QgZQwPj/icons8-instagram-42.png"
+                  alt=""
+                />
+              </li>
+            </div>
+          </ul>
+        </footer>
       </main>
     </div>
   );
