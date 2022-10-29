@@ -33,6 +33,21 @@ const mapOfferFromApi = (data): Offer => {
   };
 };
 
+const getOffers = async (params): Promise<Array<offerCard>> => {
+  const { id } = params.queryKey[1];
+  const data = await supabase
+    .from("offers")
+    .select("*, owner_id (id, name, last_name, picture)")
+    .or(`owner_id.eq.${id},worker_id.eq.${id}`)
+    .eq("in_progress", true)
+    .then(handleSupabaseError)
+    .then(({ data }) => data.map(mapOfferCardFromApi));
+
+  console.log(data);
+  console.log("fetching from supabase");
+  return data;
+};
+
 const getOfferById = async (params): Promise<offerCard> => {
   const { id } = params.queryKey[1];
   const data = await supabase
@@ -93,4 +108,4 @@ const addWorkerToOffer = async ({
   console.log(data);
 };
 
-export { getAllOffers, getOfferById, setOffer, addWorkerToOffer };
+export { getOffers, getAllOffers, getOfferById, setOffer, addWorkerToOffer };
