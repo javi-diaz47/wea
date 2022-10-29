@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { Wea } from "../Icons/Wea";
+import { Wea } from "@/Icons/Wea";
 import { NavbarSidebarMenu } from "./NavbarSidebarMenu";
 import { NavbarSidebarNotifications } from "./NavbarSidebarNotifications";
 import { useNavbar } from "@/hooks/useNavbar";
 import { NotificationBellIcon } from "./NotificationBellIcon";
 import { MenuBurgerButtonIcon } from "./MenuBurgerButtonIcon";
+import { NavbarIcon } from "./NavbarIcon";
 
 const Navbar = ({ isAuth }) => {
   const { navigation, onNavigation, notification, onNotification } =
@@ -26,17 +27,23 @@ const Navbar = ({ isAuth }) => {
         </a>
       </Link>
 
-      <NotificationBellIcon
-        isAuth={isAuth}
-        onNotification={onNotification}
-        notification={notification}
-        navigation={navigation}
-      />
+      {!navigation && !isAuth ? (
+        <NavbarIcon href="/login" title="Ingresar" />
+      ) : (
+        <>
+          <NotificationBellIcon
+            isAuth={isAuth}
+            onNotification={onNotification}
+            notification={notification}
+            navigation={navigation}
+          />
 
-      <NavbarSidebarNotifications
-        isOpen={notification}
-        onNotification={onNotification}
-      />
+          <NavbarSidebarNotifications
+            isOpen={notification}
+            onNotification={onNotification}
+          />
+        </>
+      )}
     </nav>
   );
 };

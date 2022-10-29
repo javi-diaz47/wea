@@ -1,5 +1,3 @@
-import { FormElement } from "../FormElement";
-
 const InputWithCounter = ({
   label,
   currentLength,

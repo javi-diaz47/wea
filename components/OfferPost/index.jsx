@@ -1,15 +1,14 @@
-import Link from 'next/link';
-import { getDateFormat } from '../../utils/getDateFormat';
-import { ReactMarkdownTitle } from '../ReactMarkdownTitle';
+import Link from "next/link";
+import { getDateFormat } from "@/utils/getDateFormat";
+import { ReactMarkdownTitle } from "../ReactMarkdownTitle";
 
 const OfferPost = ({ offer }) => {
   const { id, title, resume, description, created_at, profiles } = offer;
   return (
     <div className="bg-white rounded-xl p-4 flex flex-col gap-4">
-      <ReactMarkdownTitle
-        title={title}
-        className={' text-2xl font-semibold text-title hover:underline'}
-      />
+      <h2 className={" text-2xl font-semibold text-title hover:underline"}>
+        {title}
+      </h2>
 
       <p className="text-ellipsis whitespace-nowrap text-lg overflow-hidden">
         {resume}

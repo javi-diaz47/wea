@@ -1,6 +1,6 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
-import { TagList } from "../TagList";
+import { TagList } from "@/Tag/TagList";
 
 interface Props {
   name: string;

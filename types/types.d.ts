@@ -1,14 +1,17 @@
 import { Offer } from "./BusinessEntities/Offer";
+import { Profile } from "./BusinessEntities/Profile";
+import { Service } from "./BusinessEntities/Service";
 
-type notification_type = "offer" | "postulation";
+type notification_type = "offer" | "postulation" | "deny";
 
 interface notification {
   id?: string;
-  origin_id: string;
-  destination_id: string;
-  offer_id: string;
+  origin_id: Profile;
+  destination_id: Profile;
+  offer?: Offer;
+  offer_id?: string;
   viewed?: boolean;
-  type: notification_type;
+  type?: notification_type;
   created_at?: string;
 }
 
@@ -25,10 +28,32 @@ export type input_offer_type = {
   // tags?: [string?, string?, string?, string?];
 };
 
+export interface profileCard {
+  name: string;
+  last_name?: string;
+  picture?: string;
+}
+
 export interface offerCard extends Offer {
+  profile: profileCard;
+}
+
+export interface serviceCard extends Service {
   profile: {
     name: string;
     last_name?: string;
     picture?: string;
   };
+}
+
+export interface OfferNotification {
+  offer: Offer;
+  origin_id: Profile;
+  destination_id: string;
+  notification_id: string;
+}
+
+export interface getAllOffersType {
+  offers: Array<offerCard>;
+  services: Array<offerCard>;
 }

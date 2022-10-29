@@ -11,5 +11,11 @@ export function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/protected/:path*", "/profile/:path*", "/create-offer/:path*"],
+  matcher: [
+    "/protected/:path*",
+    "/profile/:path*",
+    "/create-offer/:path*",
+    "/recieved-offers/:path*",
+    "/recieved-postulations/:path*",
+  ],
 };

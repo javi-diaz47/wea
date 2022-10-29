@@ -2,10 +2,11 @@ import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { CreateOfferForm } from "@/components/CreateOfferForm";
 import { useCreateOffer } from "@/hooks/useCreateOffer";
-import { PreviewBar } from "@/components/PreviewBar";
 import { OfferMd } from "@/components/OfferMd";
+import { useState } from "react";
+import { ConditionalBar } from "@/components/ConditionalBar";
 
-export default function createOffer({ profile_id }) {
+export default function createOffer({ profileId }) {
   const {
     inputValues,
     onHandleChange,
@@ -14,11 +15,23 @@ export default function createOffer({ profile_id }) {
     preview,
     onPreview,
     onEdit,
+    isJobOffer,
+    onJobOffer,
+    onServiceOffer,
   } = useCreateOffer();
 
   return (
     <div className="flex flex-col gap-6 p-8">
-      <PreviewBar state={preview} onState={onPreview} onNotState={onEdit} />
+      <ConditionalBar
+        state={preview}
+        stateTrueText="Vista previa"
+        stateFalseText="Editar"
+        onState={onPreview}
+        onNotState={onEdit}
+        className="flex flex-row-reverse justify-end"
+        classNameBtnSelected="text-love"
+        classNameBtn="text-white"
+      />
 
       {!!preview && (
         <OfferMd
@@ -30,6 +43,16 @@ export default function createOffer({ profile_id }) {
       )}
       {!preview && (
         <div className=" max-w-6xl ">
+          <h2 className="text-4xl font-semibold">Crear oferta</h2>
+          <ConditionalBar
+            state={isJobOffer}
+            stateTrueText="Oferta de trabajo"
+            stateFalseText="Servicio"
+            onState={onJobOffer}
+            onNotState={onServiceOffer}
+            classNameBtnSelected="scale-95 active:shadow-lg text-white p-2 hover:bg-blue-500 bg-blue-600 bold duration-300 transition-all rounded-lg  mx-auto w-fit px-7 my-5 shadow-md"
+            classNameBtn="active:scale-95 active:shadow-lg text-white p-2 hover:bg-blue-500 bg-blue-600 bold duration-300 transition-all rounded-lg  mx-auto w-fit px-7 my-5 shadow-md"
+          />
           <CreateOfferForm
             name={inputValues.name}
             description={inputValues.description}
@@ -39,7 +62,11 @@ export default function createOffer({ profile_id }) {
             onHandleChange={onHandleChange}
             onHandleTags={onHandleTags}
             onSubmit={(ev) =>
-              onSave({ ev, owner_id: profile_id, offer: inputValues })
+              onSave({
+                ev,
+                owner_id: profileId,
+                offer: inputValues,
+              })
             }
           />
         </div>
@@ -48,10 +75,8 @@ export default function createOffer({ profile_id }) {
   );
 }
 
-export async function getStaticProps({ req, res }) {
-  // const token = getCookie('token', { req, res });
+export async function getServerSideProps({ req, res }) {
+  const token = getCookie("token", { req, res });
 
-  // return { props: { profile_id: jwt.decode(token).sub } };
-
-  return { props: { profile_id: "843edb12-63fa-4351-a549-d39d21b45199" } };
+  return { props: { profileId: jwt.decode(token).sub } };
 }

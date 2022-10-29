@@ -4,15 +4,28 @@ import { supabase } from "@/utils/supabaseClient";
 
 const getProfileById = async (params): Promise<Profile> => {
   const { id } = params.queryKey[1];
-  const data = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", id)
-    .limit(1)
-    .single()
-    .then(handleSupabaseError)
-    .then(({ data }) => data);
 
+  console.log("fetching from supabase");
+  if (id) {
+    const data = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", id)
+      .limit(1)
+      .single()
+      .then(handleSupabaseError)
+      .then(({ data }) => data);
+    return data;
+  } else {
+    const data = await supabase
+      .from("profiles")
+      .select("*")
+      .limit(1)
+      .single()
+      .then(handleSupabaseError)
+      .then(({ data }) => data);
+    return data;
+  }
   // const data: Profile = {
   //   id: "843edb12-63fa-4351-a549-d39d21b45199",
   //   inserted_at: "2022-09-07T01:37:28+00:00",
@@ -28,8 +41,19 @@ const getProfileById = async (params): Promise<Profile> => {
   //   contact_me: "Email: javiereduardo300@gmail.com",
   // };
 
-  console.log("fetching from supabase");
-  return data;
+  // return data;
 };
 
-export { getProfileById };
+const getProfileId = async (): Promise<string> => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}/api/auth`, {
+    method: "GET",
+    headers: new Headers({ "Content-Type": "application/json" }),
+    credentials: "same-origin",
+  });
+
+  const { id } = await res.json();
+
+  return id;
+};
+
+export { getProfileById, getProfileId };

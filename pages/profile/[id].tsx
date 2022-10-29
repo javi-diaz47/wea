@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/router";
-import { ProfilePagePhoto } from "@/components/ProfilePage/ProfileUserWithName";
-import { ProfileDateAndCalification } from "@/components/ProfilePage/ProfileDateAndCalification";
-import { ProfileInformation } from "@/components/ProfilePage/ProfileInformation";
+import { ProfilePagePhoto } from "@/Profile/ProfilePage/ProfileUserWithName";
+import { ProfileDateAndCalification } from "@/Profile/ProfilePage/ProfileDateAndCalification";
+import { ProfileInformation } from "@/Profile/ProfilePage/ProfileInformation";
 import { getProfileById } from "Persistence/UserDAO";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getCookie } from "cookies-next";
@@ -13,7 +13,6 @@ export default function ProfileId({ queryKey }) {
   const router = useRouter();
 
   const { data: profile } = useQuery(queryKey, getProfileById);
-  console.log({ queryKey, profile });
 
   return (
     <div className="h-screen bg-background px-8 py-8 flex flex-col gap-7">
@@ -49,15 +48,7 @@ export default function ProfileId({ queryKey }) {
   );
 }
 
-interface Params {
-  req: any;
-  res: any;
-  params: {
-    id: string;
-  };
-}
-
-export async function getServerSideProps({ req, res, params }: Params) {
+export async function getServerSideProps({ req, res, params }) {
   const { id } = params;
 
   const token = getCookie("token", { req, res });

@@ -4,12 +4,17 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/Navbar/*": ["components/Navbar/*"],
+      "@/Cards/*": ["components/Cards/*"],
       "@/Profile/*": ["components/Profile/*"],
+      "@/Tag/*": ["components/Tag/*"],
       "@/hooks/*": ["hooks/*"],
       "@/reducers/*": ["reducers/*"],
       "@/utils/*": ["utils/*"],
       "@/Persistence/*": ["Persistence/*"],
       "@/types/*": ["types/*"],
+      "@/public/*": ["public/*"],
+      "@/styles/*": ["styles/*"],
+      "@/Icons/*": ["components/Icons/*"],
     },
     "target": "es5",
     "lib": [

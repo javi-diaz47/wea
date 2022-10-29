@@ -1,7 +1,7 @@
-import { FormElement } from "../components/FormElement";
-import { signIn } from "../utils/auth";
-import { MIN_PASSWORD_LENGTH } from "../utils/constants";
-import { Footer } from "../components/Footer";
+import { FormElement } from "@/components/FormElement";
+import { signIn } from "@/utils/auth";
+import { MIN_PASSWORD_LENGTH } from "@/utils/constants";
+import { Footer } from "@/components/Footer";
 
 export default function Login() {
   const handleSubmit = (ev) => {

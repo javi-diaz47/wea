@@ -18,7 +18,6 @@ const NavbarSidebarMenu = ({
   navigation,
   onNavigation,
 }: NavbarSidebarProps) => {
-  console.log(navigation);
   return (
     <Sidebar open={navigation}>
       <NavbarIcon
