@@ -7,11 +7,12 @@ interface Props {
   notification_id: string;
 }
 
-export const onAcceptRecievedJobOffer = async ({
+const onAcceptOffer = async ({
   offer_id,
   worker_id,
   notification_id,
 }: Props) => {
+  console.log({ offer_id, worker_id });
   addWorkerToOffer({
     offer_id,
     worker_id,
@@ -19,6 +20,8 @@ export const onAcceptRecievedJobOffer = async ({
   removeNotification(notification_id);
 };
 
-export const onDenyRecievedJobOffer = (notification_id: string) => {
+const onDenyOffer = (notification_id: string) => {
   removeNotification(notification_id);
 };
+
+export { onAcceptOffer, onDenyOffer };

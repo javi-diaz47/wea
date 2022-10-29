@@ -13,7 +13,7 @@ function RecievedPostulations({ queryKey }) {
       <ul className=" flex flex-col gap-12">
         {data.map((data) => (
           <li key={data?.id}>
-            <PostulationCard profile={data.origin_id} />
+            <PostulationCard notification={data} />
           </li>
         ))}
       </ul>

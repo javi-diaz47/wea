@@ -48,15 +48,7 @@ export default function ProfileId({ queryKey }) {
   );
 }
 
-interface Params {
-  req: any;
-  res: any;
-  params: {
-    id: string;
-  };
-}
-
-export async function getServerSideProps({ req, res, params }: Params) {
+export async function getServerSideProps({ req, res, params }) {
   const { id } = params;
 
   const token = getCookie("token", { req, res });

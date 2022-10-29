@@ -7,7 +7,7 @@ import { OfferMd } from "@/components/OfferMd";
 import {
   onAcceptRecievedJobOffer,
   onDenyRecievedJobOffer,
-} from "@/utils/handleRecievedJobOffer";
+} from "@/utils/handleAceptDenyOffer";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getNotification } from "@/Persistence/NotificationDAO";
 

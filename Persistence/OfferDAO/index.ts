@@ -55,7 +55,15 @@ const setOffer = async (offer: Offer): Promise<Offer> => {
   return mapOfferFromApi(data);
 };
 
-const addWorkerToOffer = async ({ offer_id, worker_id }) => {
+interface addWorkerToOfferType {
+  offer_id: string;
+  worker_id: string;
+}
+
+const addWorkerToOffer = async ({
+  offer_id,
+  worker_id,
+}: addWorkerToOfferType) => {
   const data = await supabase
     .from("offers")
     .update({ worker_id, in_progress: true })

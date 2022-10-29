@@ -1,8 +1,5 @@
 import { getAllNotifications } from "@/Persistence/NotificationDAO";
-import {
-  onAcceptRecievedJobOffer,
-  onDenyRecievedJobOffer,
-} from "@/utils/handleRecievedJobOffer";
+import { onAcceptOffer, onDenyOffer } from "@/utils/handleAceptDenyOffer";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { dehydrate, QueryClient, useQuery } from "react-query";
@@ -10,7 +7,6 @@ import { OfferCard } from "@/Cards/OfferCard";
 
 function RecievedOffers({ profileId, queryKey }) {
   const { data: notifications } = useQuery(queryKey, getAllNotifications);
-  console.log(notifications);
   return (
     <div className="flex flex-col gap-8 m-8">
       <h2 className="text-4xl font-semibold">Ofertas recibidas</h2>
@@ -25,7 +21,7 @@ function RecievedOffers({ profileId, queryKey }) {
               <div className="flex justify-center gap-8 ">
                 <button
                   onClick={() =>
-                    onAcceptRecievedJobOffer({
+                    onAcceptOffer({
                       offer_id: offer.id,
                       worker_id: profileId,
                       notification_id: id,
@@ -36,7 +32,7 @@ function RecievedOffers({ profileId, queryKey }) {
                   Aceptar
                 </button>
                 <button
-                  onClick={() => onDenyRecievedJobOffer(id)}
+                  onClick={() => onDenyOffer(id)}
                   className="text-love border-love border-2 rounded-full
                   font-semibold py-1 px-2"
                 >

@@ -1,25 +1,40 @@
 import { ProfileUserWithStar } from "@/components/Profile/ProfileUserWithStar";
 import { Profile } from "@/types/BusinessEntities/Profile";
+import { notification } from "@/types/types";
+import { onAcceptOffer, onDenyOffer } from "@/utils/handleAceptDenyOffer";
 import { Card } from "../Card";
 
-const PostulationCard = ({ profile }: { profile: Profile }) => {
+const PostulationCard = ({ notification }: { notification: notification }) => {
+  const { id, origin_id, offer } = notification;
   return (
     <Card>
       <div className="flex flex-col gap-4 w-full">
         <ProfileUserWithStar
-          name={profile.name}
-          last_name={profile.last_name}
-          href={`profile/${profile.id}`}
-          star={profile.calification}
+          name={origin_id.name}
+          last_name={origin_id.last_name}
+          href={`profile/${origin_id.id}`}
+          star={origin_id.calification}
         />
 
-        <div>{profile?.resume}</div>
+        <div>{origin_id?.resume}</div>
 
         <div className="flex w-full justify-between">
-          <button className="px-2 font-semibold text-primary bg-transparent border-2 border-primary rounded-lg">
+          <button
+            onClick={() =>
+              onAcceptOffer({
+                notification_id: id,
+                worker_id: origin_id.id,
+                offer_id: offer.id,
+              })
+            }
+            className="px-2 font-semibold text-primary bg-transparent border-2 border-primary rounded-lg"
+          >
             Aceptar
           </button>
-          <button className="px-2 font-semibold text-love bg-transparent border-2 border-love rounded-lg">
+          <button
+            onClick={() => onDenyOffer(id)}
+            className="px-2 font-semibold text-love bg-transparent border-2 border-love rounded-lg"
+          >
             Rechazar
           </button>
         </div>
