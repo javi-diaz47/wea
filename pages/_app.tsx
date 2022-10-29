@@ -14,21 +14,21 @@ function MyApp({ Component, pageProps }) {
   const queryClient = new QueryClient();
 
   useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        handleAuthChange(event, session);
+    const {
+      data: { subscription: authListener },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      handleAuthChange(event, session);
 
-        //redirect the user signed from the magiclink to the profile page
-        if (event === "SIGNED_IN") {
-          setAuthenticatedState("authenticated");
-          // router.push('/profile');
-        }
-
-        if (event === "SIGNED_OUT") {
-          setAuthenticatedState("not-authenticated");
-        }
+      //redirect the user signed from the magiclink to the profile page
+      if (event === "SIGNED_IN") {
+        setAuthenticatedState("authenticated");
+        // router.push('/profile');
       }
-    );
+
+      if (event === "SIGNED_OUT") {
+        setAuthenticatedState("not-authenticated");
+      }
+    });
 
     checkUser(setAuthenticatedState);
 

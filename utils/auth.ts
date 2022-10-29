@@ -1,21 +1,21 @@
-import { supabase } from '../utils/supabaseClient';
+import { supabase } from "./supabaseClient";
 
 export const signUpUser = async (data) => {
   const { name, lastName, email, password, userType, nit } = data;
   try {
-    const { user, error } = await supabase.auth.signUp(
-      { email, password },
-      // Add user metadata
-      {
+    const { data: user, error } = await supabase.auth.signUp({
+      email,
+
+      password,
+      options: {
+        // Add user metadata
         data: {
           name,
           last_name: lastName ? lastName : null,
           email,
-          user_type_id: Number(userType),
-          nit: nit ? nit : null,
         },
-      }
-    );
+      },
+    });
 
     if (error) throw error;
 
@@ -27,7 +27,10 @@ export const signUpUser = async (data) => {
 
 export const signIn = async ({ email, password }) => {
   try {
-    const { user, session, error } = await supabase.auth.signIn({
+    const {
+      data: { user, session },
+      error,
+    } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -45,19 +48,19 @@ export const signOut = async () => {
 
 // Call the auth api to set or remove the cookie of the user authentication
 export const handleAuthChange = async (event, session) => {
-  if (event === 'SIGNED_IN') {
-    await fetch('api/auth', {
-      method: 'POST',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-      credentials: 'same-origin',
+  if (event === "SIGNED_IN") {
+    await fetch("api/auth", {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      credentials: "same-origin",
       body: JSON.stringify({ event, session }),
     });
   }
-  if (event === 'SIGNED_OUT') {
-    await fetch('api/auth', {
-      method: 'DELETE',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-      credentials: 'same-origin',
+  if (event === "SIGNED_OUT") {
+    await fetch("api/auth", {
+      method: "DELETE",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      credentials: "same-origin",
     });
   }
 };
@@ -65,8 +68,8 @@ export const handleAuthChange = async (event, session) => {
 //Set the user authenticatedState if the user is authenticated
 export const checkUser = async (setAuthenticatedState) => {
   // Check if user exist
-  const user = await supabase.auth.user();
+  const user = await supabase.auth.getUser();
   if (user) {
-    setAuthenticatedState('authenticated');
+    setAuthenticatedState("authenticated");
   }
 };
