@@ -1,7 +1,10 @@
 import { setOffer } from "@/Persistence/OfferDAO";
+import { setService } from "@/Persistence/ServiceDAO";
 import { Offer } from "@/types/BusinessEntities/Offer";
+import { Service } from "@/types/BusinessEntities/Service";
 import { input_offer_type, notification } from "@/types/types";
 import { useState } from "react";
+import { useBooleanState } from "./useBooleanState";
 
 interface onSaveProps {
   ev: React.FormEvent<HTMLFormElement>;
@@ -20,6 +23,17 @@ const INITIAL_STATE: input_offer_type = {
 
 const useCreateOffer = () => {
   const [inputValues, setInputValues] = useState(INITIAL_STATE);
+  const {
+    bool: preview,
+    onTrue: onPreview,
+    onFalse: onEdit,
+  } = useBooleanState(false);
+
+  const {
+    bool: isJobOffer,
+    onTrue: onJobOffer,
+    onFalse: onServiceOffer,
+  } = useBooleanState(true);
 
   const onHandleChange = (
     ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,32 +53,38 @@ const useCreateOffer = () => {
     // console.log(owner_id);
     // console.log(profile_id);
 
-    const newOffer: Offer = {
-      ...offer,
-      owner_id,
-      worker_id,
-      offer_type: worker_id ? "private" : "public",
-      in_progress: false,
-    };
+    // Job offer
+    if (isJobOffer && offer) {
+      const newOffer: Offer = {
+        ...offer,
+        owner_id,
+        worker_id,
+        offer_type: worker_id ? "private" : "public",
+        in_progress: false,
+      };
 
-    console.log(newOffer);
+      console.log(newOffer);
 
-    const res = await setOffer(newOffer);
+      const res = await setOffer(newOffer);
+      // console.log(res);
+    }
 
-    // console.log(res);
+    // Service offer
+    if (!isJobOffer && offer) {
+      const newService: Service = {
+        ...offer,
+        owner_id,
+      };
+
+      console.log(newService);
+
+      const res = await setService(newService);
+      // console.log(res);
+    }
   };
 
   const onPublish = () => {
     // Set public on supabase
-  };
-
-  const [preview, setPreview] = useState(false);
-
-  const onPreview = () => {
-    setPreview(true);
-  };
-  const onEdit = () => {
-    setPreview(false);
   };
 
   return {
@@ -75,6 +95,9 @@ const useCreateOffer = () => {
     preview,
     onPreview,
     onEdit,
+    isJobOffer,
+    onJobOffer,
+    onServiceOffer,
   };
 };
 

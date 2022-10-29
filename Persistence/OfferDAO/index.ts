@@ -48,9 +48,7 @@ const getOfferById = async (params): Promise<offerCard> => {
 };
 
 const setOffer = async (offer: Offer): Promise<Offer> => {
-  const { data, error } = await supabase
-    .from("offers")
-    .insert([{ ...offer }], { upsert: true });
+  const { data, error } = await supabase.from("offers").upsert([{ ...offer }]);
 
   return mapOfferFromApi(data);
 };

@@ -27,8 +27,6 @@ const CreateOfferForm = ({
 }: Props) => {
   return (
     <form onSubmit={onSubmit} className="grid gap-8 text-xl">
-      <h2 className="text-4xl font-semibold">Crear oferta de trabajo</h2>
-
       <InputWithLabel label="Titulo de la oferta">
         <input
           name="name"
