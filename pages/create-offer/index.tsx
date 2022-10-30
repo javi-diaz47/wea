@@ -1,10 +1,10 @@
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
-import { CreateOfferForm } from "@/components/CreateOfferForm";
+import { CreateOfferForm } from "Presentation/components/CreateOfferForm";
 import { useCreateOffer } from "@/hooks/useCreateOffer";
-import { OfferMd } from "@/components/OfferMd";
+import { OfferMd } from "Presentation/components/OfferMd";
 import { useState } from "react";
-import { ConditionalBar } from "@/components/ConditionalBar";
+import { ConditionalBar } from "Presentation/components/ConditionalBar";
 
 export default function createOffer({ profileId }) {
   const {

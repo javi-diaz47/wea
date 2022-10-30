@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { Layout } from "@/components/Layout";
 import "@/styles/globals.css";
-import { checkUser, handleAuthChange } from "@/utils/auth";
-import { supabase } from "@/utils/supabaseClient";
+import { checkUser, handleAuthChange } from "Logic/utils/auth";
+import { supabase } from "Logic/utils/supabaseClient";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 function MyApp({ Component, pageProps }) {

@@ -1,11 +1,11 @@
-import { OfferCard } from "@/components/Cards/OfferCard";
+import { OfferCard } from "Presentation/components/Cards/OfferCard";
 import { PlusIcon } from "@heroicons/react/outline";
-import { NavbarIcon } from "@/Navbar/NavbarIcon";
-import { Empty } from "@/components/Empty";
-import { SearchBar } from "@/components/SearchBar";
+import { NavbarIcon } from "Presentation/components/Navbar/NavbarIcon";
+import { Empty } from "Presentation/components/Empty";
+import { SearchBar } from "Presentation/components/SearchBar";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getAllOffers } from "@/Persistence/OfferDAO";
-import { ConditionalBar } from "@/components/ConditionalBar";
+import { ConditionalBar } from "Presentation/components/ConditionalBar";
 import { useSearchBar } from "@/hooks/useSearchBar";
 
 export default function Offers({ queryKey }) {

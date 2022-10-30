@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { supabase } from "@/utils/supabaseClient";
+import { supabase } from "Logic/utils/supabaseClient";
 import { useRouter } from "next/router";
-import { ProfilePagePhoto } from "@/Profile/ProfilePage/ProfileUserWithName";
-import { ProfileDateAndCalification } from "@/Profile/ProfilePage/ProfileDateAndCalification";
-import { ProfileInformation } from "@/Profile/ProfilePage/ProfileInformation";
+import { ProfilePagePhoto } from "Presentation/components/Profile/ProfilePage/ProfileUserWithName";
+import { ProfileDateAndCalification } from "Presentation/components/Profile/ProfilePage/ProfileDateAndCalification";
+import { ProfileInformation } from "Presentation/components/Profile/ProfilePage/ProfileInformation";
 import { getProfileById } from "Persistence/UserDAO";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getCookie } from "cookies-next";

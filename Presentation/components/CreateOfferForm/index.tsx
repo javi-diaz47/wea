@@ -1,8 +1,8 @@
-import { TagsInput } from "@/Tag/TagInput";
+import { TagsInput } from "Presentation/components/Tag/TagInput";
 import {
   MAX_OFFER_DESC_LENGTH,
   MAX_OFFER_RESUME_LENGTH,
-} from "@/utils/constants";
+} from "Logic/utils/constants";
 import { input_offer_type } from "@/types/types";
 import { InputWithLabel } from "../InputWithLabel";
 import { FormElementWithCounter } from "../FormElementWithCounter";

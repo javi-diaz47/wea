@@ -3,7 +3,7 @@ import { FormElement } from "@/components/FormElement";
 import { Footer } from "@/components/Footer";
 import { signUpUser } from "@/utils/auth";
 import { MIN_PASSWORD_LENGTH, USER_TYPES } from "@/utils/constants";
-import { Wea } from "../components/Icons/Wea";
+import { Wea } from "../Presentation/components/Icons/Wea";
 
 export default function signUp() {
   const [userType, setUserType] = useState(USER_TYPES.PERSON);

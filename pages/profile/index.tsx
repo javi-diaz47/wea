@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
-import { signOut } from "@/utils/auth";
+import { signOut } from "Logic/utils/auth";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { LogoutIcon } from "@heroicons/react/outline";
-import { Collabs } from "@/components/Collabs";
-import { ProfilePagePhoto } from "@/Profile/ProfilePage/ProfileUserWithName";
-import { ProfileDateAndCalification } from "@/Profile/ProfilePage/ProfileDateAndCalification";
-import { ProfileInformation } from "@/Profile/ProfilePage/ProfileInformation";
+import { Collabs } from "Presentation/components/Collabs";
+import { ProfilePagePhoto } from "Presentation/components/Profile/ProfilePage/ProfileUserWithName";
+import { ProfileDateAndCalification } from "Presentation/components/Profile/ProfilePage/ProfileDateAndCalification";
+import { ProfileInformation } from "Presentation/components/Profile/ProfilePage/ProfileInformation";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getProfileById } from "@/Persistence/UserDAO";
 

@@ -1,9 +1,9 @@
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
-import { PostulationCard } from "@/components/Cards/PostulationCard";
+import { PostulationCard } from "Presentation/components/Cards/PostulationCard";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getAllNotifications } from "@/Persistence/NotificationDAO";
-import { Empty } from "@/components/Empty";
+import { Empty } from "Presentation/components/Empty";
 
 function RecievedPostulations({ queryKey }) {
   const { data } = useQuery(queryKey, getAllNotifications);

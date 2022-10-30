@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Wea } from "../components/Icons/Wea";
+import { Wea } from "../Presentation/components/Icons/Wea";
 export default function Home() {
   return (
     <div>

@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { TagsHandler, useTags } from "@/hooks/useTags";
-import { MAX_OFFER_TAGS_LENGTH } from "@/utils/constants";
+import { MAX_OFFER_TAGS_LENGTH } from "Logic/utils/constants";
 import { InputWithCounter } from "@/components/InputWithCounter";
 import { TagButton } from "../TagButton";
 

@@ -1,11 +1,11 @@
-import { CreateOfferForm } from "@/components/CreateOfferForm";
+import { CreateOfferForm } from "Presentation/components/CreateOfferForm";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
-import { ProfileUserWithStar } from "@/Profile/ProfileUserWithStar";
+import { ProfileUserWithStar } from "Presentation/components/Profile/ProfileUserWithStar";
 import { useCreateOffer } from "@/hooks/useCreateOffer";
-import { supabase } from "@/utils/supabaseClient";
-import { OfferMd } from "@/components/OfferMd";
-import { ConditionalBar } from "@/components/ConditionalBar";
+import { supabase } from "Logic/utils/supabaseClient";
+import { OfferMd } from "Presentation/components/OfferMd";
+import { ConditionalBar } from "Presentation/components/ConditionalBar";
 
 export default function createOfferPrivate({ profile_id, worker }) {
   const {

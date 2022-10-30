@@ -1,13 +1,13 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
-import { getDateFormat } from "@/utils/getDateFormat";
-import { TagList } from "@/Tag/TagList";
-import { supabase } from "@/utils/supabaseClient";
+import { getDateFormat } from "Logic/utils/getDateFormat";
+import { TagList } from "Presentation/components/Tag/TagList";
+import { supabase } from "Logic/utils/supabaseClient";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getOfferById } from "Persistence/OfferDAO";
-import { ProfilePhoto } from "@/components/Profile/ProfilePhoto";
-import { Button } from "@/components/Button";
-import { handleOnPostulation } from "@/utils/handleOnPostulation";
+import { ProfilePhoto } from "Presentation/components/Profile/ProfilePhoto";
+import { Button } from "Presentation/components/Button";
+import { handleOnPostulation } from "Logic/utils/handleOnPostulation";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 

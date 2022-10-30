@@ -1,4 +1,4 @@
-import { Collabs } from "@/components/Collabs";
+import { Collabs } from "Presentation/components/Collabs";
 import { cloneElement } from "react";
 import {
   UserIcon,

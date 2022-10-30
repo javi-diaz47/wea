@@ -1,7 +1,7 @@
 import { ProfileUserWithStar } from "@/components/Profile/ProfileUserWithStar";
 import { Profile } from "@/types/BusinessEntities/Profile";
 import { notification, notificationCard } from "@/types/types";
-import { onAcceptOffer, onDenyOffer } from "@/utils/handleAceptDenyOffer";
+import { onAcceptOffer, onDenyOffer } from "Logic/utils/handleAceptDenyOffer";
 import { Card } from "../Card";
 
 const PostulationCard = ({

@@ -1,5 +1,5 @@
 import { StarIcon } from "@heroicons/react/solid";
-import { getDateFormat } from "@/utils/getDateFormat";
+import { getDateFormat } from "Logic/utils/getDateFormat";
 
 const ProfileDateAndCalification = ({ date, calification }) => {
   return (

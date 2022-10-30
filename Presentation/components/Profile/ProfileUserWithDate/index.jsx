@@ -1,4 +1,4 @@
-import { getDateFormat } from "@/utils/getDateFormat";
+import { getDateFormat } from "Logic/utils/getDateFormat";
 import { ProfileUser } from "../ProfileUser";
 
 const ProfileUserWithDate = ({ name, last_name, href, date }) => {

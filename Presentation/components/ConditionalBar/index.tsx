@@ -1,4 +1,4 @@
-import { conditionalClassName } from "@/utils/conditionalClassName";
+import { conditionalClassName } from "Logic/utils/conditionalClassName";
 
 interface Props {
   state: boolean;

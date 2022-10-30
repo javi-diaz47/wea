@@ -1,5 +1,5 @@
 import { Card } from "../Card";
-import { TagList } from "@/Tag/TagList";
+import { TagList } from "Presentation/components/Tag/TagList";
 import { Offer } from "@/types/BusinessEntities/Offer";
 
 interface Props {

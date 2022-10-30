@@ -3,7 +3,7 @@ import { setService } from "@/Persistence/ServiceDAO";
 import { Offer } from "@/types/BusinessEntities/Offer";
 import { Service } from "@/types/BusinessEntities/Service";
 import { input_offer_type, notification, offerCard } from "@/types/types";
-import { handleEndJobOffer } from "@/utils/handleEndJobOffer";
+import { handleEndJobOffer } from "Logic/utils/handleEndJobOffer";
 import { useState } from "react";
 import { useBooleanState } from "./useBooleanState";
 

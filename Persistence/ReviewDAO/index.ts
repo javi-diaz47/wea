@@ -1,6 +1,6 @@
 import { Offer } from "@/types/BusinessEntities/Offer";
-import { supabase } from "@/utils/supabaseClient";
-import { handleSupabaseError } from "@/utils/handleSupabaseError";
+import { supabase } from "Logic/utils/supabaseClient";
+import { handleSupabaseError } from "Logic/utils/handleSupabaseError";
 import {
   getAllOffersType,
   offerCard,

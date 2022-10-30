@@ -1,15 +1,15 @@
-import { supabase } from "@/utils/supabaseClient";
+import { supabase } from "Logic/utils/supabaseClient";
 import { getCookie } from "cookies-next";
-import { OfferCard } from "@/Cards/OfferCard";
+import { OfferCard } from "Presentation/components/Cards/OfferCard";
 import jwt from "jsonwebtoken";
-import { Empty } from "@/components/Empty";
+import { Empty } from "Presentation/components/Empty";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import {
   getOffers,
   mapOfferFromOfferCard,
   setOffer,
 } from "@/Persistence/OfferDAO";
-import { handleEndJobOffer } from "@/utils/handleEndJobOffer";
+import { handleEndJobOffer } from "Logic/utils/handleEndJobOffer";
 import Link from "next/link";
 
 function JobInProgress({ queryKey }) {

@@ -1,10 +1,10 @@
 import { getAllNotifications } from "@/Persistence/NotificationDAO";
-import { onAcceptOffer, onDenyOffer } from "@/utils/handleAceptDenyOffer";
+import { onAcceptOffer, onDenyOffer } from "Logic/utils/handleAceptDenyOffer";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { dehydrate, QueryClient, useQuery } from "react-query";
-import { OfferCard } from "@/Cards/OfferCard";
-import { Empty } from "@/components/Empty";
+import { OfferCard } from "Presentation/components/Cards/OfferCard";
+import { Empty } from "Presentation/components/Empty";
 
 function RecievedOffers({ profileId, queryKey }) {
   const { data: notifications } = useQuery(queryKey, getAllNotifications);

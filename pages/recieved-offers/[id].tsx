@@ -1,10 +1,10 @@
-import { getDateFormat } from "@/utils/getDateFormat";
-import { supabase } from "@/utils/supabaseClient";
-import { ProfilePhoto } from "@/Profile/ProfilePhoto";
+import { getDateFormat } from "Logic/utils/getDateFormat";
+import { supabase } from "Logic/utils/supabaseClient";
+import { ProfilePhoto } from "Presentation/components/Profile/ProfilePhoto";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
-import { OfferMd } from "@/components/OfferMd";
-import { onAcceptOffer, onDenyOffer } from "@/utils/handleAceptDenyOffer";
+import { OfferMd } from "Presentation/components/OfferMd";
+import { onAcceptOffer, onDenyOffer } from "Logic/utils/handleAceptDenyOffer";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getNotification } from "@/Persistence/NotificationDAO";
 

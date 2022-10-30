@@ -1,7 +1,7 @@
 import jws from "jsonwebtoken";
 import { notification, notificationCard } from "@/types/types";
-import { handleSupabaseError } from "@/utils/handleSupabaseError";
-import { supabase } from "@/utils/supabaseClient";
+import { handleSupabaseError } from "Logic/utils/handleSupabaseError";
+import { supabase } from "Logic/utils/supabaseClient";
 import { useQuery } from "react-query";
 import { getProfileById } from "../UserDAO";
 
