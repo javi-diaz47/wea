@@ -98,7 +98,7 @@ const ProfileInformation = ({
           handleOpen={handleOpen}
           id={4}
           open={open}
-          title={"Trabajos ofrecidos"}
+          title={"Contactame"}
           icon={<PhoneIcon className="w-8 h-8 text-primary" />}
           desc={contact_me || ""}
         />
