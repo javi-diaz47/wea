@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { Layout } from "@/components/Layout";
@@ -9,7 +8,6 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 function MyApp({ Component, pageProps }) {
   const [authenticatedState, setAuthenticatedState] = useState("");
-  const router = useRouter();
 
   const queryClient = new QueryClient();
 

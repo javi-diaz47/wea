@@ -16,10 +16,12 @@ export default function createOfferPrivate({ profile_id, worker }) {
     preview,
     onPreview,
     onEdit,
+    onSuccess,
   } = useCreateOffer();
 
   return (
     <div className="flex flex-col gap-6 p-8">
+      {onSuccess()}
       <ConditionalBar
         state={preview}
         stateTrueText="Vista previa"

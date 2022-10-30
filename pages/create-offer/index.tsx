@@ -5,6 +5,7 @@ import { useCreateOffer } from "@/hooks/useCreateOffer";
 import { OfferMd } from "Presentation/components/OfferMd";
 import { useState } from "react";
 import { ConditionalBar } from "Presentation/components/ConditionalBar";
+import { useModal } from "@/hooks/useModal";
 
 export default function createOffer({ profileId }) {
   const {
@@ -18,10 +19,12 @@ export default function createOffer({ profileId }) {
     isJobOffer,
     onJobOffer,
     onServiceOffer,
+    onSuccess,
   } = useCreateOffer();
 
   return (
     <div className="flex flex-col gap-6 p-8">
+      {onSuccess()}
       <ConditionalBar
         state={preview}
         stateTrueText="Vista previa"

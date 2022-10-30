@@ -1,6 +1,9 @@
+import { Modal } from "@/components/Modal";
 import { ProfileUserWithStar } from "@/components/Profile/ProfileUserWithStar";
+import { useModal } from "@/hooks/useModal";
 import { Profile } from "@/types/BusinessEntities/Profile";
 import { notification, notificationCard } from "@/types/types";
+import { XCircleIcon } from "@heroicons/react/outline";
 import { onAcceptOffer, onDenyOffer } from "Logic/utils/handleAceptDenyOffer";
 import { Card } from "../Card";
 
@@ -10,8 +13,21 @@ const PostulationCard = ({
   notification: notificationCard;
 }) => {
   const { id, profile, offer, origin_id } = notification;
+
+  const { modalOpen, open, close, renderModal } = useModal();
   return (
     <Card>
+      {renderModal({
+        condition: true,
+        modal: (
+          <Modal
+            title="Error al iniciar sesion"
+            text="Usuario o contrasenas incorrectos"
+            handleClose={close}
+            icon={<XCircleIcon className="w-12 h-12 text-love" />}
+          />
+        ),
+      })}
       <div className="flex flex-col gap-4 w-full">
         <ProfileUserWithStar
           name={profile.name}

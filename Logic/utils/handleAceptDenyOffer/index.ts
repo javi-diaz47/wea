@@ -13,11 +13,13 @@ const onAcceptOffer = async ({
   notification_id,
 }: Props) => {
   console.log({ offer_id, worker_id });
-  addWorkerToOffer({
+  const err = addWorkerToOffer({
     offer_id,
     worker_id,
   });
   removeNotification(notification_id);
+
+  return err;
 };
 
 const onDenyOffer = (notification_id: string) => {

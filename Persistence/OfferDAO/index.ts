@@ -15,7 +15,7 @@ const mapOfferCardFromApi = (data): offerCard => {
     price: data.price || "",
     calification: data.calification || "",
     owner_id: data?.owner_id?.id || "",
-    worker_id: data?.worker_id || "",
+    worker_id: data?.worker_id?.id || "",
     offer_type: data.offer_type || "",
     in_progress: data.in_progress || "",
     created_at: data.created_at || "",
@@ -61,18 +61,18 @@ const getOffers = async (params): Promise<Array<offerCard>> => {
 
 const mapOfferFromOfferCard = (offer: offerCard): Offer => {
   return {
-    id: offer.id,
-    name: offer.name,
-    resume: offer.resume,
-    description: offer.description,
-    tags: offer.tags,
-    price: offer.price,
-    calification: offer.calification,
-    owner_id: offer.owner_id,
-    worker_id: offer.worker_id,
-    offer_type: offer.offer_type,
-    in_progress: offer.in_progress,
-    created_at: offer.created_at,
+    id: offer?.id,
+    name: offer?.name,
+    resume: offer?.resume,
+    description: offer?.description,
+    tags: offer?.tags,
+    price: offer?.price,
+    calification: offer?.calification,
+    owner_id: offer?.owner_id,
+    worker_id: offer?.worker_id,
+    offer_type: offer?.offer_type,
+    in_progress: offer?.in_progress,
+    created_at: offer?.created_at,
   };
 };
 
@@ -132,6 +132,7 @@ const getAllOffers = async (): Promise<getAllOffersType> => {
 };
 
 const setOffer = async (offer: Offer): Promise<Offer> => {
+  console.log(offer);
   const { data, error } = await supabase.from("offers").upsert([{ ...offer }]);
 
   return mapOfferFromApi(data);
@@ -150,8 +151,7 @@ const addWorkerToOffer = async ({
     .from("offers")
     .update({ worker_id, in_progress: "in-progress" })
     .eq("id", offer_id);
-
-  console.log(data);
+  return data.error;
 };
 
 export {

@@ -39,7 +39,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "Presentation/components/FormElement/index.jsx"  ],
+, "Presentation/components/FormElement/index.jsx", "pages/login.jsx"  ],
   "exclude": [
     "node_modules"
   ]

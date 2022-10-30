@@ -20,10 +20,10 @@ import { useCreateReview } from "@/hooks/useCreateReview";
 
 export default function EndJobOffer({ profileId, queryKey }) {
   const { data: offer } = useQuery(queryKey, getOfferById);
-  const { inputValues, onHandleChange, onSave } = useCreateReview();
-  console.log(offer.worker);
+  const { inputValues, onHandleChange, onSave, onSuccess } = useCreateReview();
   return (
     <div className="flex flex-col gap-6 p-8">
+      {onSuccess()}
       <ProfileUserWithStar
         href={`/profile/${offer.worker_id}`}
         name={offer.worker.name}

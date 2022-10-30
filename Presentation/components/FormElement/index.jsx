@@ -11,7 +11,7 @@ const FormElement = (props) => {
           {...props}
           className={
             className ??
-            "border-2 border-gray-300 bg-transparent w-full focus:outline-none rounded-md h-10  "
+            "px-2 border-2 border-gray-300 bg-transparent w-full focus:outline-none rounded-md h-10  "
           }
         />
       )}

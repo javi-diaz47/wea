@@ -1,10 +1,13 @@
+import { Modal } from "@/components/Modal";
 import { setOffer } from "@/Persistence/OfferDAO";
 import { setService } from "@/Persistence/ServiceDAO";
 import { Offer } from "@/types/BusinessEntities/Offer";
 import { Service } from "@/types/BusinessEntities/Service";
 import { input_offer_type, notification } from "@/types/types";
+import { CheckCircleIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import { useBooleanState } from "./useBooleanState";
+import { useModal } from "./useModal";
 
 export interface onSaveProps {
   ev: React.FormEvent<HTMLFormElement>;
@@ -34,6 +37,8 @@ const useCreateOffer = () => {
     onTrue: onJobOffer,
     onFalse: onServiceOffer,
   } = useBooleanState(true);
+
+  const { modalOpen, open, close, renderModal } = useModal();
 
   const onHandleChange = (
     ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -66,6 +71,11 @@ const useCreateOffer = () => {
       console.log(newOffer);
 
       const res = await setOffer(newOffer);
+
+      if (res) {
+        open();
+      }
+
       // console.log(res);
     }
 
@@ -79,12 +89,27 @@ const useCreateOffer = () => {
       console.log(newService);
 
       const res = await setService(newService);
+
+      if (res) {
+        open();
+      }
+
       // console.log(res);
     }
   };
 
-  const onPublish = () => {
-    // Set public on supabase
+  const onSuccess = () => {
+    return renderModal({
+      condition: modalOpen,
+      modal: (
+        <Modal
+          title="Creacion exitosa"
+          text=""
+          handleClose={close}
+          icon={<CheckCircleIcon className="w-12 h-12 text-green-500" />}
+        />
+      ),
+    });
   };
 
   return {
@@ -98,6 +123,10 @@ const useCreateOffer = () => {
     isJobOffer,
     onJobOffer,
     onServiceOffer,
+    modalOpen,
+    open,
+    close,
+    onSuccess,
   };
 };
 

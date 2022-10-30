@@ -9,8 +9,10 @@ interface Props {
 
 const handleEndJobOffer = ({ review, offerCard }: Props) => {
   const offer = mapOfferFromOfferCard(offerCard);
+  console.log(offer);
   setOffer({ ...offer, in_progress: "done" });
-  setReview({ ...review });
+  const res = setReview({ ...review });
+  return res;
 };
 
 export { handleEndJobOffer };

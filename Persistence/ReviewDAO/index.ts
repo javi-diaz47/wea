@@ -69,7 +69,13 @@ const mapReviewFromReviewCard = (offer: reviewCard): Review => {
 
 const mapReviewFromApi = (data): Review => {
   return {
-    ...data,
+    id: data?.id || "",
+    owner_id: data?.owner_id || "",
+    worker_id: data?.worker_id || "",
+    offer_id: data?.offer_id || "",
+    review: data?.review || "",
+    calification: String(data?.calification) || "",
+    created_at: data?.created_at || "",
   };
 };
 
@@ -90,10 +96,14 @@ const getOfferById = async (params): Promise<reviewCard> => {
 
 const offersQuery = `*, owner_id (id, name, last_name, picture), worker_id  (id, name, last_name, picture, calification)`;
 
-const setReview = async (offer: Review): Promise<Review> => {
-  const { data, error } = await supabase.from("reviews").upsert([{ ...offer }]);
+const setReview = async (offer: Review) => {
+  const { data, error } = await supabase.from("reviews").upsert([
+    {
+      ...offer,
+    },
+  ]);
 
-  return mapReviewFromApi(data);
+  return error;
 };
 
 export { getReview, getOfferById, setReview };

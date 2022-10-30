@@ -27,11 +27,7 @@ const OfferCard = ({ offer, href, profile, children, isOnJobOffer }: Props) => {
         </div>
         <div className="flex items-center">
           <AnchorButton
-            href={
-              href
-                ? href
-                : `${process.env.NEXT_PUBLIC_ROOT_URL}/${isOnJobOffer}/${offer.id}`
-            }
+            href={href ? href : `/${isOnJobOffer}/${offer.id}`}
             text="Ver oferta"
           />
         </div>

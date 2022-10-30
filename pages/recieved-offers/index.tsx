@@ -5,13 +5,28 @@ import jwt from "jsonwebtoken";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { OfferCard } from "Presentation/components/Cards/OfferCard";
 import { Empty } from "Presentation/components/Empty";
+import { Modal } from "@/components/Modal";
+import { useModal } from "@/hooks/useModal";
+import { XCircleIcon } from "@heroicons/react/outline";
 
 function RecievedOffers({ profileId, queryKey }) {
   const { data: notifications } = useQuery(queryKey, getAllNotifications);
-  console.log(notifications);
+  const { modalOpen, open, close, renderModal } = useModal();
+
   return (
     <div className="flex flex-col gap-8 m-8">
       <h2 className="text-4xl font-semibold">Ofertas recibidas</h2>
+      {renderModal({
+        condition: modalOpen,
+        modal: (
+          <Modal
+            title="Aceptaste la oferta"
+            text=""
+            handleClose={close}
+            icon={<XCircleIcon className="w-12 h-12 text-love" />}
+          />
+        ),
+      })}
       <ul className="flex flex-col gap-12">
         {notifications.length === 0 ? (
           <Empty text="Por el momento no has recibido ninguna oferta" />
@@ -25,13 +40,17 @@ function RecievedOffers({ profileId, queryKey }) {
               >
                 <div className="flex justify-center gap-8 ">
                   <button
-                    onClick={() =>
-                      onAcceptOffer({
+                    onClick={() => {
+                      const error = onAcceptOffer({
                         offer_id: offer.id,
                         worker_id: profileId,
                         notification_id: id,
-                      })
-                    }
+                      });
+
+                      if (!error) {
+                        open();
+                      }
+                    }}
                     className="text-primary border-primary bg-transparent border-2 font-semibold py-1 px-2 rounded-full"
                   >
                     Aceptar

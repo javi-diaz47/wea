@@ -3,34 +3,51 @@ import { FormElement } from "@/components/FormElement";
 import { Footer } from "@/components/Footer";
 import { signUpUser } from "@/utils/auth";
 import { MIN_PASSWORD_LENGTH, USER_TYPES } from "@/utils/constants";
-import { Wea } from "../Presentation/components/Icons/Wea";
+import { Modal } from "@/components/Modal";
+import { useModal } from "@/hooks/useModal";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/outline";
+import Router from "next/router";
 
 export default function signUp() {
   const [userType, setUserType] = useState(USER_TYPES.PERSON);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (ev) => {
+  const { modalOpen, open, close, renderModal } = useModal(false);
+
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
     const htmlFormData = new FormData(ev.target);
     const inputObject = Object.fromEntries(htmlFormData);
-    signUpUser(inputObject);
-    setSubmitted(true);
+    const error = await signUpUser(inputObject);
+    console.log(error);
+    if (error) {
+      setError(true);
+      open();
+    }
+    if (!error) {
+      Router.push("login");
+      open();
+    }
   };
 
   const onChangeUserType = (ev) => {
     setUserType(ev.target.value);
   };
 
-  if (submitted) {
-    return (
-      <div className=" bg-black flex justify-center items-center text-white">
-        <h2>Revisa tu correo electronico</h2>
-      </div>
-    );
-  }
-
   return (
     <div className="  flex flex-col  items-center  relative">
+      {renderModal({
+        condition: modalOpen && !!error,
+        modal: (
+          <Modal
+            title="Error al crear cuenta"
+            text="Tenemos problemas con el servidor, intenta mas tarde"
+            handleClose={close}
+            icon={<XCircleIcon className="w-12 h-12 text-love" />}
+          />
+        ),
+      })}
       <form onSubmit={handleSubmit}>
         <div className="flex gap-8 mt-8">
           <h1 className="text-3xl">Registrate</h1>

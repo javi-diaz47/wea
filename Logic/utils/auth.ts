@@ -19,9 +19,9 @@ export const signUpUser = async (data) => {
 
     if (error) throw error;
 
-    console.log(user);
+    return false;
   } catch (err) {
-    console.error(err);
+    return true;
   }
 };
 
@@ -35,10 +35,9 @@ export const signIn = async ({ email, password }) => {
       password,
     });
     if (error) throw error;
-    console.log(user);
-    console.log(session);
+    return { data: session.user.id, error: false };
   } catch (err) {
-    console.error(err);
+    return { data: null, error: true };
   }
 };
 
