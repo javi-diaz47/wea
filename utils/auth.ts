@@ -68,8 +68,16 @@ export const handleAuthChange = async (event, session) => {
 //Set the user authenticatedState if the user is authenticated
 export const checkUser = async (setAuthenticatedState) => {
   // Check if user exist
-  const user = await supabase.auth.getUser();
-  if (user) {
+  const {
+    data: { session },
+    error,
+  } = await supabase.auth.getSession();
+
+  if (error) {
+    return "not-authenticated";
+  }
+
+  if (session) {
     setAuthenticatedState("authenticated");
   }
 };
