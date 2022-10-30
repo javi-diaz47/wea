@@ -76,11 +76,6 @@ export default function Profile({ queryKey }) {
           Editar perfil
         </a>
       </Link>
-      <Link href="/profile/edit">
-        <a className=" border border-primary text-primary h-fit py-1 px-3 rounded-full text-center shadow-sm hover:bg-primary hover:text-white duration-200">
-          Editar perfil
-        </a>
-      </Link>
     </div>
   );
 }
