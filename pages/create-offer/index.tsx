@@ -30,7 +30,7 @@ export default function createOffer({ profileId }) {
         onNotState={onEdit}
         className="flex flex-row-reverse justify-end"
         classNameBtnSelected="text-love"
-        classNameBtn="text-white"
+        classNameBtn="text-black"
       />
 
       {!!preview && (

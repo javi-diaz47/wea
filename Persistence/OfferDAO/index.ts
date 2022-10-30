@@ -24,6 +24,12 @@ const mapOfferCardFromApi = (data): offerCard => {
       last_name: data.owner_id?.last_name || "",
       picture: data.owner_id?.picture || "",
     },
+    worker: {
+      name: data.owner_id.name || "",
+      last_name: data.owner_id?.last_name || "",
+      picture: data.owner_id?.picture || "",
+      calification: data.owner_id.calification || "",
+    },
   };
 };
 
@@ -48,6 +54,23 @@ const getOffers = async (params): Promise<Array<offerCard>> => {
   return data;
 };
 
+const mapOfferFromOfferCard = (offer: offerCard): Offer => {
+  return {
+    id: offer.id,
+    name: offer.name,
+    resume: offer.resume,
+    description: offer.description,
+    tags: offer.tags,
+    price: offer.price,
+    calification: offer.calification,
+    owner_id: offer.owner_id,
+    worker_id: offer.worker_id,
+    offer_type: offer.offer_type,
+    in_progress: offer.in_progress,
+    created_at: offer.created_at,
+  };
+};
+
 const getOfferById = async (params): Promise<offerCard> => {
   const { id } = params.queryKey[1];
   const data = await supabase
@@ -63,7 +86,7 @@ const getOfferById = async (params): Promise<offerCard> => {
   return data;
 };
 
-const offersQuery = `*, owner_id (id, name, last_name, picture)`;
+const offersQuery = `*, owner_id (id, name, last_name, picture), worker_id  (id, name, last_name, picture, calification)`;
 
 const getAllOffers = async (): Promise<getAllOffersType> => {
   const offers = await supabase
@@ -108,4 +131,11 @@ const addWorkerToOffer = async ({
   console.log(data);
 };
 
-export { getOffers, getAllOffers, getOfferById, setOffer, addWorkerToOffer };
+export {
+  getOffers,
+  getAllOffers,
+  getOfferById,
+  setOffer,
+  addWorkerToOffer,
+  mapOfferFromOfferCard,
+};

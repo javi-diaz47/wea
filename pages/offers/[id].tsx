@@ -17,9 +17,7 @@ export default function Offer({ profileId, queryKey }) {
   return (
     <div className="p-8">
       <div className="flex gap-4 my-4">
-        <ProfilePhoto
-          href={`${process.env.NEXT_PUBLIC_ROOT_URL}/profile/${offer?.owner_id}`}
-        />
+        <ProfilePhoto href={`profile/${offer?.owner_id}`} />
         <div className="flex flex-col">
           <span>
             <strong>{offer.profile.name}</strong> {offer.profile.last_name}

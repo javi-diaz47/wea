@@ -1,15 +1,11 @@
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import remarkGfm from "remark-gfm";
 import { CreateOfferForm } from "@/components/CreateOfferForm";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { ProfileUserWithStar } from "@/Profile/ProfileUserWithStar";
-import { conditionalTextColor } from "@/utils/conditionalTextColor";
 import { useCreateOffer } from "@/hooks/useCreateOffer";
-import { TagList } from "@/Tag/TagList";
 import { supabase } from "@/utils/supabaseClient";
-import { PreviewBar } from "@/components/PreviewBar";
 import { OfferMd } from "@/components/OfferMd";
+import { ConditionalBar } from "@/components/ConditionalBar";
 
 export default function createOfferPrivate({ profile_id, worker }) {
   const {
@@ -24,10 +20,18 @@ export default function createOfferPrivate({ profile_id, worker }) {
 
   return (
     <div className="flex flex-col gap-6 p-8">
-      <PreviewBar state={preview} onState={onPreview} onNotState={onEdit} />
-
+      <ConditionalBar
+        state={preview}
+        stateTrueText="Vista previa"
+        stateFalseText="Editar"
+        onState={onPreview}
+        onNotState={onEdit}
+        className="flex flex-row-reverse justify-end"
+        classNameBtnSelected="text-love"
+        classNameBtn="text-black"
+      />
       <ProfileUserWithStar
-        href={worker.id}
+        href={`profile/${worker.id}`}
         name={worker.name}
         last_name={worker.last_name}
         star={worker.calification}
@@ -43,7 +47,6 @@ export default function createOfferPrivate({ profile_id, worker }) {
       {!preview && (
         <div className=" max-w-6xl">
           <CreateOfferForm
-            worker_id={worker.id}
             name={inputValues.name}
             description={inputValues.description}
             resume={inputValues.resume}

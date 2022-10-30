@@ -3,13 +3,14 @@ import { AnchorButton } from "@/components/AnchorButton";
 import { CardTemplate } from "../CardTemplate";
 import { Offer } from "@/types/BusinessEntities/Offer";
 import { profileCard } from "@/types/types";
+import Link from "next/link";
 
 interface Props {
   offer: Offer;
   href?: String;
   profile: profileCard;
   children?: JSX.Element;
-  isOnJobOffer: string;
+  isOnJobOffer?: string;
 }
 
 const OfferCard = ({ offer, href, profile, children, isOnJobOffer }: Props) => {
@@ -24,7 +25,6 @@ const OfferCard = ({ offer, href, profile, children, isOnJobOffer }: Props) => {
             date={offer.created_at}
           />
         </div>
-
         <div className="flex items-center">
           <AnchorButton
             href={

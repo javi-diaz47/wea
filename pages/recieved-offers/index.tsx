@@ -8,6 +8,7 @@ import { Empty } from "@/components/Empty";
 
 function RecievedOffers({ profileId, queryKey }) {
   const { data: notifications } = useQuery(queryKey, getAllNotifications);
+  console.log(notifications);
   return (
     <div className="flex flex-col gap-8 m-8">
       <h2 className="text-4xl font-semibold">Ofertas recibidas</h2>

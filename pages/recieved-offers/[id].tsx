@@ -4,10 +4,7 @@ import { ProfilePhoto } from "@/Profile/ProfilePhoto";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { OfferMd } from "@/components/OfferMd";
-import {
-  onAcceptRecievedJobOffer,
-  onDenyRecievedJobOffer,
-} from "@/utils/handleAceptDenyOffer";
+import { onAcceptOffer, onDenyOffer } from "@/utils/handleAceptDenyOffer";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getNotification } from "@/Persistence/NotificationDAO";
 
@@ -39,7 +36,7 @@ function RecievedOffersId({ profileId, queryKey }) {
       <div>
         <button
           onClick={() =>
-            onAcceptRecievedJobOffer({
+            onAcceptOffer({
               offer_id: notification?.offer.id,
               worker_id: profileId,
               notification_id: notification?.id,
@@ -48,7 +45,7 @@ function RecievedOffersId({ profileId, queryKey }) {
         >
           Aceptar oferta de trabajo
         </button>
-        <button onClick={() => onDenyRecievedJobOffer(notification?.id)}>
+        <button onClick={() => onDenyOffer(notification?.id)}>
           Rechazar oferta de trabajo
         </button>
       </div>

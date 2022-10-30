@@ -1,26 +1,26 @@
 import jws from "jsonwebtoken";
-import { notification } from "@/types/types";
+import { notification, notificationCard } from "@/types/types";
 import { handleSupabaseError } from "@/utils/handleSupabaseError";
 import { supabase } from "@/utils/supabaseClient";
 import { useQuery } from "react-query";
 import { getProfileById } from "../UserDAO";
 
 const notificationQuery = `id, 
-      offer_id (id, name, resume, description, created_at), 
+      offer_id (id, name, resume, description, tags, owner_id, created_at), 
       origin_id (id, name, resume, last_name, picture), 
       destination_id, type`;
 
-const mapNotificationFromAPI = (data): notification => {
+const mapNotificationFromAPI = (data): notificationCard => {
   return {
     id: data.id,
     origin_id: { ...data.origin_id },
     destination_id: data.destination_id,
-    offer: { ...data.offer_id },
+    offer: { ...data.offer_id, tags: [] },
     type: data.type,
   };
 };
 
-const getNotification = async (params): Promise<notification> => {
+const getNotification = async (params): Promise<notificationCard> => {
   const {
     destination_id,
     queryCondition: { column, value },
@@ -51,7 +51,9 @@ const getNotification = async (params): Promise<notification> => {
   return data;
 };
 
-const getAllNotifications = async (params): Promise<Array<notification>> => {
+const getAllNotifications = async (
+  params
+): Promise<Array<notificationCard>> => {
   const {
     destination_id,
     queryCondition: { column, value },

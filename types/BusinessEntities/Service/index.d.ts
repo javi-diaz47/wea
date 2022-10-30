@@ -1,3 +1,5 @@
+import { Profile } from "../Profile";
+
 export interface Service {
   id?: string;
   name: string;
