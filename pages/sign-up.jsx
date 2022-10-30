@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { FormElement } from "@/components/FormElement";
+import { Footer } from "@/components/Footer";
 import { signUpUser } from "@/utils/auth";
 import { MIN_PASSWORD_LENGTH, USER_TYPES } from "@/utils/constants";
-import { Footer } from "@/components/Footer";
+import { Wea } from "../components/Icons/Wea";
 
 export default function signUp() {
   const [userType, setUserType] = useState(USER_TYPES.PERSON);
@@ -22,17 +23,17 @@ export default function signUp() {
 
   if (submitted) {
     return (
-      <div className="h-screen bg-black flex justify-center items-center text-white">
+      <div className=" bg-black flex justify-center items-center text-white">
         <h2>Revisa tu correo electronico</h2>
       </div>
     );
   }
 
   return (
-    <div className="  flex flex-col  items-center mb-40 relative">
+    <div className="  flex flex-col  items-center  relative">
       <form onSubmit={handleSubmit}>
-        <div className="flex gap-8">
-          <h1>Registrate</h1>
+        <div className="flex gap-8 mt-8">
+          <h1 className="text-3xl">Registrate</h1>
         </div>
 
         <FormElement label="Nombre" name="name" required={true} />
@@ -45,10 +46,11 @@ export default function signUp() {
           required={true}
           minLength={MIN_PASSWORD_LENGTH}
         />
-
-        <button className="bg-white p-2 rounded-lg hover:bg-blue-600 bold text-lg hover:text-white duration-300">
-          Crear cuenta
-        </button>
+        <div className="flex justify-center">
+          <button className="bg-primary text-white p-2 rounded-lg hover:bg-white bold text-lg hover:text-black duration-300 shadow-xl">
+            Crear cuenta
+          </button>
+        </div>
       </form>
       <Footer />
     </div>

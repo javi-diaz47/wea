@@ -2,7 +2,7 @@ import { Navbar } from "../Navbar";
 
 const Layout = ({ isAuth, children }) => {
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background ">
       <Navbar isAuth={isAuth} />
       {children}
     </div>

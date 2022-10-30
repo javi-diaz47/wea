@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { Wea } from "../components/Icons/Wea";
 export default function Home() {
   return (
@@ -21,9 +22,11 @@ export default function Home() {
                 persona correcta para hacer eso que tanto necesitas ¿Qué
                 esperas?
               </p>
-              <button className=" mx-auto lg:mx-0 bg-white text-gray-800  rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out text-2xl">
-                Registrate
-              </button>
+              <Link href="sign-up">
+                <a className=" mx-auto lg:mx-0 bg-white text-gray-800  rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out text-2xl">
+                  Registrate
+                </a>
+              </Link>
             </div>
             <div className="w-full md:w-3/5 py-6 text-center flex justify-center">
               <img

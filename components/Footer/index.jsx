@@ -1,7 +1,7 @@
 import { Wea } from "../Icons/Wea";
 const Footer = () => {
   return (
-    <footer className="bg-black flex w-full absolute -bottom-10 translate-y-[100%] ">
+    <footer className="bg-black flex w-full absolute -bottom-16 translate-y-[100%] ">
       <ul className="text-white md:w-1/2 mx-3 my-3 text-xl space-y-3">
         <li className=" pt-4">
           <Wea fill="#fff" className="" />
