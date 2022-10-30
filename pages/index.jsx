@@ -80,10 +80,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer
-          w-full
-          className="sticky top-[100vh] bg-black w-full flex py-4 pl-8"
-        >
+        <footer className="sticky top-[100vh] bg-black w-full flex py-4 pl-8">
           <ul className="text-white md:w-1/2 mx-3 my-3 text-xl space-y-3">
             <li className=" pt-4">
               <Wea fill="#fff" className="" />

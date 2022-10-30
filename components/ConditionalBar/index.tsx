@@ -29,7 +29,7 @@ const ConditionalBar = ({
           state: !state,
           className: classNameBtn,
           classNameAlt: classNameBtnSelected,
-        })} ${classNameBtn} `}
+        })}  `}
         onClick={onState}
       >
         {stateTrueText}
@@ -40,7 +40,7 @@ const ConditionalBar = ({
           state,
           className: classNameBtn,
           classNameAlt: classNameBtnSelected,
-        })} ${classNameBtn} `}
+        })}  `}
         onClick={onNotState}
       >
         {stateFalseText}

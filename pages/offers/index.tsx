@@ -30,17 +30,24 @@ export default function Offers({ queryKey }) {
       <SearchBar input={input} onChange={onChange} />
       <ConditionalBar
         state={isJobOffer}
-        stateTrueText="Oferta de trabajo"
+        stateTrueText="Trabajo"
         stateFalseText="Servicio"
         onState={onJobOffer}
         onNotState={onServiceOffer}
-        classNameBtnSelected="scale-95 active:shadow-lg text-white p-2 hover:bg-blue-500 bg-blue-600 bold duration-300 transition-all rounded-lg  mx-auto w-fit px-7 my-5 shadow-md"
-        classNameBtn="active:scale-95 active:shadow-lg text-white p-2 hover:bg-blue-500 bg-blue-600 bold duration-300 transition-all rounded-lg  mx-auto w-fit px-7 my-5 shadow-md"
+        className="flex gap-4"
+        classNameBtn="w-fit h-fit px-4 py-1 text-primary bg-white shadow-lg  bold duration-300 transition-all rounded-full "
+        classNameBtnSelected="w-fit h-fit px-4 py-1 text-white bg-primary shadow-lg  bold duration-300 transition-all rounded-full  "
       />
 
       <ul className=" flex flex-col gap-12">
         {offers[isOnOfferType()].length === 0 ? (
-          <Empty text="Lo sentimos, Aun no hay ofertas de trabajo.¡Animate y crea una!" />
+          <Empty
+            text={
+              input
+                ? `Lo sentimos pero no se encontro ninguna oferta de nombre ${input}`
+                : "Lo sentimos, Aun no hay ofertas de trabajo.¡Animate y crea una!"
+            }
+          />
         ) : (
           offers[isOnOfferType()].map((offer) => (
             <li key={offer.id}>

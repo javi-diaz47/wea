@@ -16,9 +16,7 @@ const SearchBar = ({ input, onChange }: Props) => {
           className="h-8 p-2 rounded-full"
           placeholder="Buscar..."
         ></input>
-        <button className="p-2 w-fit h-fit rounded-full bg-white hover:bg-primary hover:text-white duration-300">
-          <SearchIcon className="w-6 h-6" />
-        </button>
+        <SearchIcon className="w-10 h-10 p-2 rounded-full bg-white  duration-300" />
       </div>
       <button className="p-2 rounded-full bg-white hover:bg-primary hover:text-white duration-300">
         <FilterIcon className="w-6 h-6" />
