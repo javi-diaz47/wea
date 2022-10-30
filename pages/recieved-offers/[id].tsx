@@ -19,8 +19,8 @@ function RecievedOffersId({ profileId, queryKey }) {
         />
         <div className="flex flex-col">
           <span>
-            <strong>{notification?.origin_id.name}</strong>{" "}
-            {notification?.origin_id.last_name}
+            <strong>{notification?.profile.name}</strong>{" "}
+            {notification?.profile.last_name}
           </span>
           <span className="capitalize">
             {getDateFormat(notification?.offer.created_at)}
