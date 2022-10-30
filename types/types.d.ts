@@ -10,6 +10,7 @@ export interface notification {
   destination_id: string;
   offer?: Offer;
   offer_id?: string;
+  service_id?: string;
   viewed?: boolean;
   type?: notification_type;
   created_at?: string;
@@ -17,13 +18,14 @@ export interface notification {
 
 export interface notificationCard {
   id?: string;
-  origin_id: Profile;
+  origin_id: string;
   destination_id: string;
   offer?: Offer;
   offer_id?: string;
   viewed?: boolean;
   type?: notification_type;
   created_at?: string;
+  profile: profileCard;
 }
 
 // export interface Profiles {
@@ -44,6 +46,7 @@ export interface profileCard {
   last_name?: string;
   picture?: string;
   calification?: string;
+  resume?: string;
 }
 
 export interface offerCard extends Offer {
@@ -69,4 +72,19 @@ export interface OfferNotification {
 export interface getAllOffersType {
   offers: Array<offerCard>;
   services: Array<offerCard>;
+}
+
+export interface Review {
+  id?: string;
+  owner_id: string;
+  worker_id: string;
+  offer_id?: string;
+  review: string;
+  calification: string;
+  created_at?: string;
+}
+
+export interface reviewCard extends Review {
+  profile: profileCard;
+  worker: profileCard;
 }

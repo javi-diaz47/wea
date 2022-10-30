@@ -42,16 +42,17 @@ export default function createOffer({ profileId }) {
         />
       )}
       {!preview && (
-        <div className=" max-w-6xl ">
+        <div className=" max-w-6xl flex flex-col gap-4 ">
           <h2 className="text-4xl font-semibold">Crear oferta</h2>
           <ConditionalBar
             state={isJobOffer}
-            stateTrueText="Oferta de trabajo"
-            stateFalseText="Servicio"
+            stateTrueText="Ofrecer trabajo"
+            stateFalseText="Ofrecer mis servicios"
             onState={onJobOffer}
             onNotState={onServiceOffer}
-            classNameBtnSelected="scale-95 active:shadow-lg text-white p-2 hover:bg-blue-500 bg-blue-600 bold duration-300 transition-all rounded-lg  mx-auto w-fit px-7 my-5 shadow-md"
-            classNameBtn="active:scale-95 active:shadow-lg text-white p-2 hover:bg-blue-500 bg-blue-600 bold duration-300 transition-all rounded-lg  mx-auto w-fit px-7 my-5 shadow-md"
+            className="flex gap-4"
+            classNameBtn=" text-sm w-fit h-fit px-4 py-1 text-primary bg-white shadow-lg  bold duration-300 transition-all rounded-full "
+            classNameBtnSelected="text-sm w-fit h-fit px-4 py-1 text-white bg-primary shadow-lg  bold duration-300 transition-all rounded-full  "
           />
           <CreateOfferForm
             name={inputValues.name}

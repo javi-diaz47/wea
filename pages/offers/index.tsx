@@ -20,7 +20,7 @@ export default function Offers({ queryKey }) {
     input,
     onChange,
   } = useSearchBar(data);
-
+  console.log(offers);
   return (
     <div className="flex flex-col gap-4 p-8">
       <button className="fixed right-10 bottom-[10%] flex justify-center align-center w-14 h-14 bg-primary rounded-full text-white shadow-xl">

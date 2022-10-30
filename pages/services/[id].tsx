@@ -11,6 +11,9 @@ import { handleOnPostulation } from "@/utils/handleOnPostulation";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 import { getServiceById } from "@/Persistence/ServiceDAO";
+import { handleOnServiceOffer } from "@/utils/handleOnServiceOffer";
+import Link from "next/link";
+import { AnchorButton } from "@/components/AnchorButton";
 
 export default function Offer({ profileId, queryKey }) {
   const { data: offer } = useQuery(queryKey, getServiceById);
@@ -39,15 +42,9 @@ export default function Offer({ profileId, queryKey }) {
       </div>
       {profileId !== offer.owner_id ? (
         <div className="mt-8 flex justify-center">
-          <Button
-            text="Postularme a la oferta de trabajo"
-            onClick={() =>
-              handleOnPostulation({
-                offer_id: offer.id,
-                destination_id: offer.owner_id,
-                origin_id: profileId,
-              })
-            }
+          <AnchorButton
+            href={`/create-offer/${offer.owner_id}`}
+            text="Ofrecer trabajo"
           />
         </div>
       ) : (

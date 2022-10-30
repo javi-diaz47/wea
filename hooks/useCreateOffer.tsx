@@ -6,7 +6,7 @@ import { input_offer_type, notification } from "@/types/types";
 import { useState } from "react";
 import { useBooleanState } from "./useBooleanState";
 
-interface onSaveProps {
+export interface onSaveProps {
   ev: React.FormEvent<HTMLFormElement>;
   owner_id: string;
   worker_id?: string;
@@ -60,7 +60,7 @@ const useCreateOffer = () => {
         owner_id,
         worker_id,
         offer_type: worker_id ? "private" : "public",
-        in_progress: false,
+        in_progress: "not-in-progress",
       };
 
       console.log(newOffer);

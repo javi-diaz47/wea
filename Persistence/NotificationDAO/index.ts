@@ -13,9 +13,14 @@ const notificationQuery = `id,
 const mapNotificationFromAPI = (data): notificationCard => {
   return {
     id: data.id,
-    origin_id: { ...data.origin_id },
+    origin_id: data.origin_id.id,
     destination_id: data.destination_id,
     offer: { ...data.offer_id, tags: [] },
+    profile: {
+      name: data?.origin_id?.name || "",
+      last_name: data?.origin_id?.last_name || "",
+      picture: data?.origin_id?.picture || "",
+    },
     type: data.type,
   };
 };

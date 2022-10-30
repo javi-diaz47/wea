@@ -14,7 +14,7 @@ import Link from "next/link";
 
 function JobInProgress({ queryKey }) {
   const { data: offers } = useQuery(queryKey, getOffers);
-  console.log(offers);
+  // console.log({ offers });
   return (
     <div className="flex flex-col gap-8 p-8">
       <h2 className="text-4xl font-semibold">Trabajo en progreso</h2>

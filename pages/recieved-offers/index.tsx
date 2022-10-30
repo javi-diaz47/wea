@@ -16,12 +16,12 @@ function RecievedOffers({ profileId, queryKey }) {
         {notifications.length === 0 ? (
           <Empty text="Por el momento no has recibido ninguna oferta" />
         ) : (
-          notifications.map(({ offer, origin_id, id }) => (
+          notifications.map(({ offer, profile, id }) => (
             <li key={id}>
               <OfferCard
                 offer={offer}
                 href={`recieved-offers/${id}`}
-                profile={origin_id}
+                profile={profile}
               >
                 <div className="flex justify-center gap-8 ">
                   <button

@@ -7,7 +7,7 @@ import { Empty } from "@/components/Empty";
 
 function RecievedPostulations({ queryKey }) {
   const { data } = useQuery(queryKey, getAllNotifications);
-  console.log(data.length);
+  console.log(data);
   return (
     <div className="flex flex-col flex-wrap gap-8 m-8">
       <h2 className="text-4xl font-semibold">Postulaciones recibidas</h2>

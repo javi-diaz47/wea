@@ -16,26 +16,12 @@ import {
 } from "@/utils/constants";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getOfferById, mapOfferFromOfferCard } from "@/Persistence/OfferDAO";
-import { handleEndJobOffer } from "@/utils/handleEndJobOffer";
+import { useCreateReview } from "@/hooks/useCreateReview";
 
 export default function EndJobOffer({ profileId, queryKey }) {
   const { data: offer } = useQuery(queryKey, getOfferById);
-  const [inputValues, setInputValues] = useState({
-    calification: "",
-    review: "",
-  });
-
-  const onHandleChange = (
-    ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = ev.target;
-    const newInputValues = { ...inputValues, [name]: value };
-    setInputValues(newInputValues);
-  };
-  const onSubmit = () => {
-    handleEndJobOffer(mapOfferFromOfferCard(offer));
-  };
-
+  const { inputValues, onHandleChange, onSave } = useCreateReview();
+  console.log(offer.worker);
   return (
     <div className="flex flex-col gap-6 p-8">
       <ProfileUserWithStar
@@ -47,7 +33,10 @@ export default function EndJobOffer({ profileId, queryKey }) {
 
       <div className="flex flex-col gap-4 mt-4">
         <h2 className="text-4xl font-semibold">Finalizar oferta</h2>
-        <form onSubmit={onSubmit} className="grid gap-8 text-xl">
+        <form
+          onSubmit={(ev) => onSave({ ev, offer })}
+          className="grid gap-8 text-xl"
+        >
           <InputWithLabel label="Calificar trabajador">
             <input
               name="calification"
@@ -59,7 +48,7 @@ export default function EndJobOffer({ profileId, queryKey }) {
               onChange={onHandleChange}
               className="text-lg w-full p-2 rounded-lg shadow-md"
               placeholder="Costo base de la oferta"
-              required={true}
+              required
             />
           </InputWithLabel>
 
