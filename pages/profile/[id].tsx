@@ -9,10 +9,12 @@ import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
 
-export default function ProfileId({ queryKey }) {
+export default function ProfileId({ queryKey, allow }) {
   const router = useRouter();
 
-  const { data: profile } = useQuery(queryKey, getProfileById);
+  const {
+    data: { profile, services, offers },
+  } = useQuery(queryKey, getProfileById);
 
   return (
     <div className="h-screen bg-background px-8 py-8 flex flex-col gap-7">
@@ -35,12 +37,13 @@ export default function ProfileId({ queryKey }) {
         who_am_i={profile?.who_am_i}
         resume={profile?.resume}
         contact_me={profile?.contact_me}
+        offers={offers}
+        services={services}
+        allow={allow}
       />
 
-      <Link
-        href={`${process.env.NEXT_PUBLIC_ROOT_URL}/create-offer/${profile.id}`}
-      >
-        <a className="bg-primary rounded-full w-fit py-2 px-6 self-center">
+      <Link href={`/create-offer/${profile.id}`}>
+        <a className="bg-primary rounded-full w-fit py-2 px-6 self-center mb-8">
           Proponer trabajo
         </a>
       </Link>
@@ -66,10 +69,19 @@ export async function getServerSideProps({ req, res, params }) {
 
   const queryKey = ["profile", { id }];
 
+  const { data, error } = await supabase
+    .from("offers")
+    .select("*")
+    .or(`worker_id.eq.${id},owner_id.eq.${id}`)
+    .or(`worker_id.eq.${current_profile_id},owner_id.eq.${current_profile_id}`);
+
+  console.log(data);
+
   await queryClient.prefetchQuery(queryKey, getProfileById);
 
   return {
     props: {
+      allow: data.length !== 0 ? true : false,
       queryKey,
       dehydratedState: dehydrate(queryClient),
     },

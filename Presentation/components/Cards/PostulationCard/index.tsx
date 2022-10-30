@@ -3,8 +3,9 @@ import { ProfileUserWithStar } from "@/components/Profile/ProfileUserWithStar";
 import { useModal } from "@/hooks/useModal";
 import { Profile } from "@/types/BusinessEntities/Profile";
 import { notification, notificationCard } from "@/types/types";
-import { XCircleIcon } from "@heroicons/react/outline";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/outline";
 import { onAcceptOffer, onDenyOffer } from "Logic/utils/handleAceptDenyOffer";
+import { useRouter } from "next/router";
 import { Card } from "../Card";
 
 const PostulationCard = ({
@@ -15,16 +16,49 @@ const PostulationCard = ({
   const { id, profile, offer, origin_id } = notification;
 
   const { modalOpen, open, close, renderModal } = useModal();
+  const router = useRouter();
+  const accept = () => {
+    const res = onAcceptOffer({
+      notification_id: id,
+      worker_id: origin_id,
+      offer_id: offer.id,
+    });
+
+    if (res) {
+      open();
+      setTimeout(() => {
+        router.push(`profile/${origin_id}`);
+      }, 800);
+    }
+    if (!res) {
+      close();
+    }
+  };
+
+  const deny = () => {
+    const res = onDenyOffer(id);
+
+    if (res) {
+      open();
+      setTimeout(() => {
+        router.reload();
+      }, 800);
+    }
+    if (!res) {
+      close();
+    }
+  };
+
   return (
     <Card>
       {renderModal({
-        condition: true,
+        condition: modalOpen,
         modal: (
           <Modal
-            title="Error al iniciar sesion"
-            text="Usuario o contrasenas incorrectos"
+            title="Se guardo exitosamente su respuesta"
+            text=""
             handleClose={close}
-            icon={<XCircleIcon className="w-12 h-12 text-love" />}
+            icon={<CheckCircleIcon className="w-12 h-12 text-green-500" />}
           />
         ),
       })}
@@ -40,19 +74,13 @@ const PostulationCard = ({
 
         <div className="flex w-full justify-between">
           <button
-            onClick={() =>
-              onAcceptOffer({
-                notification_id: id,
-                worker_id: origin_id,
-                offer_id: offer.id,
-              })
-            }
+            onClick={accept}
             className="px-2 font-semibold text-primary bg-transparent border-2 border-primary rounded-lg"
           >
             Aceptar
           </button>
           <button
-            onClick={() => onDenyOffer(id)}
+            onClick={deny}
             className="px-2 font-semibold text-love bg-transparent border-2 border-love rounded-lg"
           >
             Rechazar

@@ -23,7 +23,8 @@ const onAcceptOffer = async ({
 };
 
 const onDenyOffer = (notification_id: string) => {
-  removeNotification(notification_id);
+  const res = removeNotification(notification_id);
+  return res;
 };
 
 export { onAcceptOffer, onDenyOffer };

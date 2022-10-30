@@ -94,11 +94,13 @@ const setNotification = async (notification: notification) => {
     .insert([{ ...notification }]);
 
   console.log(data);
+
+  return data;
 };
 
 const removeNotification = async (id: string) => {
   const data = await supabase.from("notifications").delete().eq("id", id);
-  console.log(data);
+  return data;
 };
 
 export {

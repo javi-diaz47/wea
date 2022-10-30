@@ -32,7 +32,7 @@ const Navbar = ({ isAuth }) => {
       )}
       <NavbarSidebarMenu navigation={navigation} onNavigation={onNavigation} />
 
-      <NavbarLink href="">
+      <NavbarLink href="/">
         <Wea className=" scale-150" />
       </NavbarLink>
 
@@ -51,10 +51,10 @@ const Navbar = ({ isAuth }) => {
             navigation={navigation}
           />
 
-          <NavbarSidebarNotifications
+          {/* <NavbarSidebarNotifications
             isOpen={notification}
             onNotification={onNotification}
-          />
+          /> */}
         </>
       )}
     </nav>

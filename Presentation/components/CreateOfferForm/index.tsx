@@ -26,7 +26,7 @@ const CreateOfferForm = ({
   onHandleTags,
 }: Props) => {
   return (
-    <form onSubmit={onSubmit} className="grid gap-8 text-xl">
+    <form onSubmit={onSubmit} className="grid gap-8 text-xl ">
       <InputWithLabel label="Titulo de la oferta">
         <input
           name="name"

@@ -10,12 +10,44 @@ import { Button } from "Presentation/components/Button";
 import { handleOnPostulation } from "Logic/utils/handleOnPostulation";
 import { getCookie } from "cookies-next";
 import jwt from "jsonwebtoken";
+import { useModal } from "@/hooks/useModal";
+import { Modal } from "@/components/Modal";
+import { CheckCircleIcon } from "@heroicons/react/outline";
+import { useState } from "react";
 
 export default function Offer({ profileId, queryKey }) {
   const { data: offer } = useQuery(queryKey, getOfferById);
+  const { renderModal, close, modalOpen, open } = useModal();
+  const [disabled, setDisabled] = useState(false);
+
+  const onPostulation = () => {
+    const res = handleOnPostulation({
+      offer_id: offer.id,
+      destination_id: offer.owner_id,
+      origin_id: profileId,
+    });
+    if (res) {
+      open();
+      setDisabled(true);
+    }
+    if (!res) {
+      close();
+    }
+  };
 
   return (
     <div className="p-8">
+      {renderModal({
+        condition: modalOpen,
+        modal: (
+          <Modal
+            title="Creacion exitosa"
+            text=""
+            handleClose={close}
+            icon={<CheckCircleIcon className="w-12 h-12 text-green-500" />}
+          />
+        ),
+      })}
       <div className="flex gap-4 my-4">
         <ProfilePhoto href={`/profile/${offer?.owner_id}`} />
         <div className="flex flex-col">
@@ -41,13 +73,8 @@ export default function Offer({ profileId, queryKey }) {
         <div className="mt-8 flex justify-center">
           <Button
             text="Postularme a la oferta de trabajo"
-            onClick={() =>
-              handleOnPostulation({
-                offer_id: offer.id,
-                destination_id: offer.owner_id,
-                origin_id: profileId,
-              })
-            }
+            onClick={onPostulation}
+            disabled={disabled}
           />
         </div>
       ) : (

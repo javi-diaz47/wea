@@ -6,6 +6,7 @@ import { Service } from "@/types/BusinessEntities/Service";
 import { input_offer_type, notification, offerCard } from "@/types/types";
 import { CheckCircleIcon } from "@heroicons/react/outline";
 import { handleEndJobOffer } from "Logic/utils/handleEndJobOffer";
+import Router, { useRouter } from "next/router";
 import { useState } from "react";
 import { useBooleanState } from "./useBooleanState";
 import { useModal } from "./useModal";
@@ -24,6 +25,7 @@ const useCreateReview = () => {
   const [inputValues, setInputValues] = useState(INITIAL_STATE);
   const { modalOpen, open, close, renderModal } = useModal();
   const [success, setSuccess] = useState(null);
+  const router = useRouter();
 
   const onHandleChange = (
     ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,6 +53,9 @@ const useCreateReview = () => {
     if (!res) {
       open();
       setSuccess(false);
+      setTimeout(() => {
+        router.back();
+      }, 800);
     }
 
     if (!!res) {
