@@ -35,7 +35,12 @@ const getProfileById = async (params) => {
       .single()
       .then(handleSupabaseError)
       .then(({ data }) => data);
-    // return data;
+    // // return data;
+    return {
+      profile: data,
+      offers: offers || [],
+      services: services || [],
+    };
     return {
       profile: data,
       offers: offers || [],
