@@ -12,7 +12,9 @@ import jwt from "jsonwebtoken";
 export default function ProfileId({ queryKey }) {
   const router = useRouter();
 
-  const { data: profile } = useQuery(queryKey, getProfileById);
+  const {
+    data: { profile, services, offers },
+  } = useQuery(queryKey, getProfileById);
 
   return (
     <div className="h-screen bg-background px-8 py-8 flex flex-col gap-7">
@@ -35,6 +37,8 @@ export default function ProfileId({ queryKey }) {
         who_am_i={profile?.who_am_i}
         resume={profile?.resume}
         contact_me={profile?.contact_me}
+        offers={offers}
+        services={services}
       />
 
       <Link

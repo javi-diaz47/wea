@@ -28,6 +28,7 @@ export default function Login() {
     }
 
     if (data) {
+      console.log("");
       router.push("profile");
     }
   };

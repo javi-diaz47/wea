@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
+    "@material-tailwind/react": "^1.2.4",
     "@supabase/supabase-js": "2.0.4",
     "cookies-next": "^2.1.1",
     "framer-motion": "^7.6.2",
