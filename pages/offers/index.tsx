@@ -1,18 +1,11 @@
 import { OfferCard } from "@/components/Cards/OfferCard";
-import { supabase } from "@/utils/supabaseClient";
 import { PlusIcon } from "@heroicons/react/outline";
 import { NavbarIcon } from "@/Navbar/NavbarIcon";
 import { Empty } from "@/components/Empty";
 import { SearchBar } from "@/components/SearchBar";
-import { useEffect, useState } from "react";
-import { input_offer_type, offerCard } from "@/types/types";
-import { Offer } from "@/types/BusinessEntities/Offer";
 import { dehydrate, QueryClient, useQuery } from "react-query";
-import { isQueryKey } from "react-query/types/core/utils";
-import { getAllOffers, setOffer } from "@/Persistence/OfferDAO";
-import { useBooleanState } from "@/hooks/useBooleanState";
+import { getAllOffers } from "@/Persistence/OfferDAO";
 import { ConditionalBar } from "@/components/ConditionalBar";
-import { FilterIcon } from "@heroicons/react/solid";
 import { useSearchBar } from "@/hooks/useSearchBar";
 
 export default function Offers({ queryKey }) {
@@ -51,7 +44,11 @@ export default function Offers({ queryKey }) {
         ) : (
           offers[isOnOfferType()].map((offer) => (
             <li key={offer.id}>
-              <OfferCard offer={offer} profile={offer.profile} />
+              <OfferCard
+                offer={offer}
+                profile={offer.profile}
+                isOnJobOffer={isOnOfferType()}
+              />
             </li>
           ))
         )}

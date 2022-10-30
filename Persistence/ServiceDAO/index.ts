@@ -31,7 +31,7 @@ const getServiceById = async (params): Promise<serviceCard> => {
   const { id } = params.queryKey[1];
   const data = await supabase
     .from("services")
-    .select("*, author_id (id, name, last_name, picture)")
+    .select("*, owner_id (id, name, last_name, picture)")
     .eq("id", id)
     .limit(1)
     .single()

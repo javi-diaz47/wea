@@ -12,7 +12,7 @@ const Navbar = ({ isAuth }) => {
     useNavbar();
 
   return (
-    <nav className="flex justify-between px-6 py-2 bold text-lg bg-background h-fit">
+    <nav className="z-50 sticky top-0 shadow-md flex justify-between px-6 py-2 bold text-lg bg-background h-fit">
       <MenuBurgerButtonIcon
         navigation={navigation}
         notification={notification}

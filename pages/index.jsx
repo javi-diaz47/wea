@@ -21,14 +21,14 @@ export default function Home() {
                 persona correcta para hacer eso que tanto necesitas ¿Qué
                 esperas?
               </p>
-              <button className="mx-auto lg:mx-0 bg-white text-gray-800  rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out text-2xl">
+              <button className=" mx-auto lg:mx-0 bg-white text-gray-800  rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out text-2xl">
                 Registrate
               </button>
             </div>
             <div className="w-full md:w-3/5 py-6 text-center flex justify-center">
               <img
                 src="https://i.postimg.cc/qq3gGtB5/Helping-a-partner-rafiki.png"
-                className="w-full md:w-4/5 z-50  "
+                className="w-full md:w-4/5 "
               />
             </div>
           </div>
@@ -70,7 +70,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="w-full sm:w-1/2 p-6">
+              <div className="w-full sm:w-1/2 p-6 z-0">
                 <img
                   src="https://i.postimg.cc/W1hYwrQn/Job-hunt-rafiki.png"
                   alt=""

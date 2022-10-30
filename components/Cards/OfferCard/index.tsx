@@ -9,9 +9,10 @@ interface Props {
   href?: String;
   profile: profileCard;
   children?: JSX.Element;
+  isOnJobOffer: string;
 }
 
-const OfferCard = ({ offer, href, profile, children }: Props) => {
+const OfferCard = ({ offer, href, profile, children, isOnJobOffer }: Props) => {
   return (
     <CardTemplate name={offer.name} tags={offer.tags} resume={offer.resume}>
       <div className="flex justify-between gap-4">
@@ -29,7 +30,7 @@ const OfferCard = ({ offer, href, profile, children }: Props) => {
             href={
               href
                 ? href
-                : `${process.env.NEXT_PUBLIC_ROOT_URL}/offers/${offer.id}`
+                : `${process.env.NEXT_PUBLIC_ROOT_URL}/${isOnJobOffer}/${offer.id}`
             }
             text="Ver oferta"
           />

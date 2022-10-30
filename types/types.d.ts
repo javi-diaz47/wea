@@ -6,8 +6,8 @@ type notification_type = "offer" | "postulation" | "deny";
 
 interface notification {
   id?: string;
-  origin_id: Profile;
-  destination_id: Profile;
+  origin_id: Profile | string;
+  destination_id: Profile | string;
   offer?: Offer;
   offer_id?: string;
   viewed?: boolean;
