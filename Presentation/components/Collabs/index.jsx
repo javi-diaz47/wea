@@ -25,7 +25,7 @@ const Collabs = ({ id, icon, title, desc, handleOpen, open }) => {
           {icon}
           {title}
         </AccordionHeader>
-        <AccordionBody className="h-full">{desc}</AccordionBody>
+        <AccordionBody className="h-full text-md">{desc}</AccordionBody>
       </Accordion>
     </article>
   );
