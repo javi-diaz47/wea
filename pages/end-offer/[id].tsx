@@ -47,7 +47,7 @@ export default function EndJobOffer({ profileId, queryKey }) {
               step="any"
               onChange={onHandleChange}
               className="text-lg w-full p-2 rounded-lg shadow-md"
-              placeholder="Costo base de la oferta"
+              placeholder="Calificacion"
               required
             />
           </InputWithLabel>
@@ -74,7 +74,7 @@ export default function EndJobOffer({ profileId, queryKey }) {
             className="text-white hover:bg-white hover:text-blue-600 m-w-24 p-2 font-bold bg-blue-600 rounded-lg"
             type="submit"
           >
-            Crear oferta
+            Finalizar oferta
           </button>
         </form>
       </div>
