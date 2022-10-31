@@ -63,6 +63,7 @@ const PostulationCard = ({
         ),
       })}
       <div className="flex flex-col gap-4 w-full">
+        <h2 className="text-3xl hover:underline font-semibold">{offer.name}</h2>
         <ProfileUserWithStar
           name={profile.name}
           last_name={profile.last_name}
