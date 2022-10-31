@@ -1,7 +1,4 @@
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import remarkGfm from "remark-gfm";
 import { getDateFormat } from "Logic/utils/getDateFormat";
-import { TagList } from "Presentation/components/Tag/TagList";
 import { supabase } from "Logic/utils/supabaseClient";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { getOfferById } from "Persistence/OfferDAO";
@@ -14,6 +11,7 @@ import { useModal } from "@/hooks/useModal";
 import { Modal } from "@/components/Modal";
 import { CheckCircleIcon } from "@heroicons/react/outline";
 import { useState } from "react";
+import { OfferMd } from "@/components/OfferMd";
 
 export default function Offer({ profileId, queryKey }) {
   const { data: offer } = useQuery(queryKey, getOfferById);
@@ -58,15 +56,12 @@ export default function Offer({ profileId, queryKey }) {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <h2 className="text-5xl font-semibold">{offer?.name}</h2>
-        <TagList tags={offer?.tags} />
-        <hr />
-        <div className="offer h-fit">
-          <ReactMarkdown
-            children={offer?.description}
-            remarkPlugins={[remarkGfm]}
-          />
-        </div>
+        <OfferMd
+          name={offer?.name}
+          price={offer?.price}
+          tags={offer?.tags}
+          description={offer?.description}
+        />
       </div>
       {profileId !== offer.owner_id &&
       offer.in_progress === "not-in-progress" ? (
