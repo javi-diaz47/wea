@@ -54,11 +54,11 @@ const ProfileInformation = ({
               services.map(({ id, name }) => (
                 <div
                   key={`profile-services-${id}`}
-                  className="text-xl flex justify-between"
+                  className="text-md flex group justify-between hover:underline underline-offset-2 transition-all"
                 >
                   {name}
                   <Link href={`/services/${id}`}>
-                    <a className="text-primary border-primary hover:bg-primary bg-transparent rounded-full">
+                    <a className="text-primary group-hover:text-xl transition-all bg-transparent rounded-full">
                       ver oferta
                     </a>
                   </Link>
@@ -74,16 +74,16 @@ const ProfileInformation = ({
         title={"Trabajos ofrecidos"}
         icon={<ClipboardListIcon className="w-8 h-8 text-primary" />}
         desc={
-          <div className="flex flex-col">
+          <div className="flex flex-col text-md">
             {offers.length !== 0 &&
               offers.map(({ id, name }) => (
                 <div
                   key={`profile-offers-${id}`}
-                  className="text-xl flex justify-between"
+                  className="text-md flex group justify-between hover:underline underline-offset-2 transition-all"
                 >
                   {name}
                   <Link href={`/offers/${id}`}>
-                    <a className="text-primary border-primary hover:bg-primary bg-transparent rounded-full">
+                    <a className="text-primary group-hover:text-xl transition-all bg-transparent rounded-full">
                       ver oferta
                     </a>
                   </Link>
