@@ -49,7 +49,7 @@ const CreateOfferForm = ({
             rows={4}
             name="resume"
             value={resume}
-            placeholder="Escribe aqui la descripciond de tu oferta..."
+            placeholder="Escribe aqui la descripcion de tu oferta..."
             onChange={onHandleChange}
             maxLength={Number(MAX_OFFER_DESC_LENGTH)}
             required

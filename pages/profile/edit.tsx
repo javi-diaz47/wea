@@ -80,7 +80,7 @@ export default function createOffer({ profileId }) {
                 rows={2}
                 name="who_am_i"
                 value={inputValues.who_am_i}
-                placeholder="Escribe aqui la descripciond de tu oferta..."
+                placeholder=""
                 onChange={onHandleChange}
                 maxLength={Number(MAX_OFFER_DESC_LENGTH)}
                 required
@@ -98,7 +98,7 @@ export default function createOffer({ profileId }) {
                 rows={4}
                 name="resume"
                 value={inputValues.resume}
-                placeholder="Escribe aqui la descripciond de tu oferta..."
+                placeholder=""
                 onChange={onHandleChange}
                 maxLength={Number(MAX_OFFER_DESC_LENGTH)}
                 required
@@ -115,7 +115,7 @@ export default function createOffer({ profileId }) {
                 rows={2}
                 name="contact_me"
                 value={inputValues.contact_me}
-                placeholder="Escribe aqui la descripciond de tu oferta..."
+                placeholder=""
                 onChange={onHandleChange}
                 maxLength={Number(MAX_OFFER_DESC_LENGTH)}
                 required
