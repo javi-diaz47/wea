@@ -26,7 +26,8 @@ export default function signUp() {
       open();
     }
     if (!error) {
-      Router.push("login");
+      // Router.push("login");
+      setError(false);
       open();
     }
   };
@@ -37,6 +38,17 @@ export default function signUp() {
 
   return (
     <div className="  flex flex-col  items-center  relative">
+      {renderModal({
+        condition: modalOpen && !error,
+        modal: (
+          <Modal
+            title="Verifica tu cuenta"
+            text="Hemos enviado un mensaje de registro a tu correo para poder verificarla"
+            handleClose={close}
+            icon={<XCircleIcon className="w-12 h-12 text-love" />}
+          />
+        ),
+      })}
       {renderModal({
         condition: modalOpen && !!error,
         modal: (

@@ -61,6 +61,9 @@ const useCreateReview = () => {
     if (!!res) {
       open();
       setSuccess(true);
+      setTimeout(() => {
+        router.back();
+      }, 800);
     }
   };
 
